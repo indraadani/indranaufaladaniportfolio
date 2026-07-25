@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -88,7 +89,44 @@ const ImagePH = ({ w = 1600, h = 900, label = "IMAGE PLACEHOLDER" }: { w?: numbe
   </div>
 );
 
+/* Sheet code marker — bottom-right corner of each section */
+const SheetTag = ({ n, total = 7 }: { n: number; total?: number }) => (
+  <div className="pointer-events-none absolute bottom-3 right-4 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)] sm:bottom-4 sm:right-6">
+    SHEET {String(n).padStart(2, "0")} OF {String(total).padStart(2, "0")}
+  </div>
+);
+
+/* Section shortcuts for hero nav */
+const SECTIONS: { id: string; label: string; n: number }[] = [
+  { id: "fokus", label: "Focus", n: 1 },
+  { id: "proyek", label: "Projects", n: 2 },
+  { id: "pengalaman", label: "Experience", n: 3 },
+  { id: "organisasi", label: "Organizations", n: 4 },
+  { id: "skills", label: "Skills", n: 5 },
+  { id: "sertifikat", label: "Certificates", n: 6 },
+  { id: "kontak", label: "Contact", n: 7 },
+];
+
+/* Detect device class for footer SCALE */
+function useDeviceScale() {
+  const [scale, setScale] = useState("1 : 1");
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      if (w < 640) setScale("1 : 1 MOBILE");
+      else if (w < 1024) setScale("1 : 1 TABLET");
+      else setScale("1 : 1 DESKTOP");
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return scale;
+}
+
+
 function Index() {
+  const deviceScale = useDeviceScale();
   // Scroll reveal
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -113,12 +151,39 @@ function Index() {
       {/* EDIT: Hero — nama, headline, positioning */}
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-6 pt-16 pb-10 sm:pt-24 sm:pb-16">
-          <div className="mb-6 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
+          <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
             <span className="text-[color:var(--amber-brand)]">■</span>
             <span>SHEET 00 / COVER</span>
             <span className="opacity-40">·</span>
-            <span>REV 01 — 2026</span>
+            <span>2026</span>
           </div>
+
+          {/* Section shortcuts — jump to any sheet */}
+          <nav aria-label="Section shortcuts" className="mb-10 border-y border-[color:var(--concrete)]/30 py-3">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+              {SECTIONS.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    className="group inline-flex items-center gap-2 hover:text-[color:var(--amber-brand)]"
+                  >
+                    <span className="text-[color:var(--amber-brand)]">{String(s.n).padStart(2, "0")}</span>
+                    <span className="uppercase">{s.label}</span>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 uppercase text-[color:var(--paper)] hover:text-[color:var(--amber-brand)]"
+                >
+                  <span className="text-[color:var(--amber-brand)]">A</span>
+                  <span>About</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
 
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
             <div className="reveal">
@@ -138,7 +203,7 @@ function Index() {
 
               {/* Data strip */}
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
-                <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.72/4.00</span>
+                <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.74/4.00</span>
                 <span>UNIVERSITAS NEGERI SURABAYA</span>
                 <span>EXP. GRADUATION 2026</span>
                 <span>SOLIDWORKS / ANSYS / AUTOCAD / INVENTOR</span>
@@ -160,7 +225,7 @@ function Index() {
       </section>
 
       {/* ================= 01 FOKUS ================= */}
-      <section id="fokus" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="fokus" className="relative mx-auto max-w-6xl px-6 py-20">
         <SectionHead
           code="01 / FOKUS KEAHLIAN"
           title="Focus Areas"
@@ -204,12 +269,13 @@ function Index() {
             </div>
           ))}
         </div>
+        <SheetTag n={1} />
       </section>
 
       <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="A — A" /></div>
 
       {/* ================= 02 PROYEK ================= */}
-      <section id="proyek" className="mx-auto max-w-6xl px-6 py-10">
+      <section id="proyek" className="relative mx-auto max-w-6xl px-6 py-10">
         <SectionHead
           code="02 / PROYEK PILIHAN"
           title="Selected Projects"
@@ -305,12 +371,13 @@ function Index() {
             </article>
           ))}
         </div>
+        <SheetTag n={2} />
       </section>
 
       <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="B — B" /></div>
 
       {/* ================= 03 PENGALAMAN ================= */}
-      <section id="pengalaman" className="mx-auto max-w-6xl px-6 py-10">
+      <section id="pengalaman" className="relative mx-auto max-w-6xl px-6 py-10">
         <SectionHead
           code="03 / PENGALAMAN INDUSTRI"
           title="Industry Experience"
@@ -373,10 +440,11 @@ function Index() {
             </li>
           ))}
         </ol>
+        <SheetTag n={3} />
       </section>
 
       {/* ================= 04 ORGANISASI ================= */}
-      <section id="organisasi" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="organisasi" className="relative mx-auto max-w-6xl px-6 py-20">
         <SectionHead code="04 / ORGANISASI & KOMPETISI" title="Organizations & Competitions" />
         <div className="grid gap-6 md:grid-cols-3">
           {[
@@ -408,12 +476,13 @@ function Index() {
             </div>
           ))}
         </div>
+        <SheetTag n={4} />
       </section>
 
       <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="C — C" /></div>
 
       {/* ================= 05 SKILLS ================= */}
-      <section id="skills" className="mx-auto max-w-6xl px-6 py-10">
+      <section id="skills" className="relative mx-auto max-w-6xl px-6 py-10">
         <SectionHead code="05 / KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
@@ -479,10 +548,11 @@ function Index() {
             </ul>
           </div>
         </div>
+        <SheetTag n={5} />
       </section>
 
       {/* ================= 06 CERTS ================= */}
-      <section id="sertifikat" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="sertifikat" className="relative mx-auto max-w-6xl px-6 py-20">
         <SectionHead code="06 / SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
@@ -499,6 +569,7 @@ function Index() {
             </div>
           ))}
         </div>
+        <SheetTag n={6} />
       </section>
 
       {/* ================= 07 CONTACT ================= */}
@@ -528,25 +599,26 @@ function Index() {
             <a href="#" className="btn-tech">Download CV ↓</a>
           </div>
         </div>
+        <SheetTag n={7} />
       </section>
 
       {/* ================= FOOTER TITLE BLOCK ================= */}
       <footer className="mx-auto max-w-6xl px-6 py-10">
         <div className="border border-[color:var(--concrete)]/50 font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--paper)]">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
             {[
-              ["DRAWN BY", "INDRA N. ADANI"],
+              ["CREATED BY", "INDRA NAUFAL ADANI"],
               ["PROJECT", "PERSONAL PORTFOLIO"],
-              ["SCALE", "1 : 1"],
-              ["DATE", "2026"],
-              ["SHEET", "01 OF 01"],
-              ["REV", "01"],
+              ["SCALE", deviceScale],
+              ["BIRTHDAY DATE", "13 JANUARI 2004"],
             ].map(([k, v], i) => (
               <div
                 key={k}
                 className={`border-[color:var(--concrete)]/50 p-3 ${
-                  i < 5 ? "border-b sm:border-r sm:border-b-0" : ""
-                } ${i < 3 ? "border-b" : ""}`}
+                  i < 3 ? "border-b lg:border-r lg:border-b-0" : ""
+                } ${i < 2 ? "border-b lg:border-b-0" : ""} ${
+                  i % 2 === 0 ? "border-r lg:border-r" : ""
+                }`}
               >
                 <div className="text-[color:var(--concrete)]">{k}</div>
                 <div className="mt-1 text-[color:var(--amber-brand)]">{v}</div>
@@ -554,6 +626,7 @@ function Index() {
             ))}
           </div>
         </div>
+
         <p className="mt-4 text-center font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
           © 2026 INDRA NAUFAL ADANI — ALL DRAWINGS ARE INDICATIVE
         </p>
