@@ -598,20 +598,20 @@ function Index() {
       {/* ================= FOOTER TITLE BLOCK ================= */}
       <footer className="mx-auto max-w-6xl px-6 py-10">
         <div className="border border-[color:var(--concrete)]/50 font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--paper)]">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
             {[
-              ["DRAWN BY", "INDRA N. ADANI"],
+              ["CREATED BY", "INDRA NAUFAL ADANI"],
               ["PROJECT", "PERSONAL PORTFOLIO"],
-              ["SCALE", "1 : 1"],
-              ["DATE", "2026"],
-              ["SHEET", "01 OF 01"],
-              ["REV", "01"],
+              ["SCALE", deviceScale],
+              ["BIRTHDAY DATE", "13 JANUARI 2004"],
             ].map(([k, v], i) => (
               <div
                 key={k}
                 className={`border-[color:var(--concrete)]/50 p-3 ${
-                  i < 5 ? "border-b sm:border-r sm:border-b-0" : ""
-                } ${i < 3 ? "border-b" : ""}`}
+                  i < 3 ? "border-b lg:border-r lg:border-b-0" : ""
+                } ${i < 2 ? "border-b lg:border-b-0" : ""} ${
+                  i % 2 === 0 ? "border-r lg:border-r" : ""
+                }`}
               >
                 <div className="text-[color:var(--concrete)]">{k}</div>
                 <div className="mt-1 text-[color:var(--amber-brand)]">{v}</div>
@@ -619,6 +619,7 @@ function Index() {
             ))}
           </div>
         </div>
+
         <p className="mt-4 text-center font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
           © 2026 INDRA NAUFAL ADANI — ALL DRAWINGS ARE INDICATIVE
         </p>
