@@ -126,6 +126,7 @@ function useDeviceScale() {
 
 
 function Index() {
+  const deviceScale = useDeviceScale();
   // Scroll reveal
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -150,12 +151,39 @@ function Index() {
       {/* EDIT: Hero — nama, headline, positioning */}
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-6 pt-16 pb-10 sm:pt-24 sm:pb-16">
-          <div className="mb-6 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
+          <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
             <span className="text-[color:var(--amber-brand)]">■</span>
             <span>SHEET 00 / COVER</span>
             <span className="opacity-40">·</span>
-            <span>REV 01 — 2026</span>
+            <span>2026</span>
           </div>
+
+          {/* Section shortcuts — jump to any sheet */}
+          <nav aria-label="Section shortcuts" className="mb-10 border-y border-[color:var(--concrete)]/30 py-3">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+              {SECTIONS.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    className="group inline-flex items-center gap-2 hover:text-[color:var(--amber-brand)]"
+                  >
+                    <span className="text-[color:var(--amber-brand)]">{String(s.n).padStart(2, "0")}</span>
+                    <span className="uppercase">{s.label}</span>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 uppercase text-[color:var(--paper)] hover:text-[color:var(--amber-brand)]"
+                >
+                  <span className="text-[color:var(--amber-brand)]">A</span>
+                  <span>About</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
 
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
             <div className="reveal">
