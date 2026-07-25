@@ -89,6 +89,42 @@ const ImagePH = ({ w = 1600, h = 900, label = "IMAGE PLACEHOLDER" }: { w?: numbe
   </div>
 );
 
+/* Sheet code marker — bottom-right corner of each section */
+const SheetTag = ({ n, total = 7 }: { n: number; total?: number }) => (
+  <div className="pointer-events-none absolute bottom-3 right-4 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)] sm:bottom-4 sm:right-6">
+    SHEET {String(n).padStart(2, "0")} OF {String(total).padStart(2, "0")}
+  </div>
+);
+
+/* Section shortcuts for hero nav */
+const SECTIONS: { id: string; label: string; n: number }[] = [
+  { id: "fokus", label: "Focus", n: 1 },
+  { id: "proyek", label: "Projects", n: 2 },
+  { id: "pengalaman", label: "Experience", n: 3 },
+  { id: "organisasi", label: "Organizations", n: 4 },
+  { id: "skills", label: "Skills", n: 5 },
+  { id: "sertifikat", label: "Certificates", n: 6 },
+  { id: "kontak", label: "Contact", n: 7 },
+];
+
+/* Detect device class for footer SCALE */
+function useDeviceScale() {
+  const [scale, setScale] = useState("1 : 1");
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      if (w < 640) setScale("1 : 1 MOBILE");
+      else if (w < 1024) setScale("1 : 1 TABLET");
+      else setScale("1 : 1 DESKTOP");
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return scale;
+}
+
+
 function Index() {
   // Scroll reveal
   useEffect(() => {
