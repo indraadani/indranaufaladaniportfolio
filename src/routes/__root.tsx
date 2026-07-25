@@ -81,14 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Portfolio Indra Naufal Adani — Mechanical Engineering focus pada Energy Conversion, Industrial Inspection, dan Maintenance untuk industri proses.",
+          "Portofolio Indra Naufal Adani — Mechanical Engineering.",
       },
       { name: "author", content: "Indra Naufal Adani" },
       { property: "og:title", content: "Indra Naufal Adani — Mechanical Engineering Portfolio" },
       {
         property: "og:description",
         content:
-          "Energy Conversion · Industrial Inspection · Maintenance — portfolio fresh graduate Teknik Mesin.",
+          "Portofolio Indra Naufal Adani — Mechanical Engineering.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -96,12 +96,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Energy Conversion · Industrial Inspection · Maintenance — portfolio fresh graduate Teknik Mesin.",
+          "Portofolio Indra Naufal Adani — Mechanical Engineering.",
       },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc12ea16-571d-4760-a000-52bfe3f59f8a/id-preview-29aa6a8f--33c6bc9b-e499-4fb7-a8f5-4eff06d0c3c0.lovable.app-1784949011717.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc12ea16-571d-4760-a000-52bfe3f59f8a/id-preview-29aa6a8f--33c6bc9b-e499-4fb7-a8f5-4eff06d0c3c0.lovable.app-1784949011717.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
