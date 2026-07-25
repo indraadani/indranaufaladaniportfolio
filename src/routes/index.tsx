@@ -269,6 +269,7 @@ function Index() {
             </div>
           ))}
         </div>
+        <SheetTag n={1} />
       </section>
 
       <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="A — A" /></div>
@@ -370,6 +371,7 @@ function Index() {
             </article>
           ))}
         </div>
+        <SheetTag n={2} />
       </section>
 
       <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="B — B" /></div>
@@ -438,6 +440,7 @@ function Index() {
             </li>
           ))}
         </ol>
+        <SheetTag n={3} />
       </section>
 
       {/* ================= 04 ORGANISASI ================= */}
@@ -473,6 +476,7 @@ function Index() {
             </div>
           ))}
         </div>
+        <SheetTag n={4} />
       </section>
 
       <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="C — C" /></div>
@@ -544,6 +548,7 @@ function Index() {
             </ul>
           </div>
         </div>
+        <SheetTag n={5} />
       </section>
 
       {/* ================= 06 CERTS ================= */}
@@ -564,6 +569,7 @@ function Index() {
             </div>
           ))}
         </div>
+        <SheetTag n={6} />
       </section>
 
       {/* ================= 07 CONTACT ================= */}
@@ -593,6 +599,7 @@ function Index() {
             <a href="#" className="btn-tech">Download CV ↓</a>
           </div>
         </div>
+        <SheetTag n={7} />
       </section>
 
       {/* ================= FOOTER TITLE BLOCK ================= */}
