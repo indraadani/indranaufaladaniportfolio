@@ -98,8 +98,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Portofolio Indra Naufal Adani — Mechanical Engineering.",
       },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc12ea16-571d-4760-a000-52bfe3f59f8a/id-preview-29aa6a8f--33c6bc9b-e499-4fb7-a8f5-4eff06d0c3c0.lovable.app-1784949011717.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc12ea16-571d-4760-a000-52bfe3f59f8a/id-preview-29aa6a8f--33c6bc9b-e499-4fb7-a8f5-4eff06d0c3c0.lovable.app-1784949011717.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3c93a7aa-cf8c-422a-89cb-bae16ab1fa15" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3c93a7aa-cf8c-422a-89cb-bae16ab1fa15" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -109,6 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
   }),
   shellComponent: RootShell,
