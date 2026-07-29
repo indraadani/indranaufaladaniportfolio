@@ -84,6 +84,17 @@ const KEDAIREKA_VIDEOS = [
   { src: kedaireka3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
 ];
 
+const CADFEM_IMAGES = [
+  { src: cadfem1.url, caption: "CADFEM — Static Structural Setup Flanged Tee Valve" },
+  { src: cadfem2.url, caption: "CADFEM — Directional Deformation & Tabular Data" },
+  { src: cadfem3.url, caption: "CADFEM — Equivalent (von-Mises) Stress Propeller" },
+  { src: cadfem4.url, caption: "CADFEM — Eigenvalue Buckling Analysis Beam" },
+  { src: cadfem5.url, caption: "CADFEM — Large Deflection Static Structural" },
+  { src: cadfem6.url, caption: "CADFEM — Modal Analysis 6 Mode Frekuensi" },
+  { src: cadfem7.url, caption: "CADFEM — Analysis Routine Workflow Simulasi" },
+  { src: cadfem8.url, caption: "CADFEM — Robust Meshing Impeller Housing" },
+];
+
 /* ============================================================
    P&ID line-art icons
    ============================================================ */
