@@ -470,9 +470,10 @@ function Index() {
             },
             {
               role: "Research Intern — Kedaireka",
-              org: "Riset Kendaraan Listrik Multifungsi",
+              org: "Magang Kedaireka",
               date: "AGU — DES 2024",
-              body: "Kontribusi pada riset perancangan kendaraan listrik multifungsi.",
+              body: "Kontribusi pada pembuatan alat produksi pabrik dan riset perancangan kendaraan listrik multifungsi.",
+              gallery: KEDAIREKA_VIDEOS,
             },
           ].map((e, i) => (
             <li key={i} className="reveal relative mb-10 pl-8">
