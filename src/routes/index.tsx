@@ -39,6 +39,22 @@ const TPPI_PHOTOS = [
   { src: tppi10.url, caption: "TPPI — Preventive Maintenance Tools" },
 ];
 
+const PPSDM_PHOTOS = [
+  { src: ppsdm1.url, caption: "PPSDM Migas — Sesi Kerja Tim Workshop" },
+  { src: ppsdm2.url, caption: "PPSDM Migas — Gedung PPSDM Migas Cepu" },
+  { src: ppsdm3.url, caption: "PPSDM Migas — Tim Praktik Kerja Lapangan" },
+  { src: ppsdm4.url, caption: "PPSDM Migas — Pencatatan Data Operasi Kilang" },
+  { src: ppsdm5.url, caption: "PPSDM Migas — Area Kilang PPSDM Migas" },
+  { src: ppsdm6.url, caption: "PPSDM Migas — Briefing Keselamatan Kerja" },
+  { src: ppsdm7.url, caption: "PPSDM Migas — Kolom Distilasi Unit Pengolahan" },
+];
+
+const ROBUTECH_PHOTOS = [
+  { src: robutech1.url, caption: "Robutech — Turbine Hall Pembangkit Listrik" },
+  { src: robutech2.url, caption: "Robutech — Inspeksi Ketinggian dengan Full Body Harness" },
+  { src: robutech3.url, caption: "Robutech — Inspeksi Confined Space Area Boiler" },
+];
+
 /* ============================================================
    P&ID line-art icons
    ============================================================ */
