@@ -220,6 +220,22 @@ const DocScroller = ({
   emptyCount?: number;
 }) => {
   const hasItems = items && items.length > 0;
+  const [zoom, setZoom] = useState<number | null>(null);
+  const zoomed = zoom !== null && items ? items[zoom] : null;
+
+  useEffect(() => {
+    if (zoom === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setZoom(null);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [zoom]);
+
   return (
     <div className="relative -mx-6 mt-4 sm:mx-0">
       <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 sm:px-0 [scrollbar-color:var(--amber-brand)_transparent]">
@@ -240,12 +256,22 @@ const DocScroller = ({
                       preload="metadata"
                     />
                   ) : (
-                    <img
-                      src={it.src}
-                      alt={it.caption ?? "Documentation"}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
+                    <button
+                      type="button"
+                      onClick={() => setZoom(i)}
+                      aria-label={`Perbesar foto: ${it.caption ?? "dokumentasi"}`}
+                      className="group relative block h-full w-full cursor-zoom-in overflow-hidden"
+                    >
+                      <img
+                        src={it.src}
+                        alt={it.caption ?? "Documentation"}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <span className="absolute right-2 bottom-2 border border-[color:var(--amber-brand)] bg-[color:var(--graphite)]/80 px-2 py-1 font-mono text-[9px] tracking-[0.2em] text-[color:var(--amber-brand)] opacity-0 transition-opacity group-hover:opacity-100">
+                        ⤢ ZOOM
+                      </span>
+                    </button>
                   )}
                 </div>
                 <figcaption className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
@@ -268,9 +294,39 @@ const DocScroller = ({
         <span>◄ SCROLL →</span>
         <div className="h-px flex-1 bg-[color:var(--concrete)]/40" />
       </div>
+
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[color:var(--graphite)]/95 p-4"
+          onClick={() => setZoom(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            onClick={() => setZoom(null)}
+            aria-label="Tutup"
+            className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
+          >
+            ✕ ESC
+          </button>
+          <img
+            src={zoomed.src}
+            alt={zoomed.caption ?? "Documentation"}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[85vh] max-w-full border border-[color:var(--concrete)]/40 object-contain"
+          />
+          {zoomed.caption && (
+            <p className="mt-3 font-mono text-[11px] tracking-[0.2em] text-[color:var(--concrete)]">
+              {zoomed.caption}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
+
 
 function Index() {
   const deviceScale = useDeviceScale();
