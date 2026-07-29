@@ -62,6 +62,18 @@ const ROBUTECH_PHOTOS = [
   { src: robutech1.url, caption: "Robutech — Turbine Hall Pembangkit Listrik" },
   { src: robutech2.url, caption: "Robutech — Inspeksi Ketinggian dengan Full Body Harness" },
   { src: robutech3.url, caption: "Robutech — Inspeksi Confined Space Area Boiler" },
+  { src: robutech4.url, caption: "Robutech — Inspeksi di Jetty Conveyor" },
+  { src: robutech5.url, caption: "Robutech — Radiography Testing Crawler & Survey Meter" },
+  { src: robutech6.url, caption: "Robutech — Radiography Testing Persiapan Sumber" },
+  { src: robutech7.url, caption: "Robutech — Ultrasonic Thickness Measurement" },
+  { src: robutech8.url, caption: "Robutech — Penetrant Testing pada Sambungan Las" },
+  { src: robutech9.url, caption: "Robutech — Area Coal Conveyor & Jetty" },
+];
+
+const KEDAIREKA_VIDEOS = [
+  { src: kedaireka1.url, type: "video" as const, caption: "Kedaireka — Proses Pembuatan Alat Produksi" },
+  { src: kedaireka2.url, type: "video" as const, caption: "Kedaireka — Uji Coba Kendaraan Listrik" },
+  { src: kedaireka3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
 ];
 
 /* ============================================================
