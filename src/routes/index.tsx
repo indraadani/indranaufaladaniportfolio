@@ -30,6 +30,14 @@ import robutech9 from "../assets/robutech/robutech-9.jpg.asset.json";
 import kedaireka1 from "../assets/kedaireka/kedaireka-1.mp4.asset.json";
 import kedaireka2 from "../assets/kedaireka/kedaireka-2.mp4.asset.json";
 import kedaireka3 from "../assets/kedaireka/kedaireka-3.mp4.asset.json";
+import cadfem1 from "../assets/cadfem/cadfem-1.png.asset.json";
+import cadfem2 from "../assets/cadfem/cadfem-2.png.asset.json";
+import cadfem3 from "../assets/cadfem/cadfem-3.png.asset.json";
+import cadfem4 from "../assets/cadfem/cadfem-4.png.asset.json";
+import cadfem5 from "../assets/cadfem/cadfem-5.png.asset.json";
+import cadfem6 from "../assets/cadfem/cadfem-6.png.asset.json";
+import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
+import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
