@@ -482,10 +482,11 @@ function Index() {
               gallery: TPPI_PHOTOS,
             },
             {
-              role: "FEA Engineer",
+              role: "Finite Element Analysis",
               org: "PT CADFEM Simulation Technology Indonesia",
               date: "SEP — DES 2024",
               body: "Simulasi Finite Element Analysis untuk komponen struktural dan validasi desain.",
+              gallery: CADFEM_IMAGES,
             },
             {
               role: "Research Intern — Kedaireka",
