@@ -422,6 +422,7 @@ function Index() {
               org: "PPSDM Migas Cepu",
               date: "MAR — APR 2025",
               body: "Prime mover, pompa, lifting system, permesinan, thermography, dan analisis komposisi kimia.",
+              gallery: PPSDM_PHOTOS,
             },
             {
               role: "Maintenance Execute",
