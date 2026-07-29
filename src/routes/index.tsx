@@ -21,6 +21,15 @@ import ppsdm7 from "../assets/ppsdm/ppsdm-7.jpg.asset.json";
 import robutech1 from "../assets/robutech/robutech-1.jpg.asset.json";
 import robutech2 from "../assets/robutech/robutech-2.jpg.asset.json";
 import robutech3 from "../assets/robutech/robutech-3.jpg.asset.json";
+import robutech4 from "../assets/robutech/robutech-4.jpg.asset.json";
+import robutech5 from "../assets/robutech/robutech-5.jpg.asset.json";
+import robutech6 from "../assets/robutech/robutech-6.jpg.asset.json";
+import robutech7 from "../assets/robutech/robutech-7.jpg.asset.json";
+import robutech8 from "../assets/robutech/robutech-8.jpg.asset.json";
+import robutech9 from "../assets/robutech/robutech-9.jpg.asset.json";
+import kedaireka1 from "../assets/kedaireka/kedaireka-1.mp4.asset.json";
+import kedaireka2 from "../assets/kedaireka/kedaireka-2.mp4.asset.json";
+import kedaireka3 from "../assets/kedaireka/kedaireka-3.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -53,6 +62,18 @@ const ROBUTECH_PHOTOS = [
   { src: robutech1.url, caption: "Robutech — Turbine Hall Pembangkit Listrik" },
   { src: robutech2.url, caption: "Robutech — Inspeksi Ketinggian dengan Full Body Harness" },
   { src: robutech3.url, caption: "Robutech — Inspeksi Confined Space Area Boiler" },
+  { src: robutech4.url, caption: "Robutech — Inspeksi di Jetty Conveyor" },
+  { src: robutech5.url, caption: "Robutech — Radiography Testing Crawler & Survey Meter" },
+  { src: robutech6.url, caption: "Robutech — Radiography Testing Persiapan Sumber" },
+  { src: robutech7.url, caption: "Robutech — Ultrasonic Thickness Measurement" },
+  { src: robutech8.url, caption: "Robutech — Penetrant Testing pada Sambungan Las" },
+  { src: robutech9.url, caption: "Robutech — Area Coal Conveyor & Jetty" },
+];
+
+const KEDAIREKA_VIDEOS = [
+  { src: kedaireka1.url, type: "video" as const, caption: "Kedaireka — Proses Pembuatan Alat Produksi" },
+  { src: kedaireka2.url, type: "video" as const, caption: "Kedaireka — Uji Coba Kendaraan Listrik" },
+  { src: kedaireka3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
 ];
 
 /* ============================================================
@@ -175,7 +196,7 @@ const DocScroller = ({
   emptyLabel,
   emptyCount = 4,
 }: {
-  items?: { src: string; caption?: string }[];
+  items?: { src: string; caption?: string; type?: "image" | "video" }[];
   emptyLabel?: string;
   emptyCount?: number;
 }) => {
@@ -191,12 +212,22 @@ const DocScroller = ({
                 style={{ width: "min(78vw, 340px)" }}
               >
                 <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={it.src}
-                    alt={it.caption ?? "Documentation"}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
+                  {it.type === "video" ? (
+                    <video
+                      src={it.src}
+                      className="h-full w-full object-cover"
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <img
+                      src={it.src}
+                      alt={it.caption ?? "Documentation"}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  )}
                 </div>
                 <figcaption className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
                   <span className="truncate">{it.caption}</span>
@@ -439,9 +470,10 @@ function Index() {
             },
             {
               role: "Research Intern — Kedaireka",
-              org: "Riset Kendaraan Listrik Multifungsi",
+              org: "Magang Kedaireka",
               date: "AGU — DES 2024",
-              body: "Kontribusi pada riset perancangan kendaraan listrik multifungsi.",
+              body: "Kontribusi pada pembuatan alat produksi pabrik dan riset perancangan kendaraan listrik multifungsi.",
+              gallery: KEDAIREKA_VIDEOS,
             },
           ].map((e, i) => (
             <li key={i} className="reveal relative mb-10 pl-8">
