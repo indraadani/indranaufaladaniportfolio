@@ -30,6 +30,14 @@ import robutech9 from "../assets/robutech/robutech-9.jpg.asset.json";
 import kedaireka1 from "../assets/kedaireka/kedaireka-1.mp4.asset.json";
 import kedaireka2 from "../assets/kedaireka/kedaireka-2.mp4.asset.json";
 import kedaireka3 from "../assets/kedaireka/kedaireka-3.mp4.asset.json";
+import cadfem1 from "../assets/cadfem/cadfem-1.png.asset.json";
+import cadfem2 from "../assets/cadfem/cadfem-2.png.asset.json";
+import cadfem3 from "../assets/cadfem/cadfem-3.png.asset.json";
+import cadfem4 from "../assets/cadfem/cadfem-4.png.asset.json";
+import cadfem5 from "../assets/cadfem/cadfem-5.png.asset.json";
+import cadfem6 from "../assets/cadfem/cadfem-6.png.asset.json";
+import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
+import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -74,6 +82,17 @@ const KEDAIREKA_VIDEOS = [
   { src: kedaireka1.url, type: "video" as const, caption: "Kedaireka — Proses Pembuatan Alat Produksi" },
   { src: kedaireka2.url, type: "video" as const, caption: "Kedaireka — Uji Coba Kendaraan Listrik" },
   { src: kedaireka3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
+];
+
+const CADFEM_IMAGES = [
+  { src: cadfem1.url, caption: "CADFEM — Static Structural Setup Flanged Tee Valve" },
+  { src: cadfem2.url, caption: "CADFEM — Directional Deformation & Tabular Data" },
+  { src: cadfem3.url, caption: "CADFEM — Equivalent (von-Mises) Stress Propeller" },
+  { src: cadfem4.url, caption: "CADFEM — Eigenvalue Buckling Analysis Beam" },
+  { src: cadfem5.url, caption: "CADFEM — Large Deflection Static Structural" },
+  { src: cadfem6.url, caption: "CADFEM — Modal Analysis 6 Mode Frekuensi" },
+  { src: cadfem7.url, caption: "CADFEM — Analysis Routine Workflow Simulasi" },
+  { src: cadfem8.url, caption: "CADFEM — Robust Meshing Impeller Housing" },
 ];
 
 /* ============================================================
@@ -463,10 +482,11 @@ function Index() {
               gallery: TPPI_PHOTOS,
             },
             {
-              role: "FEA Engineer",
+              role: "Finite Element Analysis",
               org: "PT CADFEM Simulation Technology Indonesia",
               date: "SEP — DES 2024",
               body: "Simulasi Finite Element Analysis untuk komponen struktural dan validasi desain.",
+              gallery: CADFEM_IMAGES,
             },
             {
               role: "Research Intern — Kedaireka",
