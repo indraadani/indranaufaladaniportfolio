@@ -415,6 +415,7 @@ function Index() {
               org: "PT Robutech",
               date: "APR — AGU 2025",
               body: "NDT, Radiographic Testing, visual inspection, dan sertifikasi peralatan di pembangkit listrik & pabrik proses.",
+              gallery: ROBUTECH_PHOTOS,
             },
             {
               role: "Workshop Mechanic",
