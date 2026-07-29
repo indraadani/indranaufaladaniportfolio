@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "aa98e58b-d457-4478-9774-de3e3c4d9d83",
-  "project_id": "33c6bc9b-e499-4fb7-a8f5-4eff06d0c3c0",
-  "url": "/__l5e/assets-v1/aa98e58b-d457-4478-9774-de3e3c4d9d83/indra-portrait.png",
-  "r2_key": "a/v1/33c6bc9b-e499-4fb7-a8f5-4eff06d0c3c0/aa98e58b-d457-4478-9774-de3e3c4d9d83/indra-portrait.png",
-  "original_filename": "indra-portrait.png",
-  "size": 2454937,
   "content_type": "image/png",
-  "created_at": "2026-07-25T03:07:53Z"
+  "created_at": "2026-07-25T03:07:53Z",
+  "original_filename": "indra-portrait.png",
+  "project_id": "8fbd4a87-1599-4cf2-9bcf-2523e308248f",
+  "r2_key": "a/v1/8fbd4a87-1599-4cf2-9bcf-2523e308248f/aa98e58b-d457-4478-9774-de3e3c4d9d83/indra-portrait.png",
+  "size": 2454937,
+  "url": "/__l5e/assets-v1/aa98e58b-d457-4478-9774-de3e3c4d9d83/indra-portrait.png",
+  "version": 1
 }
