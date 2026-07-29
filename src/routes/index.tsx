@@ -11,6 +11,16 @@ import tppi7 from "../assets/tppi/tppi-7.jpg.asset.json";
 import tppi8 from "../assets/tppi/tppi-8.jpg.asset.json";
 import tppi9 from "../assets/tppi/tppi-9.jpg.asset.json";
 import tppi10 from "../assets/tppi/tppi-10.jpg.asset.json";
+import ppsdm1 from "../assets/ppsdm/ppsdm-1.jpg.asset.json";
+import ppsdm2 from "../assets/ppsdm/ppsdm-2.jpg.asset.json";
+import ppsdm3 from "../assets/ppsdm/ppsdm-3.jpg.asset.json";
+import ppsdm4 from "../assets/ppsdm/ppsdm-4.jpg.asset.json";
+import ppsdm5 from "../assets/ppsdm/ppsdm-5.jpg.asset.json";
+import ppsdm6 from "../assets/ppsdm/ppsdm-6.jpg.asset.json";
+import ppsdm7 from "../assets/ppsdm/ppsdm-7.jpg.asset.json";
+import robutech1 from "../assets/robutech/robutech-1.jpg.asset.json";
+import robutech2 from "../assets/robutech/robutech-2.jpg.asset.json";
+import robutech3 from "../assets/robutech/robutech-3.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
