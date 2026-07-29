@@ -11,6 +11,16 @@ import tppi7 from "../assets/tppi/tppi-7.jpg.asset.json";
 import tppi8 from "../assets/tppi/tppi-8.jpg.asset.json";
 import tppi9 from "../assets/tppi/tppi-9.jpg.asset.json";
 import tppi10 from "../assets/tppi/tppi-10.jpg.asset.json";
+import ppsdm1 from "../assets/ppsdm/ppsdm-1.jpg.asset.json";
+import ppsdm2 from "../assets/ppsdm/ppsdm-2.jpg.asset.json";
+import ppsdm3 from "../assets/ppsdm/ppsdm-3.jpg.asset.json";
+import ppsdm4 from "../assets/ppsdm/ppsdm-4.jpg.asset.json";
+import ppsdm5 from "../assets/ppsdm/ppsdm-5.jpg.asset.json";
+import ppsdm6 from "../assets/ppsdm/ppsdm-6.jpg.asset.json";
+import ppsdm7 from "../assets/ppsdm/ppsdm-7.jpg.asset.json";
+import robutech1 from "../assets/robutech/robutech-1.jpg.asset.json";
+import robutech2 from "../assets/robutech/robutech-2.jpg.asset.json";
+import robutech3 from "../assets/robutech/robutech-3.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -27,6 +37,22 @@ const TPPI_PHOTOS = [
   { src: tppi8.url, caption: "TPPI — Crane Lifting Operation" },
   { src: tppi9.url, caption: "TPPI — Storage Tank Farm 6.580 m³" },
   { src: tppi10.url, caption: "TPPI — Preventive Maintenance Tools" },
+];
+
+const PPSDM_PHOTOS = [
+  { src: ppsdm1.url, caption: "PPSDM Migas — Sesi Kerja Tim Workshop" },
+  { src: ppsdm2.url, caption: "PPSDM Migas — Gedung PPSDM Migas Cepu" },
+  { src: ppsdm3.url, caption: "PPSDM Migas — Tim Praktik Kerja Lapangan" },
+  { src: ppsdm4.url, caption: "PPSDM Migas — Pencatatan Data Operasi Kilang" },
+  { src: ppsdm5.url, caption: "PPSDM Migas — Area Kilang PPSDM Migas" },
+  { src: ppsdm6.url, caption: "PPSDM Migas — Briefing Keselamatan Kerja" },
+  { src: ppsdm7.url, caption: "PPSDM Migas — Kolom Distilasi Unit Pengolahan" },
+];
+
+const ROBUTECH_PHOTOS = [
+  { src: robutech1.url, caption: "Robutech — Turbine Hall Pembangkit Listrik" },
+  { src: robutech2.url, caption: "Robutech — Inspeksi Ketinggian dengan Full Body Harness" },
+  { src: robutech3.url, caption: "Robutech — Inspeksi Confined Space Area Boiler" },
 ];
 
 /* ============================================================
@@ -389,12 +415,14 @@ function Index() {
               org: "PT Robutech",
               date: "APR — AGU 2025",
               body: "NDT, Radiographic Testing, visual inspection, dan sertifikasi peralatan di pembangkit listrik & pabrik proses.",
+              gallery: ROBUTECH_PHOTOS,
             },
             {
               role: "Workshop Mechanic",
               org: "PPSDM Migas Cepu",
               date: "MAR — APR 2025",
               body: "Prime mover, pompa, lifting system, permesinan, thermography, dan analisis komposisi kimia.",
+              gallery: PPSDM_PHOTOS,
             },
             {
               role: "Maintenance Execute",
