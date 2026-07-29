@@ -196,7 +196,7 @@ const DocScroller = ({
   emptyLabel,
   emptyCount = 4,
 }: {
-  items?: { src: string; caption?: string }[];
+  items?: { src: string; caption?: string; type?: "image" | "video" }[];
   emptyLabel?: string;
   emptyCount?: number;
 }) => {
@@ -212,12 +212,22 @@ const DocScroller = ({
                 style={{ width: "min(78vw, 340px)" }}
               >
                 <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={it.src}
-                    alt={it.caption ?? "Documentation"}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
+                  {it.type === "video" ? (
+                    <video
+                      src={it.src}
+                      className="h-full w-full object-cover"
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <img
+                      src={it.src}
+                      alt={it.caption ?? "Documentation"}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  )}
                 </div>
                 <figcaption className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
                   <span className="truncate">{it.caption}</span>
