@@ -21,6 +21,15 @@ import ppsdm7 from "../assets/ppsdm/ppsdm-7.jpg.asset.json";
 import robutech1 from "../assets/robutech/robutech-1.jpg.asset.json";
 import robutech2 from "../assets/robutech/robutech-2.jpg.asset.json";
 import robutech3 from "../assets/robutech/robutech-3.jpg.asset.json";
+import robutech4 from "../assets/robutech/robutech-4.jpg.asset.json";
+import robutech5 from "../assets/robutech/robutech-5.jpg.asset.json";
+import robutech6 from "../assets/robutech/robutech-6.jpg.asset.json";
+import robutech7 from "../assets/robutech/robutech-7.jpg.asset.json";
+import robutech8 from "../assets/robutech/robutech-8.jpg.asset.json";
+import robutech9 from "../assets/robutech/robutech-9.jpg.asset.json";
+import kedaireka1 from "../assets/kedaireka/kedaireka-1.mp4.asset.json";
+import kedaireka2 from "../assets/kedaireka/kedaireka-2.mp4.asset.json";
+import kedaireka3 from "../assets/kedaireka/kedaireka-3.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
