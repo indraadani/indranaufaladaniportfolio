@@ -38,10 +38,32 @@ import cadfem5 from "../assets/cadfem/cadfem-5.png.asset.json";
 import cadfem6 from "../assets/cadfem/cadfem-6.png.asset.json";
 import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
 import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
+import cert1 from "../assets/sertifikat/cert-1.jpg.asset.json";
+import cert2 from "../assets/sertifikat/cert-2.jpg.asset.json";
+import cert3 from "../assets/sertifikat/cert-3.jpg.asset.json";
+import cert4 from "../assets/sertifikat/cert-4.jpg.asset.json";
+import cert5 from "../assets/sertifikat/cert-5.jpg.asset.json";
+import cert6 from "../assets/sertifikat/cert-6.jpg.asset.json";
+import cert7 from "../assets/sertifikat/cert-7.jpg.asset.json";
+import cert8 from "../assets/sertifikat/cert-8.jpg.asset.json";
+import cert9 from "../assets/sertifikat/cert-9.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
+
+const CERT_DOCS = [
+  { src: cert7.url, caption: "Sertifikat PT CADFEM Indonesia" },
+  { src: cert9.url, caption: "Sertifikat PT TPPI" },
+  { src: cert8.url, caption: "Sertifikat Studi Independen Kedaireka" },
+  { src: cert1.url, caption: "AWS Course Completion Certificate" },
+  { src: cert5.url, caption: "Sertifikat Indra Naufal Adani" },
+  { src: cert2.url, caption: "Sertifikat Indra Naufal Adani" },
+  { src: cert4.url, caption: "SK HMRTM 2023" },
+  { src: cert6.url, caption: "Sertifikat PKKMB 2022" },
+  { src: cert3.url, caption: "Nilai TEP" },
+];
+
 
 const TPPI_PHOTOS = [
   { src: tppi1.url, caption: "TPPI — Refinery Column & Pipeline" },
@@ -819,6 +841,13 @@ function Index() {
             </div>
           ))}
         </div>
+        <div className="reveal mt-10">
+          <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+            DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
+          </div>
+          <DocScroller items={CERT_DOCS} />
+        </div>
+
         <SheetTag n={7} />
       </section>
 
