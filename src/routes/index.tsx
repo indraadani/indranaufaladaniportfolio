@@ -841,6 +841,13 @@ function Index() {
             </div>
           ))}
         </div>
+        <div className="reveal mt-10">
+          <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+            DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
+          </div>
+          <DocScroller items={CERT_DOCS} />
+        </div>
+
         <SheetTag n={7} />
       </section>
 
