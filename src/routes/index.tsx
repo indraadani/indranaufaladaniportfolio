@@ -275,11 +275,13 @@ const DocScroller = ({
                   {it.type === "video" ? (
                     <video
                       src={it.src}
+                      poster={it.poster}
                       className="h-full w-full object-cover"
                       controls
                       playsInline
                       preload="metadata"
                     />
+
                   ) : (
                     <button
                       type="button"
