@@ -373,17 +373,18 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
 
   return (
     <div className="mt-4">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-4 sm:mx-0 sm:px-0 [scrollbar-color:var(--amber-brand)_transparent]">
         {items.map((it, i) => (
           <figure
             key={i}
-            className="brackets border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-3"
+            className="brackets shrink-0 snap-start border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-2.5"
+            style={{ width: "min(70vw, 232px)" }}
           >
             <figcaption className="mb-2 flex items-start justify-between gap-2">
-              <span className="font-[Barlow_Condensed] text-sm font-semibold uppercase leading-tight tracking-[0.05em] text-[color:var(--paper)]">
+              <span className="font-[Barlow_Condensed] text-[13px] font-semibold uppercase leading-tight tracking-[0.05em] text-[color:var(--paper)]">
                 {it.caption}
               </span>
-              <span className="font-mono text-[10px] tracking-[0.2em] text-[color:var(--amber-brand)]">
+              <span className="font-mono text-[9px] tracking-[0.2em] text-[color:var(--amber-brand)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </figcaption>
@@ -406,6 +407,11 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
           </figure>
         ))}
       </div>
+      <div className="mt-1 flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+        <span>◄ GESER →</span>
+        <div className="h-px flex-1 bg-[color:var(--concrete)]/40" />
+      </div>
+
 
       {zoomed && (
         <div
