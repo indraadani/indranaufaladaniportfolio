@@ -104,9 +104,9 @@ const ROBUTECH_PHOTOS = [
 ];
 
 const KEDAIREKA_VIDEOS = [
-  { src: kedaireka1.url, type: "video" as const, caption: "Kedaireka — Proses Pembuatan Alat Produksi" },
-  { src: kedaireka2.url, type: "video" as const, caption: "Kedaireka — Uji Coba Kendaraan Listrik" },
-  { src: kedaireka3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
+  { src: kedaireka1.url, poster: kedairekaPoster1.url, type: "video" as const, caption: "Kedaireka — Proses Pembuatan Alat Produksi" },
+  { src: kedaireka2.url, poster: kedairekaPoster2.url, type: "video" as const, caption: "Kedaireka — Uji Coba Kendaraan Listrik" },
+  { src: kedaireka3.url, poster: kedairekaPoster3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
 ];
 
 const CADFEM_IMAGES = [
