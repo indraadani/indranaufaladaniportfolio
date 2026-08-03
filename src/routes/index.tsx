@@ -269,7 +269,7 @@ const DocScroller = ({
               <figure
                 key={i}
                 className="snap-start shrink-0 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2"
-                style={{ width: "min(78vw, 340px)" }}
+                style={{ width: "min(72vw, 288px)" }}
               >
                 <div className="aspect-[4/5] overflow-hidden">
                   {it.type === "video" ? (
@@ -311,7 +311,7 @@ const DocScroller = ({
               <div
                 key={i}
                 className="snap-start shrink-0"
-                style={{ width: "min(78vw, 340px)" }}
+                style={{ width: "min(72vw, 288px)" }}
               >
                 <ImagePH w={800} h={1000} label={emptyLabel ?? "UPLOAD SOON"} />
               </div>
@@ -470,7 +470,7 @@ function Index() {
     <main className="bp-grid relative min-h-screen bg-[color:var(--graphite)] text-[color:var(--paper)]">
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-6 pt-16 pb-10 sm:pt-24 sm:pb-16">
+        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-16 pb-10 sm:pt-24 sm:pb-16">
           <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
             <span className="text-[color:var(--amber-brand)]">■</span>
             <span>SHEET 00 / COVER</span>
@@ -512,7 +512,7 @@ function Index() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
-                <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.74/4.00</span>
+                <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.75/4.00</span>
                 <span>UNIVERSITAS NEGERI SURABAYA</span>
                 <span>EXP. GRADUATION 2026</span>
                 <span>SOLIDWORKS / ANSYS / AUTOCAD / INVENTOR</span>
@@ -533,7 +533,7 @@ function Index() {
       </section>
 
       {/* ================= 01 FOKUS ================= */}
-      <section id="fokus" className="relative mx-auto max-w-6xl px-6 py-20">
+      <section id="fokus" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead
           code="01 / FOKUS KEAHLIAN"
           title="Focus Areas"
@@ -580,10 +580,10 @@ function Index() {
         <SheetTag n={1} />
       </section>
 
-      <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="A — A" /></div>
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="A — A" /></div>
 
       {/* ================= 02 ABOUT ================= */}
-      <section id="about" className="relative mx-auto max-w-6xl px-6 py-10">
+      <section id="about" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="02 / ABOUT"
           title="About Me"
@@ -604,7 +604,7 @@ function Index() {
           </div>
           <div className="reveal space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
             <p>
-              Mechanical Engineering graduate from Surabaya State University (GPA 3.74/4.00) with
+              Mechanical Engineering graduate from Surabaya State University (GPA 3.75/4.00) with
               four internships across petrochemical refining, oil &amp; gas workshop, engineering
               simulation, and technical inspection.
             </p>
@@ -623,13 +623,13 @@ function Index() {
         <SheetTag n={2} />
       </section>
 
-      <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="B — B" /></div>
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="B — B" /></div>
 
       {/* ================= 03 EXPERIENCE ================= */}
-      <section id="pengalaman" className="relative mx-auto max-w-6xl px-6 py-10">
+      <section id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="03 / PENGALAMAN INDUSTRI"
-          title="Industry Experience"
+          code="03 / PENGALAMAN"
+          title="Experience"
           sub="Timeline pipa-vertikal — node aktif menandai pengalaman terkini."
         />
         <ol className="relative ml-3 border-l border-[color:var(--concrete)]/40">
@@ -698,10 +698,10 @@ function Index() {
         <SheetTag n={3} />
       </section>
 
-      <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="C — C" /></div>
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
 
       {/* ================= 04 SKILLS ================= */}
-      <section id="skills" className="relative mx-auto max-w-6xl px-6 py-10">
+      <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead code="04 / KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
@@ -771,7 +771,7 @@ function Index() {
       </section>
 
       {/* ================= 05 ORGANISASI ================= */}
-      <section id="organisasi" className="relative mx-auto max-w-6xl px-6 py-20">
+      <section id="organisasi" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead
           code="05 / ORGANISASI & KOMPETISI"
           title="Organizations & Competitions"
@@ -821,10 +821,10 @@ function Index() {
         <SheetTag n={5} />
       </section>
 
-      <div className="mx-auto max-w-6xl px-6"><DimensionDivider label="D — D" /></div>
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="D — D" /></div>
 
       {/* ================= 06 PROYEK ================= */}
-      <section id="proyek" className="relative mx-auto max-w-6xl px-6 py-10">
+      <section id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="06 / PROYEK PILIHAN"
           title="Selected Projects"
@@ -921,7 +921,7 @@ function Index() {
       </section>
 
       {/* ================= 07 CERTS ================= */}
-      <section id="sertifikat" className="relative mx-auto max-w-6xl px-6 py-20">
+      <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead code="07 / SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
         <div className="reveal mt-2">
           <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
@@ -935,7 +935,7 @@ function Index() {
 
       {/* ================= 08 CONTACT ================= */}
       <section id="kontak" className="relative border-y border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
           <SectionHead
             code="08 / KONTAK"
             title="Get in Touch"
@@ -967,7 +967,7 @@ function Index() {
       </section>
 
       {/* ================= FOOTER TITLE BLOCK ================= */}
-      <footer className="mx-auto max-w-6xl px-6 py-10">
+      <footer className="mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <div className="border border-[color:var(--concrete)]/50 font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--paper)]">
           <div className="grid grid-cols-2 lg:grid-cols-4">
             {[
