@@ -354,6 +354,92 @@ const DocScroller = ({
   );
 };
 
+const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => {
+  const [zoom, setZoom] = useState<number | null>(null);
+  const zoomed = zoom !== null ? items[zoom] : null;
+
+  useEffect(() => {
+    if (zoom === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setZoom(null);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [zoom]);
+
+  return (
+    <div className="mt-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((it, i) => (
+          <figure
+            key={i}
+            className="brackets border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-3"
+          >
+            <figcaption className="mb-2 flex items-start justify-between gap-2">
+              <span className="font-[Barlow_Condensed] text-sm font-semibold uppercase leading-tight tracking-[0.05em] text-[color:var(--paper)]">
+                {it.caption}
+              </span>
+              <span className="font-mono text-[10px] tracking-[0.2em] text-[color:var(--amber-brand)]">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </figcaption>
+            <button
+              type="button"
+              onClick={() => setZoom(i)}
+              aria-label={`Perbesar sertifikat: ${it.caption ?? "dokumen"}`}
+              className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden border border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]"
+            >
+              <img
+                src={it.src}
+                alt={it.caption ?? "Sertifikat"}
+                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              <span className="absolute right-2 bottom-2 border border-[color:var(--amber-brand)] bg-[color:var(--graphite)]/80 px-2 py-1 font-mono text-[9px] tracking-[0.2em] text-[color:var(--amber-brand)] opacity-0 transition-opacity group-hover:opacity-100">
+                ⤢ ZOOM
+              </span>
+            </button>
+          </figure>
+        ))}
+      </div>
+
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[color:var(--graphite)]/95 p-4"
+          onClick={() => setZoom(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            onClick={() => setZoom(null)}
+            aria-label="Tutup"
+            className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
+          >
+            ✕ ESC
+          </button>
+          <img
+            src={zoomed.src}
+            alt={zoomed.caption ?? "Sertifikat"}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[85vh] max-w-full border border-[color:var(--concrete)]/40 object-contain"
+          />
+          {zoomed.caption && (
+            <p className="mt-3 font-mono text-[11px] tracking-[0.2em] text-[color:var(--concrete)]">
+              {zoomed.caption}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+
 
 function Index() {
   const deviceScale = useDeviceScale();
