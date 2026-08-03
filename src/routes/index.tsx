@@ -240,7 +240,7 @@ const DocScroller = ({
   emptyLabel,
   emptyCount = 4,
 }: {
-  items?: { src: string; caption?: string; type?: "image" | "video" }[];
+  items?: { src: string; caption?: string; type?: "image" | "video"; poster?: string }[];
   emptyLabel?: string;
   emptyCount?: number;
 }) => {
