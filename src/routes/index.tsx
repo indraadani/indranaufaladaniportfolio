@@ -917,22 +917,7 @@ function Index() {
       {/* ================= 07 CERTS ================= */}
       <section id="sertifikat" className="relative mx-auto max-w-6xl px-6 py-20">
         <SectionHead code="07 / SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ["AWS Cloud Essentials", "2024"],
-            ["Seminar Nasional Perencanaan Mesin — Autodesk", "2024"],
-            ["Mekanik Academy Free Course", "2024"],
-            ["Pengabdian Masyarakat — Desa Ngimbang", "2024"],
-          ].map(([name, year]) => (
-            <div key={name} className="reveal brackets border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-5">
-              <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--amber-brand)]">{year}</div>
-              <div className="mt-2 font-[Barlow_Condensed] text-base font-semibold uppercase leading-tight tracking-[0.05em]">
-                {name}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="reveal mt-10">
+        <div className="reveal mt-2">
           <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
             DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
           </div>
