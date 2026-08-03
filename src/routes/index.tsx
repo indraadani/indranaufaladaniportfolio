@@ -628,8 +628,8 @@ function Index() {
       {/* ================= 03 EXPERIENCE ================= */}
       <section id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="03 / PENGALAMAN INDUSTRI"
-          title="Industry Experience"
+          code="03 / PENGALAMAN"
+          title="Experience"
           sub="Timeline pipa-vertikal — node aktif menandai pengalaman terkini."
         />
         <ol className="relative ml-3 border-l border-[color:var(--concrete)]/40">

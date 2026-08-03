@@ -26,7 +26,7 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <main className="bp-grid relative min-h-screen bg-[color:var(--graphite)] text-[color:var(--paper)]">
-      <section className="relative mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-16 sm:py-24">
         <div className="mb-6 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
           <Link to="/" className="hover:text-[color:var(--amber-brand)]">← BACK</Link>
           <span className="opacity-40">·</span>
