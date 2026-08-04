@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import portrait from "../assets/indra-portrait.png.asset.json";
+import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
+import portraitMech from "../assets/indra-mechanical.png.asset.json";
 import tppi1 from "../assets/tppi/tppi-1.jpg.asset.json";
 import tppi2 from "../assets/tppi/tppi-2.jpg.asset.json";
 import tppi3 from "../assets/tppi/tppi-3.jpg.asset.json";
@@ -123,6 +124,14 @@ const CADFEM_IMAGES = [
 /* ============================================================
    P&ID line-art icons
    ============================================================ */
+const Gear = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+    <circle cx="32" cy="32" r="10" />
+    <circle cx="32" cy="32" r="20" strokeDasharray="6 6" />
+    <path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M52 12l-6 6M18 46l-6 6" />
+  </svg>
+);
+
 const IconPump = () => (
   <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" strokeWidth="1.5" className="pid-icon">
     <circle cx="32" cy="32" r="18" />
@@ -269,7 +278,7 @@ const DocScroller = ({
               <figure
                 key={i}
                 className="snap-start shrink-0 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2"
-                style={{ width: "min(72vw, 288px)" }}
+                style={{ width: "min(58vw, 216px)" }}
               >
                 <div className="aspect-[4/5] overflow-hidden">
                   {it.type === "video" ? (
@@ -506,9 +515,9 @@ function Index() {
                 Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
               </p>
               <p className="mt-6 max-w-xl text-base text-[color:var(--paper)]/90 sm:text-lg">
-                Bachelor of Mechanical Engineering | NDT &amp; Radiographic Testing · Rotating
-                Equipment Maintenance · Automotive · Computational Fluid Dynamics and Finite
-                Element Analysis
+                Graduate with a Bachelor&rsquo;s degree in Mechanical Engineering from Surabaya
+                State University | Enthusiast of renewable energy, energy conversion, materials
+                and engineering analysis
               </p>
 
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
@@ -589,18 +598,24 @@ function Index() {
           title="About Me"
           sub="Ringkasan singkat — halaman lengkap tersedia di sheet A / About."
         />
-        <div className="grid gap-8 md:grid-cols-[1fr_1.3fr] md:items-start">
-          <div className="reveal brackets border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2">
-            <img
-              src={portrait.url}
-              alt="Indra Naufal Adani on site"
-              className="block h-auto w-full object-cover"
-              loading="lazy"
-            />
-            <div className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-              <span>INDRA N. ADANI</span>
-              <span>FIELD — 2025</span>
+        <div className="grid gap-8 md:grid-cols-[0.7fr_1.6fr] md:items-start">
+          <div className="reveal relative mx-auto w-full max-w-[260px] md:mx-0">
+            {/* mechanical accents */}
+            <Gear className="pointer-events-none absolute -left-6 -top-6 h-12 w-12 text-[color:var(--amber-brand)]/60" />
+            <Gear className="pointer-events-none absolute -right-4 -bottom-4 h-8 w-8 text-[color:var(--concrete)]/60" />
+            <div className="brackets border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2">
+              <img
+                src={portraitMech.url}
+                alt="Indra Naufal Adani — mechanical engineering portrait"
+                className="block h-auto w-full object-cover"
+                loading="lazy"
+              />
+              <div className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+                <span>INDRA N. ADANI</span>
+                <span>MECH — 2025</span>
+              </div>
             </div>
+            <div className="hazard mt-2" />
           </div>
           <div className="reveal space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
             <p>
@@ -941,26 +956,68 @@ function Index() {
             title="Get in Touch"
             sub="Terbuka untuk peluang fresh graduate di berbagai sektor rekayasa dan industri — mulai dari desain, analisis, manufaktur, hingga inspeksi dan pemeliharaan."
           />
-          <a
-            href="mailto:indraadani654@gmail.com"
-            className="reveal block break-words font-[Barlow_Condensed] text-3xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] hover:underline sm:text-5xl md:text-6xl"
-          >
-            indraadani654@gmail.com
-          </a>
-          <div className="mt-6 grid gap-3 font-mono text-xs tracking-[0.15em] text-[color:var(--concrete)] sm:grid-cols-2">
-            <div>PHONE — <span className="text-[color:var(--paper)]">085546381640</span></div>
-            <div>LOCATION — <span className="text-[color:var(--paper)]">TUBAN, ID</span></div>
+          <div className="reveal block break-words font-[Barlow_Condensed] text-4xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] sm:text-6xl md:text-7xl">
+            Let&rsquo;s Work Together!
           </div>
+          <div className="mt-6 font-mono text-xs tracking-[0.15em] text-[color:var(--concrete)]">
+            LOCATION — <span className="text-[color:var(--paper)]">TUBAN, ID</span>
+          </div>
+
+          <div className="reveal mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                label: "EMAIL",
+                value: "indraadani654@gmail.com",
+                href: "mailto:indraadani654@gmail.com",
+                icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "WHATSAPP",
+                value: "085546381640",
+                href: "https://wa.me/6285546381640",
+                icon: <MessageCircle className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "LINKEDIN",
+                value: "Indra Naufal Adani",
+                href: "https://www.linkedin.com/in/indranaufaladani/",
+                icon: <Linkedin className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "INSTAGRAM",
+                value: "indraadani_",
+                href: "https://instagram.com/indraadani_",
+                icon: <Instagram className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "TIKTOK",
+                value: "indraadani_",
+                href: "https://www.tiktok.com/@indraadani_",
+                icon: <Music2 className="h-5 w-5" strokeWidth={1.6} />,
+              },
+            ].map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="group flex min-w-0 items-center gap-3 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-3 transition-colors hover:border-[color:var(--amber-brand)]"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center border border-[color:var(--concrete)]/40 text-[color:var(--concrete)] transition-colors group-hover:border-[color:var(--amber-brand)] group-hover:text-[color:var(--amber-brand)]">
+                  {c.icon}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+                    {c.label}
+                  </span>
+                  <span className="block truncate text-sm text-[color:var(--paper)]">{c.value}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://www.linkedin.com/in/indranaufaladani/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-tech primary"
-            >
-              LinkedIn ↗
-            </a>
-            <a href="#" className="btn-tech">Download CV ↓</a>
+            <a href="#" className="btn-tech primary">Download CV ↓</a>
           </div>
         </div>
         <SheetTag n={8} />
