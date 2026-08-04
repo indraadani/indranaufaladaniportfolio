@@ -758,26 +758,49 @@ function Index() {
           ))}
         </div>
 
-        {/* Documentation slot — placeholders siap diganti dengan foto/video */}
-        <div className="mt-10">
-          <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
-            <span className="text-[color:var(--amber-brand)]">■</span>
-            <span>DOCUMENTATION SLOT — RACING · HIMA · FORMAT R</span>
-            <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
-          </div>
-          <DocScroller emptyLabel="UPLOAD DOKUMENTASI" emptyCount={5} />
-        </div>
-
-        <SheetTag n={5} />
+        <SheetTag n={4} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="D — D" /></div>
 
+      {/* ================= 05 AKTIVITAS ================= */}
+      <section id="aktivitas" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+        <SectionHead
+          code="05 / DOKUMENTASI AKTIVITAS"
+          title="Activity Documentation"
+          sub="Dokumentasi kegiatan yang saya ikuti — pelatihan, kunjungan industri, kompetisi, seminar, dan kegiatan lapangan. Foto menyusul."
+        />
+        <div className="space-y-8">
+          {[
+            { code: "ACT.01", label: "PELATIHAN & SERTIFIKASI", note: "Kegiatan pelatihan teknis dan sertifikasi keahlian." },
+            { code: "ACT.02", label: "KUNJUNGAN INDUSTRI & LAPANGAN", note: "Kunjungan pabrik, kilang, dan kegiatan lapangan." },
+            { code: "ACT.03", label: "KOMPETISI & SEMINAR", note: "Lomba, konferensi, workshop, dan kegiatan kampus." },
+          ].map((a) => (
+            <div key={a.code} className="reveal">
+              <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
+                <span className="text-[color:var(--amber-brand)]">■</span>
+                <span>{a.code} — {a.label}</span>
+                <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
+              </div>
+              <p className="text-sm text-[color:var(--concrete)]">{a.note}</p>
+              <DocScroller emptyLabel="UPLOAD FOTO AKTIVITAS" emptyCount={4} />
+              <p className="mt-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]/70">
+                KETERANGAN FOTO — NAMA KEGIATAN · LOKASI · TAHUN (MENYUSUL)
+              </p>
+            </div>
+          ))}
+        </div>
+        <SheetTag n={5} />
+      </section>
+
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="E — E" /></div>
+
       {/* ================= 06 PROYEK ================= */}
       <section id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="05 / PROYEK PILIHAN"
+          code="06 / PROYEK PILIHAN"
           title="Selected Projects"
+
           sub="Studi kasus rekayasa — dirangkum dalam alur Masalah → Metode → Hasil."
         />
         <div className="space-y-6">
