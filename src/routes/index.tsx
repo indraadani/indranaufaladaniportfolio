@@ -38,6 +38,8 @@ import cadfem5 from "../assets/cadfem/cadfem-5.png.asset.json";
 import cadfem6 from "../assets/cadfem/cadfem-6.png.asset.json";
 import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
 import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
+import briketVideo from "../assets/briket/briket.mp4.asset.json";
+import briketPoster from "../assets/briket/briket-poster.jpg.asset.json";
 import cert1 from "../assets/sertifikat/cert-1.jpg.asset.json";
 import cert2 from "../assets/sertifikat/cert-2.jpg.asset.json";
 import cert4 from "../assets/sertifikat/cert-4.jpg.asset.json";
@@ -804,13 +806,26 @@ function Index() {
             {
               tag: "FEA",
               code: "P.04",
+              video: briketVideo.url,
+              poster: briketPoster.url,
               year: "2023",
               title: "Prototipe Alat Cetak Briket — FEA",
               problem: "Validasi struktur cetakan briket terhadap beban tekan siklik.",
               method: "Analisis tegangan, regangan, safety factor, dan displacement menggunakan Ansys.",
               result: "Struktur memenuhi safety factor > 1.5 pada kondisi beban desain.",
             },
-          ].map((p) => (
+          ].map((p: {
+            featured?: boolean;
+            tag: string;
+            code: string;
+            year: string;
+            title: string;
+            problem: string;
+            method: string;
+            result: string;
+            video?: string;
+            poster?: string;
+          }) => (
             <article
               key={p.code}
               className={`reveal brackets relative border ${
@@ -848,7 +863,18 @@ function Index() {
                   </dl>
                 </div>
                 <div className="p-6 sm:p-8 lg:pl-0">
-                  <ImagePH w={1600} h={900} label={`PROJECT ${p.code}`} />
+                  {p.video ? (
+                    <video
+                      src={p.video}
+                      poster={p.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="w-full border border-[color:var(--concrete)]/40 bg-black"
+                    />
+                  ) : (
+                    <ImagePH w={1600} h={900} label={`PROJECT ${p.code}`} />
+                  )}
                 </div>
               </div>
             </article>
