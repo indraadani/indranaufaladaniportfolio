@@ -955,26 +955,68 @@ function Index() {
             title="Get in Touch"
             sub="Terbuka untuk peluang fresh graduate di berbagai sektor rekayasa dan industri — mulai dari desain, analisis, manufaktur, hingga inspeksi dan pemeliharaan."
           />
-          <a
-            href="mailto:indraadani654@gmail.com"
-            className="reveal block break-words font-[Barlow_Condensed] text-3xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] hover:underline sm:text-5xl md:text-6xl"
-          >
-            indraadani654@gmail.com
-          </a>
-          <div className="mt-6 grid gap-3 font-mono text-xs tracking-[0.15em] text-[color:var(--concrete)] sm:grid-cols-2">
-            <div>PHONE — <span className="text-[color:var(--paper)]">085546381640</span></div>
-            <div>LOCATION — <span className="text-[color:var(--paper)]">TUBAN, ID</span></div>
+          <div className="reveal block break-words font-[Barlow_Condensed] text-4xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] sm:text-6xl md:text-7xl">
+            Let&rsquo;s Work Together!
           </div>
+          <div className="mt-6 font-mono text-xs tracking-[0.15em] text-[color:var(--concrete)]">
+            LOCATION — <span className="text-[color:var(--paper)]">TUBAN, ID</span>
+          </div>
+
+          <div className="reveal mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                label: "EMAIL",
+                value: "indraadani654@gmail.com",
+                href: "mailto:indraadani654@gmail.com",
+                icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "WHATSAPP",
+                value: "085546381640",
+                href: "https://wa.me/6285546381640",
+                icon: <MessageCircle className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "LINKEDIN",
+                value: "Indra Naufal Adani",
+                href: "https://www.linkedin.com/in/indranaufaladani/",
+                icon: <Linkedin className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "INSTAGRAM",
+                value: "indraadani_",
+                href: "https://instagram.com/indraadani_",
+                icon: <Instagram className="h-5 w-5" strokeWidth={1.6} />,
+              },
+              {
+                label: "TIKTOK",
+                value: "indraadani_",
+                href: "https://www.tiktok.com/@indraadani_",
+                icon: <Music2 className="h-5 w-5" strokeWidth={1.6} />,
+              },
+            ].map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="group flex min-w-0 items-center gap-3 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-3 transition-colors hover:border-[color:var(--amber-brand)]"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center border border-[color:var(--concrete)]/40 text-[color:var(--concrete)] transition-colors group-hover:border-[color:var(--amber-brand)] group-hover:text-[color:var(--amber-brand)]">
+                  {c.icon}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+                    {c.label}
+                  </span>
+                  <span className="block truncate text-sm text-[color:var(--paper)]">{c.value}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://www.linkedin.com/in/indranaufaladani/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-tech primary"
-            >
-              LinkedIn ↗
-            </a>
-            <a href="#" className="btn-tech">Download CV ↓</a>
+            <a href="#" className="btn-tech primary">Download CV ↓</a>
           </div>
         </div>
         <SheetTag n={8} />
