@@ -5,20 +5,16 @@ import portraitCutout from "../assets/indra-cutout.png.asset.json";
 import tppi1 from "../assets/tppi/tppi-1.jpg.asset.json";
 import tppi2 from "../assets/tppi/tppi-2.jpg.asset.json";
 import tppi3 from "../assets/tppi/tppi-3.jpg.asset.json";
-import tppi4 from "../assets/tppi/tppi-4.jpg.asset.json";
-import tppi5 from "../assets/tppi/tppi-5.jpg.asset.json";
 import tppi6 from "../assets/tppi/tppi-6.jpg.asset.json";
-import tppi7 from "../assets/tppi/tppi-7.jpg.asset.json";
 import tppi8 from "../assets/tppi/tppi-8.jpg.asset.json";
 import tppi9 from "../assets/tppi/tppi-9.jpg.asset.json";
 import tppi10 from "../assets/tppi/tppi-10.jpg.asset.json";
-import ppsdm1 from "../assets/ppsdm/ppsdm-1.jpg.asset.json";
 import ppsdm2 from "../assets/ppsdm/ppsdm-2.jpg.asset.json";
-import ppsdm3 from "../assets/ppsdm/ppsdm-3.jpg.asset.json";
 import ppsdm4 from "../assets/ppsdm/ppsdm-4.jpg.asset.json";
 import ppsdm5 from "../assets/ppsdm/ppsdm-5.jpg.asset.json";
-import ppsdm6 from "../assets/ppsdm/ppsdm-6.jpg.asset.json";
 import ppsdm7 from "../assets/ppsdm/ppsdm-7.jpg.asset.json";
+import ppsdm8 from "../assets/ppsdm/ppsdm-8.png.asset.json";
+import ppsdm9 from "../assets/ppsdm/ppsdm-9.jpg.asset.json";
 import robutech1 from "../assets/robutech/robutech-1.jpg.asset.json";
 import robutech2 from "../assets/robutech/robutech-2.jpg.asset.json";
 import robutech3 from "../assets/robutech/robutech-3.jpg.asset.json";
@@ -44,7 +40,6 @@ import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
 import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
 import cert1 from "../assets/sertifikat/cert-1.jpg.asset.json";
 import cert2 from "../assets/sertifikat/cert-2.jpg.asset.json";
-import cert3 from "../assets/sertifikat/cert-3.jpg.asset.json";
 import cert4 from "../assets/sertifikat/cert-4.jpg.asset.json";
 import cert5 from "../assets/sertifikat/cert-5.jpg.asset.json";
 import cert6 from "../assets/sertifikat/cert-6.jpg.asset.json";
@@ -65,7 +60,6 @@ const CERT_DOCS = [
   { src: cert2.url, caption: "Sertifikat Indra Naufal Adani" },
   { src: cert4.url, caption: "SK HMRTM 2023" },
   { src: cert6.url, caption: "Sertifikat PKKMB 2022" },
-  { src: cert3.url, caption: "Nilai TEP" },
 ];
 
 
@@ -73,33 +67,29 @@ const TPPI_PHOTOS = [
   { src: tppi1.url, caption: "TPPI — Refinery Column & Pipeline" },
   { src: tppi2.url, caption: "TPPI — Benzene Line Inspection" },
   { src: tppi3.url, caption: "TPPI — Heat Exchanger Tube Bundle" },
-  { src: tppi4.url, caption: "TPPI — Structural Field Check" },
-  { src: tppi5.url, caption: "TPPI — Visual Inspection on Structure" },
   { src: tppi6.url, caption: "TPPI — Rotating Equipment Maintenance" },
-  { src: tppi7.url, caption: "TPPI — Vessel Manway Access" },
   { src: tppi8.url, caption: "TPPI — Crane Lifting Operation" },
   { src: tppi9.url, caption: "TPPI — Storage Tank Farm 6.580 m³" },
   { src: tppi10.url, caption: "TPPI — Preventive Maintenance Tools" },
 ];
 
 const PPSDM_PHOTOS = [
-  { src: ppsdm1.url, caption: "PPSDM Migas — Sesi Kerja Tim Workshop" },
   { src: ppsdm2.url, caption: "PPSDM Migas — Gedung PPSDM Migas Cepu" },
-  { src: ppsdm3.url, caption: "PPSDM Migas — Tim Praktik Kerja Lapangan" },
   { src: ppsdm4.url, caption: "PPSDM Migas — Pencatatan Data Operasi Kilang" },
   { src: ppsdm5.url, caption: "PPSDM Migas — Area Kilang PPSDM Migas" },
-  { src: ppsdm6.url, caption: "PPSDM Migas — Briefing Keselamatan Kerja" },
   { src: ppsdm7.url, caption: "PPSDM Migas — Kolom Distilasi Unit Pengolahan" },
+  { src: ppsdm8.url, caption: "PPSDM Migas — Proses Pembelajaran Drilling Rig" },
+  { src: ppsdm9.url, caption: "PPSDM Migas — Pengambilan Sampel untuk Pengecekan Harian" },
 ];
 
 const ROBUTECH_PHOTOS = [
+  { src: robutech5.url, caption: "Robutech — Radiography Testing Crawler & Survey Meter" },
+  { src: robutech6.url, caption: "Robutech — Radiography Testing Persiapan Sumber" },
+  { src: robutech7.url, caption: "Robutech — Ultrasonic Thickness Measurement" },
   { src: robutech1.url, caption: "Robutech — Turbine Hall Pembangkit Listrik" },
   { src: robutech2.url, caption: "Robutech — Inspeksi Ketinggian dengan Full Body Harness" },
   { src: robutech3.url, caption: "Robutech — Inspeksi Confined Space Area Boiler" },
   { src: robutech4.url, caption: "Robutech — Inspeksi di Jetty Conveyor" },
-  { src: robutech5.url, caption: "Robutech — Radiography Testing Crawler & Survey Meter" },
-  { src: robutech6.url, caption: "Robutech — Radiography Testing Persiapan Sumber" },
-  { src: robutech7.url, caption: "Robutech — Ultrasonic Thickness Measurement" },
   { src: robutech8.url, caption: "Robutech — Penetrant Testing pada Sambungan Las" },
   { src: robutech9.url, caption: "Robutech — Area Coal Conveyor & Jetty" },
 ];
@@ -132,27 +122,6 @@ const Gear = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-const IconPump = () => (
-  <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" strokeWidth="1.5" className="pid-icon">
-    <circle cx="32" cy="32" r="18" />
-    <path d="M14 32 L50 32 M32 14 L32 50" />
-    <path d="M22 22 L42 42 M42 22 L22 42" opacity="0.4" />
-  </svg>
-);
-const IconValve = () => (
-  <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" strokeWidth="1.5" className="pid-icon">
-    <path d="M8 32 L28 32 M36 32 L56 32" />
-    <path d="M28 20 L36 44 L28 44 L36 20 Z" />
-    <path d="M32 20 L32 8 M26 8 L38 8" />
-  </svg>
-);
-const IconInstrument = () => (
-  <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" strokeWidth="1.5" className="pid-icon">
-    <circle cx="32" cy="32" r="16" />
-    <path d="M16 32 L48 32" />
-    <text x="32" y="28" textAnchor="middle" fontSize="9" fontFamily="JetBrains Mono" fill="currentColor" stroke="none">FEA</text>
-  </svg>
-);
 
 const HeatExchanger = () => (
   <svg viewBox="0 0 600 260" fill="none" stroke="currentColor" strokeWidth="1.2" className="pointer-events-none">
@@ -217,11 +186,11 @@ const SheetTag = ({ n, total = TOTAL_SHEETS }: { n: number; total?: number }) =>
 
 /* Section shortcuts — reordered per user spec */
 const SECTIONS: { id: string; label: string; n: number }[] = [
-  { id: "fokus", label: "Focus", n: 1 },
-  { id: "about", label: "About", n: 2 },
-  { id: "pengalaman", label: "Experience", n: 3 },
-  { id: "skills", label: "Skills", n: 4 },
-  { id: "organisasi", label: "Organizations", n: 5 },
+  { id: "about", label: "About", n: 1 },
+  { id: "pengalaman", label: "Experience", n: 2 },
+  { id: "skills", label: "Skills", n: 3 },
+  { id: "organisasi", label: "Organizations", n: 4 },
+  { id: "aktivitas", label: "Activities", n: 5 },
   { id: "proyek", label: "Projects", n: 6 },
   { id: "sertifikat", label: "Certificates", n: 7 },
   { id: "kontak", label: "Contact", n: 8 },
@@ -541,60 +510,10 @@ function Index() {
         <div className="hazard" />
       </section>
 
-      {/* ================= 01 FOKUS ================= */}
-      <section id="fokus" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
-        <SectionHead
-          code="01 / FOKUS KEAHLIAN"
-          title="Focus Areas"
-          sub="Tiga bidang inti yang membentuk arah karier — dari analisis termal, integritas peralatan, hingga simulasi rekayasa."
-        />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              icon: <IconValve />,
-              tag: "THERMAL",
-              title: "Konversi Energi & Sistem Termal",
-              body: "Heat exchanger, perpindahan panas, efisiensi termohidrolik, dan optimasi sistem fluida.",
-            },
-            {
-              icon: <IconPump />,
-              tag: "INSPECTION",
-              title: "Inspeksi & Integritas Peralatan",
-              body: "NDT, Radiographic Testing, visual inspection, dan thermography untuk keandalan aset.",
-            },
-            {
-              icon: <IconInstrument />,
-              tag: "SIMULATION",
-              title: "Desain & Simulasi Rekayasa",
-              body: "FEA, analisis tegangan & safety factor, serta perancangan mesin dengan tools CAD.",
-            },
-          ].map((c) => (
-            <div
-              key={c.title}
-              className="reveal group brackets relative border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-6"
-            >
-              <div className="flex items-start justify-between">
-                {c.icon}
-                <span className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--rust)]">
-                  [{c.tag}]
-                </span>
-              </div>
-              <h3 className="mt-5 font-[Barlow_Condensed] text-xl font-semibold uppercase tracking-[0.06em]">
-                {c.title}
-              </h3>
-              <p className="mt-3 text-sm text-[color:var(--concrete)]">{c.body}</p>
-            </div>
-          ))}
-        </div>
-        <SheetTag n={1} />
-      </section>
-
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="A — A" /></div>
-
-      {/* ================= 02 ABOUT ================= */}
+      {/* ================= 01 ABOUT ================= */}
       <section id="about" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="02 / ABOUT"
+          code="01 / ABOUT"
           title="About Me"
           sub="Ringkasan singkat — halaman lengkap tersedia di sheet A / About."
         />
@@ -651,7 +570,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <SheetTag n={2} />
+        <SheetTag n={1} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="B — B" /></div>
@@ -659,7 +578,7 @@ function Index() {
       {/* ================= 03 EXPERIENCE ================= */}
       <section id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="03 / PENGALAMAN"
+          code="02 / PENGALAMAN"
           title="Experience"
           sub="Timeline pipa-vertikal — node aktif menandai pengalaman terkini."
         />
@@ -726,14 +645,14 @@ function Index() {
             </li>
           ))}
         </ol>
-        <SheetTag n={3} />
+        <SheetTag n={2} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
 
-      {/* ================= 04 SKILLS ================= */}
+      {/* ================= 03 SKILLS ================= */}
       <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
-        <SectionHead code="04 / KEAHLIAN TEKNIS" title="Technical Skills" />
+        <SectionHead code="03 / KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
             <table className="w-full min-w-[520px] border-collapse font-mono text-xs">
@@ -798,15 +717,15 @@ function Index() {
             </ul>
           </div>
         </div>
-        <SheetTag n={4} />
+        <SheetTag n={3} />
       </section>
 
-      {/* ================= 05 ORGANISASI ================= */}
+      {/* ================= 04 ORGANISASI ================= */}
       <section id="organisasi" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead
-          code="05 / ORGANISASI & KOMPETISI"
+          code="04 / ORGANISASI & KOMPETISI"
           title="Organizations & Competitions"
-          sub="Slot dokumentasi tersedia — geser ke kanan untuk foto/video kegiatan (akan diisi menyusul)."
+          sub="Pengalaman organisasi dan kompetisi selama masa kuliah."
         />
         <div className="grid gap-6 md:grid-cols-3">
           {[
@@ -839,26 +758,49 @@ function Index() {
           ))}
         </div>
 
-        {/* Documentation slot — placeholders siap diganti dengan foto/video */}
-        <div className="mt-10">
-          <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
-            <span className="text-[color:var(--amber-brand)]">■</span>
-            <span>DOCUMENTATION SLOT — RACING · HIMA · FORMAT R</span>
-            <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
-          </div>
-          <DocScroller emptyLabel="UPLOAD DOKUMENTASI" emptyCount={5} />
-        </div>
-
-        <SheetTag n={5} />
+        <SheetTag n={4} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="D — D" /></div>
+
+      {/* ================= 05 AKTIVITAS ================= */}
+      <section id="aktivitas" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+        <SectionHead
+          code="05 / DOKUMENTASI AKTIVITAS"
+          title="Activity Documentation"
+          sub="Dokumentasi kegiatan yang saya ikuti — pelatihan, kunjungan industri, kompetisi, seminar, dan kegiatan lapangan. Foto menyusul."
+        />
+        <div className="space-y-8">
+          {[
+            { code: "ACT.01", label: "PELATIHAN & SERTIFIKASI", note: "Kegiatan pelatihan teknis dan sertifikasi keahlian." },
+            { code: "ACT.02", label: "KUNJUNGAN INDUSTRI & LAPANGAN", note: "Kunjungan pabrik, kilang, dan kegiatan lapangan." },
+            { code: "ACT.03", label: "KOMPETISI & SEMINAR", note: "Lomba, konferensi, workshop, dan kegiatan kampus." },
+          ].map((a) => (
+            <div key={a.code} className="reveal">
+              <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
+                <span className="text-[color:var(--amber-brand)]">■</span>
+                <span>{a.code} — {a.label}</span>
+                <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
+              </div>
+              <p className="text-sm text-[color:var(--concrete)]">{a.note}</p>
+              <DocScroller emptyLabel="UPLOAD FOTO AKTIVITAS" emptyCount={4} />
+              <p className="mt-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]/70">
+                KETERANGAN FOTO — NAMA KEGIATAN · LOKASI · TAHUN (MENYUSUL)
+              </p>
+            </div>
+          ))}
+        </div>
+        <SheetTag n={5} />
+      </section>
+
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="E — E" /></div>
 
       {/* ================= 06 PROYEK ================= */}
       <section id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="06 / PROYEK PILIHAN"
           title="Selected Projects"
+
           sub="Studi kasus rekayasa — dirangkum dalam alur Masalah → Metode → Hasil."
         />
         <div className="space-y-6">
