@@ -196,21 +196,6 @@ const SECTIONS: { id: string; label: string; n: number }[] = [
   { id: "kontak", label: "Contact", n: 8 },
 ];
 
-function useDeviceScale() {
-  const [scale, setScale] = useState("1 : 1");
-  useEffect(() => {
-    const check = () => {
-      const w = window.innerWidth;
-      if (w < 640) setScale("1 : 1 MOBILE");
-      else if (w < 1024) setScale("1 : 1 TABLET");
-      else setScale("1 : 1 DESKTOP");
-    };
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-  return scale;
-}
 
 /* Horizontal-scrolling documentation gallery */
 const DocScroller = ({
@@ -426,7 +411,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
 
 
 function Index() {
-  const deviceScale = useDeviceScale();
+
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver(
@@ -912,7 +897,7 @@ function Index() {
           <SectionHead
             code="08 / KONTAK"
             title="Get in Touch"
-            sub="Terbuka untuk peluang fresh graduate di berbagai sektor rekayasa dan industri — mulai dari desain, analisis, manufaktur, hingga inspeksi dan pemeliharaan."
+            sub="Saya selalu terbuka untuk berdiskusi, berkolaborasi, atau menjajaki peluang baru di bidang Mechanical Engineering. Jika Anda memiliki proyek, pertanyaan, atau kesempatan kerja, jangan ragu untuk menghubungi saya."
           />
           <div className="reveal block break-words font-[Barlow_Condensed] text-4xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] sm:text-6xl md:text-7xl">
             Let&rsquo;s Work Together!
@@ -981,32 +966,9 @@ function Index() {
         <SheetTag n={8} />
       </section>
 
-      {/* ================= FOOTER TITLE BLOCK ================= */}
+      {/* ================= FOOTER ================= */}
       <footer className="mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
-        <div className="border border-[color:var(--concrete)]/50 font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--paper)]">
-          <div className="grid grid-cols-2 lg:grid-cols-4">
-            {[
-              ["CREATED BY", "INDRA NAUFAL ADANI"],
-              ["PROJECT", "PERSONAL PORTFOLIO"],
-              ["SCALE", deviceScale],
-              ["BIRTHDAY DATE", "13 JANUARI 2004"],
-            ].map(([k, v], i) => (
-              <div
-                key={k}
-                className={`border-[color:var(--concrete)]/50 p-3 ${
-                  i < 3 ? "border-b lg:border-r lg:border-b-0" : ""
-                } ${i < 2 ? "border-b lg:border-b-0" : ""} ${
-                  i % 2 === 0 ? "border-r lg:border-r" : ""
-                }`}
-              >
-                <div className="text-[color:var(--concrete)]">{k}</div>
-                <div className="mt-1 text-[color:var(--amber-brand)]">{v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <p className="mt-4 text-center font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
+        <p className="text-center font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
           © 2026 INDRA NAUFAL ADANI — ALL DRAWINGS ARE INDICATIVE
         </p>
       </footer>
