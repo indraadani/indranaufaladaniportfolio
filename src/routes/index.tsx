@@ -493,7 +493,7 @@ function Index() {
                 <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.75/4.00</span>
                 <span>UNIVERSITAS NEGERI SURABAYA</span>
                 <span>EXP. GRADUATION 2026</span>
-                <span>SOLIDWORKS / ANSYS / AUTOCAD / INVENTOR</span>
+                <span>SOLIDWORKS / ANSYS / INVENTOR</span>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -561,8 +561,8 @@ function Index() {
             <p>
               Focus areas: <strong>NDT &amp; Radiographic Testing</strong>, <strong>rotating
               equipment maintenance</strong>, <strong>CFD &amp; FEA</strong>, and mechanical
-              design. Proficient with SolidWorks, Autodesk Inventor, ANSYS Mechanical, and
-              AutoCAD. ANSYS Associate Certified in Stress Analysis.
+              design. Proficient with SolidWorks, Autodesk Inventor, and ANSYS Mechanical.
+              ANSYS Associate Certified in Stress Analysis.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Link to="/about" className="btn-tech primary">Read Full About →</Link>
@@ -668,10 +668,10 @@ function Index() {
                   ["SolidWorks", "CAD / 3D Modeling", "Advanced"],
                   ["Autodesk Inventor", "CAD / 3D Modeling", "Advanced"],
                   ["Ansys", "FEA / Simulation", "Intermediate"],
-                  ["AutoCAD", "Drafting 2D", "Advanced"],
-                  ["Microsoft Office", "Documentation", "Advanced"],
+                  ["Microsoft Excel", "Engineering Data & Calculation", "Advanced"],
+                  ["Microsoft Office", "Technical Reporting & Documentation", "Advanced"],
                   ["Photoshop", "Graphics", "Intermediate"],
-                  ["Canva", "Graphics", "Advanced"],
+                  ["Canva", "Technical Visualization", "Professional"],
                   ["CapCut", "Video", "Familiar"],
                 ].map(([tool, cat, lvl]) => (
                   <tr key={tool} className="border-b border-[color:var(--concrete)]/20">
@@ -680,7 +680,7 @@ function Index() {
                     <td className="p-3">
                       <span
                         className={
-                          lvl === "Advanced"
+                          lvl === "Advanced" || lvl === "Professional"
                             ? "text-[color:var(--amber-brand)]"
                             : lvl === "Intermediate"
                               ? "text-[color:var(--paper)]"
@@ -926,7 +926,7 @@ function Index() {
               {
                 label: "EMAIL",
                 value: "indraadani654@gmail.com",
-                href: "mailto:indraadani654@gmail.com",
+                href: "https://mail.google.com/mail/u/0/?hl=en#inbox?compose=DmwnWstptZpmTLvfJXcTJPzptjvsHWlRvbXCznQRndmxMBNxRKNkMdzwpQdmsRPxNTpPjsVKvLXV",
                 icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
               },
               {
