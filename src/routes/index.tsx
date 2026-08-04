@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
-import portraitMech from "../assets/indra-mechanical.png.asset.json";
+import portraitCutout from "../assets/indra-cutout.png.asset.json";
 import tppi1 from "../assets/tppi/tppi-1.jpg.asset.json";
 import tppi2 from "../assets/tppi/tppi-2.jpg.asset.json";
 import tppi3 from "../assets/tppi/tppi-3.jpg.asset.json";
