@@ -617,13 +617,13 @@ function Index() {
 
             {/* free-floating cutout, grounded by a soft plate */}
             <div className="relative">
-              <div className="pointer-events-none absolute inset-x-4 bottom-3 h-6 rounded-[50%] bg-black/45 blur-md" />
               <img
                 src={portraitCutout.url}
                 alt="Indra Naufal Adani — mechanical engineering portrait"
-                className="relative block h-auto w-full select-none object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.45)]"
+                className="relative block h-auto w-full select-none object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.45)] [mask-image:linear-gradient(to_bottom,#000_82%,transparent_100%)]"
                 loading="lazy"
               />
+
             </div>
 
             <div className="mt-1 flex items-center justify-between font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
