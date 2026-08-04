@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "ed6e68cc-d5cc-4d37-8a7c-e4ae528ddf0c",
-  "project_id": "8fbd4a87-1599-4cf2-9bcf-2523e308248f",
-  "url": "/__l5e/assets-v1/ed6e68cc-d5cc-4d37-8a7c-e4ae528ddf0c/robutech-4.jpg",
-  "r2_key": "a/v1/8fbd4a87-1599-4cf2-9bcf-2523e308248f/ed6e68cc-d5cc-4d37-8a7c-e4ae528ddf0c/robutech-4.jpg",
-  "original_filename": "robutech-4.jpg",
-  "size": 288825,
   "content_type": "image/jpeg",
-  "created_at": "2026-07-29T11:42:56Z"
+  "created_at": "2026-07-29T11:42:56Z",
+  "original_filename": "robutech-4.jpg",
+  "project_id": "fed32025-a539-4713-962b-47a1ef82fb1a",
+  "r2_key": "a/v1/fed32025-a539-4713-962b-47a1ef82fb1a/ed6e68cc-d5cc-4d37-8a7c-e4ae528ddf0c/robutech-4.jpg",
+  "size": 288825,
+  "url": "/__l5e/assets-v1/ed6e68cc-d5cc-4d37-8a7c-e4ae528ddf0c/robutech-4.jpg",
+  "version": 1
 }

@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "bd50cabe-df5f-4ac6-9aff-cfd90de6d431",
-  "project_id": "8fbd4a87-1599-4cf2-9bcf-2523e308248f",
-  "url": "/__l5e/assets-v1/bd50cabe-df5f-4ac6-9aff-cfd90de6d431/kedaireka-2-poster.jpg",
-  "r2_key": "a/v1/8fbd4a87-1599-4cf2-9bcf-2523e308248f/bd50cabe-df5f-4ac6-9aff-cfd90de6d431/kedaireka-2-poster.jpg",
-  "original_filename": "kedaireka-2-poster.jpg",
-  "size": 27908,
   "content_type": "image/jpeg",
-  "created_at": "2026-08-03T15:40:35Z"
+  "created_at": "2026-08-03T15:40:35Z",
+  "original_filename": "kedaireka-2-poster.jpg",
+  "project_id": "fed32025-a539-4713-962b-47a1ef82fb1a",
+  "r2_key": "a/v1/fed32025-a539-4713-962b-47a1ef82fb1a/bd50cabe-df5f-4ac6-9aff-cfd90de6d431/kedaireka-2-poster.jpg",
+  "size": 27908,
+  "url": "/__l5e/assets-v1/bd50cabe-df5f-4ac6-9aff-cfd90de6d431/kedaireka-2-poster.jpg",
+  "version": 1
 }

@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "fd1aab49-abbc-4e86-aa55-5e6718855ce9",
-  "project_id": "8fbd4a87-1599-4cf2-9bcf-2523e308248f",
-  "url": "/__l5e/assets-v1/fd1aab49-abbc-4e86-aa55-5e6718855ce9/kedaireka-3.mp4",
-  "r2_key": "a/v1/8fbd4a87-1599-4cf2-9bcf-2523e308248f/fd1aab49-abbc-4e86-aa55-5e6718855ce9/kedaireka-3.mp4",
-  "original_filename": "kedaireka-3.mp4",
-  "size": 8059033,
   "content_type": "video/mp4",
-  "created_at": "2026-07-29T11:43:40Z"
+  "created_at": "2026-07-29T11:43:40Z",
+  "original_filename": "kedaireka-3.mp4",
+  "project_id": "fed32025-a539-4713-962b-47a1ef82fb1a",
+  "r2_key": "a/v1/fed32025-a539-4713-962b-47a1ef82fb1a/fd1aab49-abbc-4e86-aa55-5e6718855ce9/kedaireka-3.mp4",
+  "size": 8059033,
+  "url": "/__l5e/assets-v1/fd1aab49-abbc-4e86-aa55-5e6718855ce9/kedaireka-3.mp4",
+  "version": 1
 }
