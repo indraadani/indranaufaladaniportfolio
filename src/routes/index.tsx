@@ -570,7 +570,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <SheetTag n={2} />
+        <SheetTag n={1} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="B — B" /></div>
@@ -645,7 +645,7 @@ function Index() {
             </li>
           ))}
         </ol>
-        <SheetTag n={3} />
+        <SheetTag n={2} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
@@ -717,7 +717,7 @@ function Index() {
             </ul>
           </div>
         </div>
-        <SheetTag n={4} />
+        <SheetTag n={3} />
       </section>
 
       {/* ================= 04 ORGANISASI ================= */}
@@ -725,7 +725,7 @@ function Index() {
         <SectionHead
           code="04 / ORGANISASI & KOMPETISI"
           title="Organizations & Competitions"
-          sub="Slot dokumentasi tersedia — geser ke kanan untuk foto/video kegiatan (akan diisi menyusul)."
+          sub="Pengalaman organisasi dan kompetisi selama masa kuliah."
         />
         <div className="grid gap-6 md:grid-cols-3">
           {[
@@ -895,7 +895,7 @@ function Index() {
 
       {/* ================= 07 CERTS ================= */}
       <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
-        <SectionHead code="06 / SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
+        <SectionHead code="07 / SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
         <div className="reveal mt-2">
           <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
             DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
@@ -910,7 +910,7 @@ function Index() {
       <section id="kontak" className="relative border-y border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
           <SectionHead
-            code="07 / KONTAK"
+            code="08 / KONTAK"
             title="Get in Touch"
             sub="Terbuka untuk peluang fresh graduate di berbagai sektor rekayasa dan industri — mulai dari desain, analisis, manufaktur, hingga inspeksi dan pemeliharaan."
           />
