@@ -142,19 +142,6 @@ const HeatExchanger = () => (
   </svg>
 );
 
-const DimensionDivider = ({ label = "SECTION BREAK" }: { label?: string }) => (
-  <div className="my-8 flex items-center gap-3 text-[color:var(--concrete)]">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1">
-      <path d="M13 7 L1 7 M1 7 L5 3 M1 7 L5 11" />
-    </svg>
-    <div className="h-px flex-1 bg-[color:var(--concrete)] opacity-40" />
-    <span className="font-mono text-[10px] tracking-[0.3em]">{label}</span>
-    <div className="h-px flex-1 bg-[color:var(--concrete)] opacity-40" />
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1">
-      <path d="M1 7 L13 7 M13 7 L9 3 M13 7 L9 11" />
-    </svg>
-  </div>
-);
 
 const SectionHead = ({ code, title, sub }: { code: string; title: string; sub?: string }) => (
   <div className="mb-5">
@@ -465,7 +452,6 @@ function Index() {
                 <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.75/4.00</span>
                 <span>UNIVERSITAS NEGERI SURABAYA</span>
                 <span>EXP. GRADUATION 2026</span>
-                <span>SOLIDWORKS / ANSYS / INVENTOR</span>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -544,7 +530,6 @@ function Index() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="B — B" /></div>
 
       {/* ================= 03 EXPERIENCE ================= */}
       <section id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
@@ -618,7 +603,6 @@ function Index() {
         </ol>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
 
       {/* ================= 03 SKILLS ================= */}
       <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-6">
@@ -728,7 +712,6 @@ function Index() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="D — D" /></div>
 
       {/* ================= 05 AKTIVITAS ================= */}
       <section id="aktivitas" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
@@ -759,7 +742,6 @@ function Index() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="E — E" /></div>
 
       {/* ================= 06 PROYEK ================= */}
       <section id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
@@ -895,7 +877,7 @@ function Index() {
 
       {/* ================= 08 CONTACT ================= */}
       <section id="kontak" className="relative bg-[color:var(--graphite)]">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
+        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-20 pb-8">
           <SectionHead
             code="KONTAK"
             title="Get in Touch"
@@ -903,9 +885,6 @@ function Index() {
           />
           <div className="reveal block break-words font-[Barlow_Condensed] text-4xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] sm:text-6xl md:text-7xl">
             Let&rsquo;s Work Together!
-          </div>
-          <div className="mt-6 font-mono text-xs tracking-[0.15em] text-[color:var(--concrete)]">
-            LOCATION — <span className="text-[color:var(--paper)]">TUBAN, ID</span>
           </div>
 
           <div className="reveal mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -968,7 +947,7 @@ function Index() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <footer className="mx-auto max-w-[1440px] px-6 lg:px-12 pb-6 pt-2">
         <p className="text-center font-mono text-[10px] tracking-[0.2em] text-[color:var(--concrete)]">
           © 2026 INDRA NAUFAL ADANI — ALL DRAWINGS ARE INDICATIVE
         </p>
