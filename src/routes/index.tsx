@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
-import portraitMech from "../assets/indra-mechanical.png.asset.json";
+import portraitCutout from "../assets/indra-cutout.png.asset.json";
 import tppi1 from "../assets/tppi/tppi-1.jpg.asset.json";
 import tppi2 from "../assets/tppi/tppi-2.jpg.asset.json";
 import tppi3 from "../assets/tppi/tppi-3.jpg.asset.json";
@@ -598,25 +598,41 @@ function Index() {
           title="About Me"
           sub="Ringkasan singkat — halaman lengkap tersedia di sheet A / About."
         />
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.6fr] md:items-start">
-          <div className="reveal relative mx-auto w-full max-w-[260px] md:mx-0">
-            {/* mechanical accents */}
-            <Gear className="pointer-events-none absolute -left-6 -top-6 h-12 w-12 text-[color:var(--amber-brand)]/60" />
-            <Gear className="pointer-events-none absolute -right-4 -bottom-4 h-8 w-8 text-[color:var(--concrete)]/60" />
-            <div className="brackets border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2">
+        <div className="grid gap-8 md:grid-cols-[0.8fr_1.6fr] md:items-center">
+          <div className="reveal relative mx-auto w-full max-w-[300px] md:mx-0">
+            {/* ambient mechanical stage — no hard frame */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 top-6 -z-10">
+              <div className="absolute left-1/2 top-1/2 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--amber-brand)]/12 blur-3xl" />
+              <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full text-[color:var(--concrete)]/35">
+                <circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" strokeWidth="0.6" strokeDasharray="4 6" />
+                <circle cx="100" cy="100" r="66" fill="none" stroke="currentColor" strokeWidth="0.4" />
+                <line x1="100" y1="4" x2="100" y2="20" stroke="currentColor" strokeWidth="0.6" />
+                <line x1="4" y1="100" x2="20" y2="100" stroke="currentColor" strokeWidth="0.6" />
+                <line x1="180" y1="100" x2="196" y2="100" stroke="currentColor" strokeWidth="0.6" />
+              </svg>
+            </div>
+
+            <Gear className="pointer-events-none absolute -left-5 top-2 h-12 w-12 text-[color:var(--amber-brand)]/50" />
+            <Gear className="pointer-events-none absolute -right-3 bottom-16 h-8 w-8 text-[color:var(--concrete)]/45" />
+
+            {/* free-floating cutout, grounded by a soft plate */}
+            <div className="relative">
               <img
-                src={portraitMech.url}
+                src={portraitCutout.url}
                 alt="Indra Naufal Adani — mechanical engineering portrait"
-                className="block h-auto w-full object-cover"
+                className="relative block h-auto w-full select-none object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.45)] [mask-image:linear-gradient(to_bottom,#000_82%,transparent_100%)]"
                 loading="lazy"
               />
-              <div className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-                <span>INDRA N. ADANI</span>
-                <span>MECH — 2025</span>
-              </div>
+
             </div>
-            <div className="hazard mt-2" />
+
+            <div className="mt-1 flex items-center justify-between font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+              <span className="text-[color:var(--amber-brand)]">■ INDRA N. ADANI</span>
+              <span>MECH — 2025</span>
+            </div>
+            <div className="hazard mt-2 opacity-80" />
           </div>
+
           <div className="reveal space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
             <p>
               Mechanical Engineering graduate from Surabaya State University (GPA 3.75/4.00) with
