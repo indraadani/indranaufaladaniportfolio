@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import portrait from "../assets/indra-portrait.png.asset.json";
+import portraitMech from "../assets/indra-mechanical.png.asset.json";
 import tppi1 from "../assets/tppi/tppi-1.jpg.asset.json";
 import tppi2 from "../assets/tppi/tppi-2.jpg.asset.json";
 import tppi3 from "../assets/tppi/tppi-3.jpg.asset.json";
@@ -269,7 +269,7 @@ const DocScroller = ({
               <figure
                 key={i}
                 className="snap-start shrink-0 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2"
-                style={{ width: "min(72vw, 288px)" }}
+                style={{ width: "min(58vw, 216px)" }}
               >
                 <div className="aspect-[4/5] overflow-hidden">
                   {it.type === "video" ? (
@@ -506,9 +506,9 @@ function Index() {
                 Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
               </p>
               <p className="mt-6 max-w-xl text-base text-[color:var(--paper)]/90 sm:text-lg">
-                Bachelor of Mechanical Engineering | NDT &amp; Radiographic Testing · Rotating
-                Equipment Maintenance · Automotive · Computational Fluid Dynamics and Finite
-                Element Analysis
+                Graduate with a Bachelor&rsquo;s degree in Mechanical Engineering from Surabaya
+                State University | Enthusiast of renewable energy, energy conversion, materials
+                and engineering analysis
               </p>
 
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
@@ -589,18 +589,24 @@ function Index() {
           title="About Me"
           sub="Ringkasan singkat — halaman lengkap tersedia di sheet A / About."
         />
-        <div className="grid gap-8 md:grid-cols-[1fr_1.3fr] md:items-start">
-          <div className="reveal brackets border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2">
-            <img
-              src={portrait.url}
-              alt="Indra Naufal Adani on site"
-              className="block h-auto w-full object-cover"
-              loading="lazy"
-            />
-            <div className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-              <span>INDRA N. ADANI</span>
-              <span>FIELD — 2025</span>
+        <div className="grid gap-8 md:grid-cols-[0.7fr_1.6fr] md:items-start">
+          <div className="reveal relative mx-auto w-full max-w-[260px] md:mx-0">
+            {/* mechanical accents */}
+            <Gear className="pointer-events-none absolute -left-6 -top-6 h-12 w-12 text-[color:var(--amber-brand)]/60" />
+            <Gear className="pointer-events-none absolute -right-4 -bottom-4 h-8 w-8 text-[color:var(--concrete)]/60" />
+            <div className="brackets border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2">
+              <img
+                src={portraitMech.url}
+                alt="Indra Naufal Adani — mechanical engineering portrait"
+                className="block h-auto w-full object-cover"
+                loading="lazy"
+              />
+              <div className="mt-2 flex items-center justify-between px-1 pb-1 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+                <span>INDRA N. ADANI</span>
+                <span>MECH — 2025</span>
+              </div>
             </div>
+            <div className="hazard mt-2" />
           </div>
           <div className="reveal space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
             <p>
