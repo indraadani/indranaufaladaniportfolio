@@ -141,7 +141,7 @@ const HeatExchanger = () => (
 );
 
 const DimensionDivider = ({ label = "SECTION BREAK" }: { label?: string }) => (
-  <div className="my-16 flex items-center gap-3 text-[color:var(--concrete)]">
+  <div className="my-8 flex items-center gap-3 text-[color:var(--concrete)]">
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1">
       <path d="M13 7 L1 7 M1 7 L5 3 M1 7 L5 11" />
     </svg>
@@ -155,12 +155,12 @@ const DimensionDivider = ({ label = "SECTION BREAK" }: { label?: string }) => (
 );
 
 const SectionHead = ({ code, title, sub }: { code: string; title: string; sub?: string }) => (
-  <div className="mb-10">
+  <div className="mb-5">
     <div className="font-mono text-xs tracking-[0.3em] text-[color:var(--amber-brand)]">{code}</div>
-    <h2 className="mt-2 font-[Barlow_Condensed] text-3xl font-bold uppercase tracking-[0.08em] sm:text-4xl md:text-5xl">
+    <h2 className="mt-1 font-[Barlow_Condensed] text-3xl font-bold uppercase tracking-[0.08em] sm:text-4xl md:text-5xl">
       {title}
     </h2>
-    {sub && <p className="mt-3 max-w-2xl text-sm text-[color:var(--concrete)]">{sub}</p>}
+    {sub && <p className="mt-2 max-w-2xl text-sm text-[color:var(--concrete)]">{sub}</p>}
   </div>
 );
 
@@ -636,7 +636,7 @@ function Index() {
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
 
       {/* ================= 03 SKILLS ================= */}
-      <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-6">
         <SectionHead code="03 / KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
