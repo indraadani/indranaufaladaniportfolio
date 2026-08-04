@@ -38,6 +38,8 @@ import cadfem5 from "../assets/cadfem/cadfem-5.png.asset.json";
 import cadfem6 from "../assets/cadfem/cadfem-6.png.asset.json";
 import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
 import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
+import briketVideo from "../assets/briket/briket.mp4.asset.json";
+import briketPoster from "../assets/briket/briket-poster.jpg.asset.json";
 import cert1 from "../assets/sertifikat/cert-1.jpg.asset.json";
 import cert2 from "../assets/sertifikat/cert-2.jpg.asset.json";
 import cert4 from "../assets/sertifikat/cert-4.jpg.asset.json";
@@ -156,10 +158,10 @@ const DimensionDivider = ({ label = "SECTION BREAK" }: { label?: string }) => (
 
 const SectionHead = ({ code, title, sub }: { code: string; title: string; sub?: string }) => (
   <div className="mb-5">
-    <div className="font-mono text-xs tracking-[0.3em] text-[color:var(--amber-brand)]">{code}</div>
-    <h2 className="mt-1 font-[Barlow_Condensed] text-3xl font-bold uppercase tracking-[0.08em] sm:text-4xl md:text-5xl">
+    <h2 className="font-[Barlow_Condensed] text-3xl font-bold uppercase tracking-[0.08em] sm:text-4xl md:text-5xl">
       {title}
     </h2>
+    <div className="mt-1 font-mono text-xs tracking-[0.3em] text-[color:var(--amber-brand)]">{code}</div>
     {sub && <p className="mt-2 max-w-2xl text-sm text-[color:var(--concrete)]">{sub}</p>}
   </div>
 );
@@ -174,13 +176,6 @@ const ImagePH = ({ w = 1600, h = 900, label = "IMAGE PLACEHOLDER" }: { w?: numbe
       <div>{label}</div>
       <div className="mt-1 text-[10px] opacity-70">{w} × {h}</div>
     </div>
-  </div>
-);
-
-const TOTAL_SHEETS = 8;
-const SheetTag = ({ n, total = TOTAL_SHEETS }: { n: number; total?: number }) => (
-  <div className="pointer-events-none absolute bottom-3 right-4 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)] sm:bottom-4 sm:right-6">
-    SHEET {String(n).padStart(2, "0")} OF {String(total).padStart(2, "0")}
   </div>
 );
 
@@ -434,13 +429,6 @@ function Index() {
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-16 pb-10 sm:pt-24 sm:pb-16">
-          <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
-            <span className="text-[color:var(--amber-brand)]">■</span>
-            <span>SHEET 00 / COVER</span>
-            <span className="opacity-40">·</span>
-            <span>2026</span>
-          </div>
-
           <nav aria-label="Section shortcuts" className="mb-10 border-y border-[color:var(--concrete)]/30 py-3">
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
               {SECTIONS.map((s) => (
@@ -449,7 +437,6 @@ function Index() {
                     href={`#${s.id}`}
                     className="group inline-flex items-center gap-2 hover:text-[color:var(--amber-brand)]"
                   >
-                    <span className="text-[color:var(--amber-brand)]">{String(s.n).padStart(2, "0")}</span>
                     <span className="uppercase">{s.label}</span>
                   </a>
                 </li>
@@ -498,7 +485,7 @@ function Index() {
       {/* ================= 01 ABOUT ================= */}
       <section id="about" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="01 / ABOUT"
+          code="ABOUT"
           title="About Me"
           sub="Ringkasan singkat — halaman lengkap tersedia di sheet A / About."
         />
@@ -555,7 +542,6 @@ function Index() {
             </div>
           </div>
         </div>
-        <SheetTag n={1} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="B — B" /></div>
@@ -563,7 +549,7 @@ function Index() {
       {/* ================= 03 EXPERIENCE ================= */}
       <section id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="02 / PENGALAMAN"
+          code="PENGALAMAN"
           title="Experience"
           sub="Timeline pipa-vertikal — node aktif menandai pengalaman terkini."
         />
@@ -630,14 +616,13 @@ function Index() {
             </li>
           ))}
         </ol>
-        <SheetTag n={2} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
 
       {/* ================= 03 SKILLS ================= */}
       <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-6">
-        <SectionHead code="03 / KEAHLIAN TEKNIS" title="Technical Skills" />
+        <SectionHead code="KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
             <table className="w-full min-w-[520px] border-collapse font-mono text-xs">
@@ -702,13 +687,12 @@ function Index() {
             </ul>
           </div>
         </div>
-        <SheetTag n={3} />
       </section>
 
       {/* ================= 04 ORGANISASI ================= */}
       <section id="organisasi" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead
-          code="04 / ORGANISASI & KOMPETISI"
+          code="ORGANISASI & KOMPETISI"
           title="Organizations & Competitions"
           sub="Pengalaman organisasi dan kompetisi selama masa kuliah."
         />
@@ -742,8 +726,6 @@ function Index() {
             </div>
           ))}
         </div>
-
-        <SheetTag n={4} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="D — D" /></div>
@@ -751,7 +733,7 @@ function Index() {
       {/* ================= 05 AKTIVITAS ================= */}
       <section id="aktivitas" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="05 / DOKUMENTASI AKTIVITAS"
+          code="DOKUMENTASI AKTIVITAS"
           title="Activity Documentation"
           sub="Dokumentasi kegiatan yang saya ikuti — pelatihan, kunjungan industri, kompetisi, seminar, dan kegiatan lapangan. Foto menyusul."
         />
@@ -775,7 +757,6 @@ function Index() {
             </div>
           ))}
         </div>
-        <SheetTag n={5} />
       </section>
 
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="E — E" /></div>
@@ -783,7 +764,7 @@ function Index() {
       {/* ================= 06 PROYEK ================= */}
       <section id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
-          code="06 / PROYEK PILIHAN"
+          code="PROYEK PILIHAN"
           title="Selected Projects"
 
           sub="Studi kasus rekayasa — dirangkum dalam alur Masalah → Metode → Hasil."
@@ -825,13 +806,26 @@ function Index() {
             {
               tag: "FEA",
               code: "P.04",
+              video: briketVideo.url,
+              poster: briketPoster.url,
               year: "2023",
               title: "Prototipe Alat Cetak Briket — FEA",
               problem: "Validasi struktur cetakan briket terhadap beban tekan siklik.",
               method: "Analisis tegangan, regangan, safety factor, dan displacement menggunakan Ansys.",
               result: "Struktur memenuhi safety factor > 1.5 pada kondisi beban desain.",
             },
-          ].map((p) => (
+          ].map((p: {
+            featured?: boolean;
+            tag: string;
+            code: string;
+            year: string;
+            title: string;
+            problem: string;
+            method: string;
+            result: string;
+            video?: string;
+            poster?: string;
+          }) => (
             <article
               key={p.code}
               className={`reveal brackets relative border ${
@@ -869,33 +863,41 @@ function Index() {
                   </dl>
                 </div>
                 <div className="p-6 sm:p-8 lg:pl-0">
-                  <ImagePH w={1600} h={900} label={`PROJECT ${p.code}`} />
+                  {p.video ? (
+                    <video
+                      src={p.video}
+                      poster={p.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="w-full border border-[color:var(--concrete)]/40 bg-black"
+                    />
+                  ) : (
+                    <ImagePH w={1600} h={900} label={`PROJECT ${p.code}`} />
+                  )}
                 </div>
               </div>
             </article>
           ))}
         </div>
-        <SheetTag n={6} />
       </section>
 
       {/* ================= 07 CERTS ================= */}
       <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
-        <SectionHead code="07 / SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
+        <SectionHead code="SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
         <div className="reveal mt-2">
           <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
             DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
           </div>
           <CertGrid items={CERT_DOCS} />
         </div>
-
-        <SheetTag n={7} />
       </section>
 
       {/* ================= 08 CONTACT ================= */}
-      <section id="kontak" className="relative border-y border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]">
+      <section id="kontak" className="relative bg-[color:var(--graphite)]">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
           <SectionHead
-            code="08 / KONTAK"
+            code="KONTAK"
             title="Get in Touch"
             sub="Saya selalu terbuka untuk berdiskusi, berkolaborasi, atau menjajaki peluang baru di bidang Mechanical Engineering. Jika Anda memiliki proyek, pertanyaan, atau kesempatan kerja, jangan ragu untuk menghubungi saya."
           />
@@ -963,7 +965,6 @@ function Index() {
             <a href="#" className="btn-tech primary">Download CV ↓</a>
           </div>
         </div>
-        <SheetTag n={8} />
       </section>
 
       {/* ================= FOOTER ================= */}
