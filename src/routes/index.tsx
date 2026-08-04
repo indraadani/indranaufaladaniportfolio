@@ -142,19 +142,6 @@ const HeatExchanger = () => (
   </svg>
 );
 
-const DimensionDivider = ({ label = "SECTION BREAK" }: { label?: string }) => (
-  <div className="my-8 flex items-center gap-3 text-[color:var(--concrete)]">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1">
-      <path d="M13 7 L1 7 M1 7 L5 3 M1 7 L5 11" />
-    </svg>
-    <div className="h-px flex-1 bg-[color:var(--concrete)] opacity-40" />
-    <span className="font-mono text-[10px] tracking-[0.3em]">{label}</span>
-    <div className="h-px flex-1 bg-[color:var(--concrete)] opacity-40" />
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1">
-      <path d="M1 7 L13 7 M13 7 L9 3 M13 7 L9 11" />
-    </svg>
-  </div>
-);
 
 const SectionHead = ({ code, title, sub }: { code: string; title: string; sub?: string }) => (
   <div className="mb-5">
