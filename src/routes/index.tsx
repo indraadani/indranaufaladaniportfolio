@@ -123,6 +123,14 @@ const CADFEM_IMAGES = [
 /* ============================================================
    P&ID line-art icons
    ============================================================ */
+const Gear = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+    <circle cx="32" cy="32" r="10" />
+    <circle cx="32" cy="32" r="20" strokeDasharray="6 6" />
+    <path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M52 12l-6 6M18 46l-6 6" />
+  </svg>
+);
+
 const IconPump = () => (
   <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" strokeWidth="1.5" className="pid-icon">
     <circle cx="32" cy="32" r="18" />
