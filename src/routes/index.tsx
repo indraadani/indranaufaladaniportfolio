@@ -680,7 +680,7 @@ function Index() {
                     <td className="p-3">
                       <span
                         className={
-                          lvl === "Advanced"
+                          lvl === "Advanced" || lvl === "Professional"
                             ? "text-[color:var(--amber-brand)]"
                             : lvl === "Intermediate"
                               ? "text-[color:var(--paper)]"
@@ -926,7 +926,7 @@ function Index() {
               {
                 label: "EMAIL",
                 value: "indraadani654@gmail.com",
-                href: "mailto:indraadani654@gmail.com",
+                href: "https://mail.google.com/mail/u/0/?hl=en#inbox?compose=DmwnWstptZpmTLvfJXcTJPzptjvsHWlRvbXCznQRndmxMBNxRKNkMdzwpQdmsRPxNTpPjsVKvLXV",
                 icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
               },
               {
