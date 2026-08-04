@@ -75,7 +75,7 @@ function About() {
               exchanger using a CuO&ndash;SiO&#8322; hybrid nanofluid at varying helical baffle angles, and
               measured the trade-off between increased heat transfer and pressure drop. I am proficient in{" "}
               <strong>SolidWorks</strong>, <strong>Autodesk Inventor</strong>,{" "}
-              <strong>ANSYS Mechanical</strong>, and <strong>AutoCAD</strong>, and hold the{" "}
+              and <strong>ANSYS Mechanical</strong>, and hold the{" "}
               <strong>ANSYS Associate Certification in Stress Analysis</strong>.
             </p>
 
