@@ -636,7 +636,7 @@ function Index() {
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12"><DimensionDivider label="C — C" /></div>
 
       {/* ================= 03 SKILLS ================= */}
-      <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-6">
         <SectionHead code="03 / KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
