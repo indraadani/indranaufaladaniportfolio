@@ -722,9 +722,20 @@ function Index() {
         />
         <div className="space-y-8">
           {[
-            { code: "ACT.01", label: "PELATIHAN & SERTIFIKASI", note: "Kegiatan pelatihan teknis dan sertifikasi keahlian." },
-            { code: "ACT.02", label: "KUNJUNGAN INDUSTRI & LAPANGAN", note: "Kunjungan pabrik, kilang, dan kegiatan lapangan." },
-            { code: "ACT.03", label: "KOMPETISI & SEMINAR", note: "Lomba, konferensi, workshop, dan kegiatan kampus." },
+            { code: "ACT.01", label: "PELATIHAN & SERTIFIKASI", note: "Kegiatan pelatihan teknis dan sertifikasi keahlian.", photos: [] as { src: string; caption: string }[] },
+            {
+              code: "ACT.02",
+              label: "KOMPETISI, ORGANISASI & KEGIATAN KAMPUS",
+              note: "Lomba, kegiatan tim riset, organisasi mahasiswa, dan pameran inovasi.",
+              photos: [
+                { src: act1.url, caption: "Proses pembuatan body mobil hemat energi" },
+                { src: act2.url, caption: "Foto dengan mobil Garnesa III" },
+                { src: act3.url, caption: "Rapat kerja Himpunan Mahasiswa Teknik Mesin" },
+                { src: act4.url, caption: "Foto bersama seluruh anggota FORMAT-R" },
+                { src: act5.url, caption: "Foto bersama setelah kegiatan PKKMB" },
+                { src: act6.url, caption: "2nd Exhibition Innovation Product UNESA 2024" },
+              ],
+            },
           ].map((a) => (
             <div key={a.code} className="reveal">
               <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
@@ -733,13 +744,20 @@ function Index() {
                 <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
               </div>
               <p className="text-sm text-[color:var(--concrete)]">{a.note}</p>
-              <DocScroller emptyLabel="UPLOAD FOTO AKTIVITAS" emptyCount={4} />
-              <p className="mt-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]/70">
-                KETERANGAN FOTO — NAMA KEGIATAN · LOKASI · TAHUN (MENYUSUL)
-              </p>
+              {a.photos.length > 0 ? (
+                <DocScroller items={a.photos} />
+              ) : (
+                <>
+                  <DocScroller emptyLabel="UPLOAD FOTO AKTIVITAS" emptyCount={4} />
+                  <p className="mt-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]/70">
+                    KETERANGAN FOTO — NAMA KEGIATAN · LOKASI · TAHUN (MENYUSUL)
+                  </p>
+                </>
+              )}
             </div>
           ))}
         </div>
+
       </section>
 
 
