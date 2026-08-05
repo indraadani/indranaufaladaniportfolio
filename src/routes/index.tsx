@@ -48,6 +48,12 @@ import cert6 from "../assets/sertifikat/cert-6.jpg.asset.json";
 import cert7 from "../assets/sertifikat/cert-7.jpg.asset.json";
 import cert8 from "../assets/sertifikat/cert-8.jpg.asset.json";
 import cert9 from "../assets/sertifikat/cert-9.jpg.asset.json";
+import act1 from "../assets/aktivitas/act-1.jpg.asset.json";
+import act2 from "../assets/aktivitas/act-2.jpg.asset.json";
+import act3 from "../assets/aktivitas/act-3.jpg.asset.json";
+import act4 from "../assets/aktivitas/act-4.jpg.asset.json";
+import act5 from "../assets/aktivitas/act-5.jpg.asset.json";
+import act6 from "../assets/aktivitas/act-6.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
