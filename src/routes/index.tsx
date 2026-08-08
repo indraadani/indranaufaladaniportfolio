@@ -78,6 +78,13 @@ const CERT_DOCS = [
   { src: cert2.url, caption: "Sertifikat Indra Naufal Adani" },
   { src: cert4.url, caption: "SK HMRTM 2023" },
   { src: cert6.url, caption: "Sertifikat PKKMB 2022" },
+  { src: certTep.url, caption: "Test of English Proficiency (TEP) — Pusat Bahasa UNESA" },
+  { src: certMekanik.url, caption: "Seleksi MSIB dr. Mekanik Academy 2024" },
+  { src: certPengmas.url, caption: "Panitia Pengabdian Masyarakat FORMAT R 2024" },
+  { src: certBonding.url, caption: "Panitia Bonding Camp FORMAT R 2023" },
+  { src: certLeadership.url, caption: "Peserta Leadership Camp FORMAT R 2022" },
+  { src: certSeminar.url, caption: "Seminar Nasional Perencanaan Mesin — Dentech Corporation 2024" },
+  { src: certWelcome.url, caption: "Peserta Welcome Party FORMAT R 2022" },
 ];
 
 
