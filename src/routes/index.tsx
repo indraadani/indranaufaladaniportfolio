@@ -896,7 +896,7 @@ function Index() {
 
       {/* ================= 07 CERTS ================= */}
       <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
-        <SectionHead code="SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
+        <SectionHead code="SERTIFIKAT" title="Certificates" />
         <div className="reveal mt-2">
           <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
             DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
