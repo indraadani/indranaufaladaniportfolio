@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
 import portraitCutout from "../assets/indra-cutout.png.asset.json";
+import puli1 from "../assets/proyek/puli-1.jpg.asset.json";
+import puli2 from "../assets/proyek/puli-2.png.asset.json";
+import he1 from "../assets/proyek/he-1.png.asset.json";
 import tppi1 from "../assets/tppi/tppi-1.jpg.asset.json";
 import tppi2 from "../assets/tppi/tppi-2.jpg.asset.json";
 import tppi3 from "../assets/tppi/tppi-3.jpg.asset.json";
@@ -726,42 +729,25 @@ function Index() {
           title="Activity Documentation"
           sub="Dokumentasi kegiatan yang saya ikuti — pelatihan, kunjungan industri, kompetisi, seminar, dan kegiatan lapangan. Foto menyusul."
         />
-        <div className="space-y-8">
-          {[
-            { code: "ACT.01", label: "PELATIHAN & SERTIFIKASI", note: "Kegiatan pelatihan teknis dan sertifikasi keahlian.", photos: [] as { src: string; caption: string }[] },
-            {
-              code: "ACT.02",
-              label: "KOMPETISI, ORGANISASI & KEGIATAN KAMPUS",
-              note: "Lomba, kegiatan tim riset, organisasi mahasiswa, dan pameran inovasi.",
-              photos: [
-                { src: act1.url, caption: "Proses pembuatan body mobil hemat energi" },
-                { src: act2.url, caption: "Foto dengan mobil Garnesa III" },
-                { src: act3.url, caption: "Rapat kerja Himpunan Mahasiswa Teknik Mesin" },
-                { src: act4.url, caption: "Foto bersama seluruh anggota FORMAT-R" },
-                { src: act5.url, caption: "Foto bersama setelah kegiatan PKKMB" },
-                { src: act6.url, caption: "2nd Exhibition Innovation Product UNESA 2024" },
-              ],
-            },
-          ].map((a) => (
-            <div key={a.code} className="reveal">
-              <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
-                <span className="text-[color:var(--amber-brand)]">■</span>
-                <span>{a.code} — {a.label}</span>
-                <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
-              </div>
-              <p className="text-sm text-[color:var(--concrete)]">{a.note}</p>
-              {a.photos.length > 0 ? (
-                <DocScroller items={a.photos} />
-              ) : (
-                <>
-                  <DocScroller emptyLabel="UPLOAD FOTO AKTIVITAS" emptyCount={4} />
-                  <p className="mt-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]/70">
-                    KETERANGAN FOTO — NAMA KEGIATAN · LOKASI · TAHUN (MENYUSUL)
-                  </p>
-                </>
-              )}
-            </div>
-          ))}
+        <div className="reveal">
+          <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
+            <span className="text-[color:var(--amber-brand)]">■</span>
+            <span>ACT.01 — KOMPETISI, ORGANISASI &amp; KEGIATAN KAMPUS</span>
+            <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
+          </div>
+          <p className="text-sm text-[color:var(--concrete)]">
+            Lomba, kegiatan tim riset, organisasi mahasiswa, dan pameran inovasi.
+          </p>
+          <DocScroller
+            items={[
+              { src: act1.url, caption: "Proses pembuatan body mobil hemat energi" },
+              { src: act2.url, caption: "Foto dengan mobil Garnesa III" },
+              { src: act3.url, caption: "Rapat kerja Himpunan Mahasiswa Teknik Mesin" },
+              { src: act4.url, caption: "Foto bersama seluruh anggota FORMAT-R" },
+              { src: act5.url, caption: "Foto bersama setelah kegiatan PKKMB" },
+              { src: act6.url, caption: "2nd Exhibition Innovation Product UNESA 2024" },
+            ]}
+          />
         </div>
 
       </section>
@@ -782,36 +768,29 @@ function Index() {
               tag: "THERMAL",
               code: "P.01",
               year: "2025—2026",
+              images: [he1.url],
               title:
-                "Analisis Performa Termohidrolik Shell-and-Tube HE dengan Nanofluida Hibrida CuO–SiO₂ & Helical Baffle",
+                "Analisis Performa Termohidrolik Shell and Tube Heat Exchanger dengan Nanofluida Hibrida CuO–SiO₂ & Helical Baffle",
               problem:
                 "Efisiensi perpindahan panas HE konvensional terbatas pada variasi sudut baffle dan konsentrasi fluida kerja.",
               method:
-                "Uji variasi sudut helical baffle dan konsentrasi nanofluida hibrida CuO–SiO₂; simulasi CFD & analitik termohidrolik.",
+                "Uji variasi sudut helical baffle dan konsentrasi nanofluida hibrida CuO–SiO₂.",
               result:
-                "Karakterisasi trade-off pressure drop vs. heat transfer coefficient untuk rekomendasi konfigurasi optimal.",
+                "Analisis efektivitas termal, pressure drop, dan Performance Evaluation Criterion (PEC) untuk menentukan kondisi operasi yang memberikan kinerja termohidraulik terbaik.",
             },
             {
               tag: "MACHINE DESIGN",
               code: "P.02",
               year: "2025—2026",
-              title: "Desain & Pengembangan Mesin Pemotong Kue Kering Puli",
-              problem: "Kebutuhan mekanisasi pemotongan kue untuk UMKM dengan output konsisten.",
+              images: [puli1.url, puli2.url],
+              title: "Desain & Pengembangan Mesin Pemotong Kerupuk Puli",
+              problem: "Kebutuhan mekanisasi pemotongan kerupuk puli untuk UMKM dengan output konsisten.",
               method: "Perancangan kinematika, pemilihan material, prototyping SolidWorks & fabrikasi.",
               result: "Prototipe fungsional dengan siklus pemotongan stabil dan aman dioperasikan.",
             },
             {
-              tag: "MACHINE DESIGN",
-              code: "P.03",
-              year: "2024",
-              title: "Perencanaan & Pembuatan Mesin Es Rotari",
-              problem: "Kapasitas produksi es batu skala kecil dengan konsumsi energi rendah.",
-              method: "Desain sistem rotari, seleksi motor & bearing, uji beban dan siklus operasi.",
-              result: "Mesin rotari beroperasi kontinu dengan pemakaian daya sesuai target.",
-            },
-            {
               tag: "FEA",
-              code: "P.04",
+              code: "P.03",
               video: briketVideo.url,
               poster: briketPoster.url,
               year: "2023",
@@ -831,6 +810,7 @@ function Index() {
             result: string;
             video?: string;
             poster?: string;
+            images?: string[];
           }) => (
             <article
               key={p.code}
@@ -878,6 +858,18 @@ function Index() {
                       preload="metadata"
                       className="w-full border border-[color:var(--concrete)]/40 bg-black"
                     />
+                  ) : p.images?.length ? (
+                    <div className="grid gap-3">
+                      {p.images.map((src) => (
+                        <img
+                          key={src}
+                          src={src}
+                          alt={p.title}
+                          loading="lazy"
+                          className="w-full border border-[color:var(--concrete)]/40 bg-black object-contain"
+                        />
+                      ))}
+                    </div>
                   ) : (
                     <ImagePH w={1600} h={900} label={`PROJECT ${p.code}`} />
                   )}
