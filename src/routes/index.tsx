@@ -768,36 +768,29 @@ function Index() {
               tag: "THERMAL",
               code: "P.01",
               year: "2025—2026",
+              images: [he1.url],
               title:
-                "Analisis Performa Termohidrolik Shell-and-Tube HE dengan Nanofluida Hibrida CuO–SiO₂ & Helical Baffle",
+                "Analisis Performa Termohidrolik Shell and Tube Heat Exchanger dengan Nanofluida Hibrida CuO–SiO₂ & Helical Baffle",
               problem:
                 "Efisiensi perpindahan panas HE konvensional terbatas pada variasi sudut baffle dan konsentrasi fluida kerja.",
               method:
-                "Uji variasi sudut helical baffle dan konsentrasi nanofluida hibrida CuO–SiO₂; simulasi CFD & analitik termohidrolik.",
+                "Uji variasi sudut helical baffle dan konsentrasi nanofluida hibrida CuO–SiO₂.",
               result:
-                "Karakterisasi trade-off pressure drop vs. heat transfer coefficient untuk rekomendasi konfigurasi optimal.",
+                "Analisis efektivitas termal, pressure drop, dan Performance Evaluation Criterion (PEC) untuk menentukan kondisi operasi yang memberikan kinerja termohidraulik terbaik.",
             },
             {
               tag: "MACHINE DESIGN",
               code: "P.02",
               year: "2025—2026",
-              title: "Desain & Pengembangan Mesin Pemotong Kue Kering Puli",
-              problem: "Kebutuhan mekanisasi pemotongan kue untuk UMKM dengan output konsisten.",
+              images: [puli1.url, puli2.url],
+              title: "Desain & Pengembangan Mesin Pemotong Kerupuk Puli",
+              problem: "Kebutuhan mekanisasi pemotongan kerupuk puli untuk UMKM dengan output konsisten.",
               method: "Perancangan kinematika, pemilihan material, prototyping SolidWorks & fabrikasi.",
               result: "Prototipe fungsional dengan siklus pemotongan stabil dan aman dioperasikan.",
             },
             {
-              tag: "MACHINE DESIGN",
-              code: "P.03",
-              year: "2024",
-              title: "Perencanaan & Pembuatan Mesin Es Rotari",
-              problem: "Kapasitas produksi es batu skala kecil dengan konsumsi energi rendah.",
-              method: "Desain sistem rotari, seleksi motor & bearing, uji beban dan siklus operasi.",
-              result: "Mesin rotari beroperasi kontinu dengan pemakaian daya sesuai target.",
-            },
-            {
               tag: "FEA",
-              code: "P.04",
+              code: "P.03",
               video: briketVideo.url,
               poster: briketPoster.url,
               year: "2023",
@@ -817,6 +810,7 @@ function Index() {
             result: string;
             video?: string;
             poster?: string;
+            images?: string[];
           }) => (
             <article
               key={p.code}
