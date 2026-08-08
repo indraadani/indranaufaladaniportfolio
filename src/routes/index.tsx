@@ -873,14 +873,14 @@ function Index() {
                       className="w-full border border-[color:var(--concrete)]/40 bg-black"
                     />
                   ) : p.images?.length ? (
-                    <div className="grid gap-3">
+                    <div className={`grid gap-3 ${p.images.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
                       {p.images.map((src) => (
                         <img
                           key={src}
                           src={src}
                           alt={p.title}
                           loading="lazy"
-                          className="w-full border border-[color:var(--concrete)]/40 bg-black object-contain"
+                          className="aspect-[4/3] w-full border border-[color:var(--concrete)]/40 bg-black object-cover"
                         />
                       ))}
                     </div>
