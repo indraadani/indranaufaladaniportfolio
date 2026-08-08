@@ -51,6 +51,13 @@ import cert6 from "../assets/sertifikat/cert-6.jpg.asset.json";
 import cert7 from "../assets/sertifikat/cert-7.jpg.asset.json";
 import cert8 from "../assets/sertifikat/cert-8.jpg.asset.json";
 import cert9 from "../assets/sertifikat/cert-9.jpg.asset.json";
+import certTep from "../assets/sertifikat/cert-tep.png.asset.json";
+import certMekanik from "../assets/sertifikat/cert-mekanik.png.asset.json";
+import certPengmas from "../assets/sertifikat/cert-pengmas.png.asset.json";
+import certBonding from "../assets/sertifikat/cert-bonding.png.asset.json";
+import certLeadership from "../assets/sertifikat/cert-leadership.png.asset.json";
+import certSeminar from "../assets/sertifikat/cert-seminar.png.asset.json";
+import certWelcome from "../assets/sertifikat/cert-welcome.png.asset.json";
 import act1 from "../assets/aktivitas/act-1.jpg.asset.json";
 import act2 from "../assets/aktivitas/act-2.jpg.asset.json";
 import act3 from "../assets/aktivitas/act-3.jpg.asset.json";
@@ -71,6 +78,13 @@ const CERT_DOCS = [
   { src: cert2.url, caption: "Sertifikat Indra Naufal Adani" },
   { src: cert4.url, caption: "SK HMRTM 2023" },
   { src: cert6.url, caption: "Sertifikat PKKMB 2022" },
+  { src: certTep.url, caption: "Test of English Proficiency (TEP) — Pusat Bahasa UNESA" },
+  { src: certMekanik.url, caption: "Seleksi MSIB dr. Mekanik Academy 2024" },
+  { src: certPengmas.url, caption: "Panitia Pengabdian Masyarakat FORMAT R 2024" },
+  { src: certBonding.url, caption: "Panitia Bonding Camp FORMAT R 2023" },
+  { src: certLeadership.url, caption: "Peserta Leadership Camp FORMAT R 2022" },
+  { src: certSeminar.url, caption: "Seminar Nasional Perencanaan Mesin — Dentech Corporation 2024" },
+  { src: certWelcome.url, caption: "Peserta Welcome Party FORMAT R 2022" },
 ];
 
 
@@ -859,14 +873,14 @@ function Index() {
                       className="w-full border border-[color:var(--concrete)]/40 bg-black"
                     />
                   ) : p.images?.length ? (
-                    <div className="grid gap-3">
+                    <div className={`grid gap-3 ${p.images.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
                       {p.images.map((src) => (
                         <img
                           key={src}
                           src={src}
                           alt={p.title}
                           loading="lazy"
-                          className="w-full border border-[color:var(--concrete)]/40 bg-black object-contain"
+                          className="aspect-[4/3] w-full border border-[color:var(--concrete)]/40 bg-black object-cover"
                         />
                       ))}
                     </div>
@@ -882,7 +896,7 @@ function Index() {
 
       {/* ================= 07 CERTS ================= */}
       <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
-        <SectionHead code="SERTIFIKAT & PELATIHAN" title="Certificates & Training" />
+        <SectionHead code="SERTIFIKAT" title="Certificates" />
         <div className="reveal mt-2">
           <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
             DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
