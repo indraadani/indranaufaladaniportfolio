@@ -858,6 +858,18 @@ function Index() {
                       preload="metadata"
                       className="w-full border border-[color:var(--concrete)]/40 bg-black"
                     />
+                  ) : p.images?.length ? (
+                    <div className="grid gap-3">
+                      {p.images.map((src) => (
+                        <img
+                          key={src}
+                          src={src}
+                          alt={p.title}
+                          loading="lazy"
+                          className="w-full border border-[color:var(--concrete)]/40 bg-black object-contain"
+                        />
+                      ))}
+                    </div>
                   ) : (
                     <ImagePH w={1600} h={900} label={`PROJECT ${p.code}`} />
                   )}
