@@ -148,22 +148,6 @@ const Gear = ({ className = "" }: { className?: string }) => (
 );
 
 
-const HeatExchanger = () => (
-  <svg viewBox="0 0 600 260" fill="none" stroke="currentColor" strokeWidth="1.2" className="pointer-events-none">
-    <rect x="60" y="60" width="480" height="140" rx="70" />
-    <path d="M60 130 L540 130" opacity="0.4" />
-    <path d="M60 95 L540 95 M60 165 L540 165" opacity="0.3" />
-    <path d="M20 100 L60 100 L60 160 L20 160" />
-    <path d="M580 100 L540 100 L540 160 L580 160" />
-    <path d="M180 60 L180 30 L200 30" />
-    <path d="M420 200 L420 230 L400 230" />
-    <circle cx="200" cy="30" r="8" />
-    <circle cx="400" cy="230" r="8" />
-    <text x="300" y="245" textAnchor="middle" fontSize="10" fontFamily="JetBrains Mono" fill="currentColor" stroke="none" opacity="0.6">
-      SHELL &amp; TUBE HEAT EXCHANGER — TYP.
-    </text>
-  </svg>
-);
 
 
 const SectionHead = ({ code, title, sub }: { code: string; title: string; sub?: string }) => (
@@ -440,51 +424,53 @@ function Index() {
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-16 pb-10 sm:pt-24 sm:pb-16">
           <nav aria-label="Section shortcuts" className="mb-10 border-y border-[color:var(--concrete)]/30 py-3">
-            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+            <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
               {SECTIONS.map((s) => (
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="group inline-flex items-center gap-2 hover:text-[color:var(--amber-brand)]"
+                    onClick={() => setActiveNav(s.id)}
+                    className={`nav-link group relative inline-flex items-center gap-2 py-1 uppercase transition-colors duration-200 hover:text-[color:var(--amber-brand)] ${
+                      activeNav === s.id ? "nav-link-active text-[color:var(--amber-brand)]" : ""
+                    }`}
                   >
-                    <span className="uppercase">{s.label}</span>
+                    <span>{s.label}</span>
+                    <span
+                      className={`pointer-events-none absolute inset-x-0 -bottom-0.5 h-px origin-center scale-x-0 bg-[color:var(--amber-brand)] transition-transform duration-300 group-hover:scale-x-100 ${
+                        activeNav === s.id ? "scale-x-100" : ""
+                      }`}
+                    />
                   </a>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
-            <div className="reveal">
-              <h1 className="font-[Barlow_Condensed] text-5xl font-bold uppercase leading-[0.95] tracking-[0.02em] sm:text-6xl md:text-7xl lg:text-8xl">
-                Indra Naufal
-                <br />
-                <span className="text-[color:var(--paper)]">Adani</span>
-              </h1>
-              <div className="mt-5 h-px w-24 bg-[color:var(--amber-brand)]" />
-              <p className="mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]">
-                Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
-              </p>
-              <p className="mt-6 max-w-xl text-base text-[color:var(--paper)]/90 sm:text-lg">
-                Graduate with a Bachelor&rsquo;s degree in Mechanical Engineering from Surabaya
-                State University | Enthusiast of renewable energy, energy conversion, materials
-                and engineering analysis
-              </p>
+          <div className="reveal flex flex-col items-center text-center">
+            <h1 className="font-[Barlow_Condensed] text-5xl font-bold uppercase leading-[0.95] tracking-[0.02em] sm:text-6xl md:text-7xl lg:text-8xl">
+              Indra Naufal
+              <br />
+              <span className="text-[color:var(--paper)]">Adani</span>
+            </h1>
+            <div className="mt-5 h-px w-24 bg-[color:var(--amber-brand)]" />
+            <p className="mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]">
+              Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
+            </p>
+            <p className="mt-6 max-w-xl text-base text-[color:var(--paper)]/90 sm:text-lg">
+              Graduate with a Bachelor&rsquo;s degree in Mechanical Engineering from Surabaya
+              State University | Enthusiast of renewable energy, energy conversion, materials
+              and engineering analysis
+            </p>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
-                <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.75/4.00</span>
-                <span>UNIVERSITAS NEGERI SURABAYA</span>
-                <span>EXP. GRADUATION 2026</span>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#kontak" className="btn-tech primary">Contact →</a>
-                <a href="#proyek" className="btn-tech">View Projects</a>
-              </div>
+            <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
+              <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.75/4.00</span>
+              <span>UNIVERSITAS NEGERI SURABAYA</span>
+              <span>EXP. GRADUATION 2026</span>
             </div>
 
-            <div className="reveal hidden md:block text-[color:var(--concrete)] opacity-70">
-              <HeatExchanger />
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <a href="#kontak" className="btn-tech primary">Contact →</a>
+              <a href="#proyek" className="btn-tech">View Projects</a>
             </div>
           </div>
         </div>
@@ -496,7 +482,6 @@ function Index() {
         <SectionHead
           code="ABOUT"
           title="About Me"
-          sub="Ringkasan singkat — halaman lengkap tersedia di sheet A / About."
         />
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.6fr] md:items-center">
           <div className="reveal relative mx-auto w-full max-w-[300px] md:mx-0">
@@ -526,11 +511,7 @@ function Index() {
 
             </div>
 
-            <div className="mt-1 flex items-center justify-between font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-              <span className="text-[color:var(--amber-brand)]">■ INDRA N. ADANI</span>
-              <span>MECH — 2025</span>
-            </div>
-            <div className="hazard mt-2 opacity-80" />
+            <div className="hazard mt-3 opacity-80" />
           </div>
 
           <div className="reveal space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
@@ -545,10 +526,6 @@ function Index() {
               design. Proficient with SolidWorks, Autodesk Inventor, and ANSYS Mechanical.
               ANSYS Associate Certified in Stress Analysis.
             </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Link to="/about" className="btn-tech primary">Read Full About →</Link>
-              <a href="#pengalaman" className="btn-tech">See Experience</a>
-            </div>
           </div>
         </div>
       </section>
@@ -559,7 +536,6 @@ function Index() {
         <SectionHead
           code="PENGALAMAN"
           title="Experience"
-          sub="Timeline pipa-vertikal — node aktif menandai pengalaman terkini."
         />
         <ol className="relative ml-3 border-l border-[color:var(--concrete)]/40">
           {[
@@ -699,9 +675,9 @@ function Index() {
       {/* ================= 04 ORGANISASI ================= */}
       <section id="organisasi" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead
-          code="ORGANISASI & KOMPETISI"
-          title="Organizations & Competitions"
-          sub="Pengalaman organisasi dan kompetisi selama masa kuliah."
+          code="ORGANISASI"
+          title="Organizations"
+          sub="Pengalaman organisasi selama masa kuliah."
         />
         <div className="grid gap-6 md:grid-cols-3">
           {[
@@ -709,7 +685,7 @@ function Index() {
               org: "Garnesa Racing Team",
               role: "Divisi Electrical · 2023—2025",
               body:
-                "Kendaraan hemat bahan bakar. Peringkat 5 Urban Concept ICE — Shell Eco-Marathon Asia-Pacific & Middle East 2023. Peringkat 5 Urban Diesel — KMHE 2023.",
+                "Proyek tim riset untuk merancang kendaraan ramah lingkungan dan sangat hemat bahan bakar, yang bertujuan untuk menempuh jarak sejauh mungkin.",
             },
             {
               org: "HIMA Teknik Mesin UNESA",
@@ -741,17 +717,9 @@ function Index() {
         <SectionHead
           code="DOKUMENTASI AKTIVITAS"
           title="Activity Documentation"
-          sub="Dokumentasi kegiatan yang saya ikuti — pelatihan, kunjungan industri, kompetisi, seminar, dan kegiatan lapangan. Foto menyusul."
+          sub="Dokumentasi kegiatan yang saya ikuti."
         />
         <div className="reveal">
-          <div className="mb-3 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
-            <span className="text-[color:var(--amber-brand)]">■</span>
-            <span>ACT.01 — KOMPETISI, ORGANISASI &amp; KEGIATAN KAMPUS</span>
-            <div className="h-px flex-1 bg-[color:var(--concrete)]/30" />
-          </div>
-          <p className="text-sm text-[color:var(--concrete)]">
-            Lomba, kegiatan tim riset, organisasi mahasiswa, dan pameran inovasi.
-          </p>
           <DocScroller
             items={[
               { src: act1.url, caption: "Proses pembuatan body mobil hemat energi" },
@@ -898,9 +866,6 @@ function Index() {
       <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead code="SERTIFIKAT" title="Certificates" />
         <div className="reveal mt-2">
-          <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-            DOKUMEN SERTIFIKAT — KLIK UNTUK PERBESAR
-          </div>
           <CertGrid items={CERT_DOCS} />
         </div>
       </section>
@@ -971,7 +936,9 @@ function Index() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#" className="btn-tech primary">Download CV ↓</a>
+            <a href={cvFile.url} target="_blank" rel="noopener noreferrer" className="btn-tech primary">
+              Cek CV ku! ↗
+            </a>
           </div>
         </div>
       </section>
