@@ -279,7 +279,7 @@ const DocScroller = ({
                     <button
                       type="button"
                       onClick={() => setZoom(i)}
-                      aria-label={`Perbesar foto: ${it.caption ?? "dokumentasi"}`}
+                      aria-label={`Enlarge photo: ${it.caption ?? "documentation"}`}
                       className="group relative block h-full w-full cursor-zoom-in overflow-hidden"
                     >
                       <img
@@ -325,7 +325,7 @@ const DocScroller = ({
           <button
             type="button"
             onClick={() => setZoom(null)}
-            aria-label="Tutup"
+            aria-label="Close"
             className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
           >
             ✕ ESC
@@ -384,7 +384,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
             <button
               type="button"
               onClick={() => setZoom(i)}
-              aria-label={`Perbesar sertifikat: ${it.caption ?? "dokumen"}`}
+              aria-label={`Enlarge certificate: ${it.caption ?? "document"}`}
               className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden border border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]"
             >
               <img
@@ -416,7 +416,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
           <button
             type="button"
             onClick={() => setZoom(null)}
-            aria-label="Tutup"
+            aria-label="Close"
             className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
           >
             ✕ ESC
@@ -938,7 +938,7 @@ function Index() {
               {
                 label: "EMAIL",
                 value: "indraadani654@gmail.com",
-                href: "https://mail.google.com/mail/u/0/?hl=en#inbox?compose=DmwnWstptZpmTLvfJXcTJPzptjvsHWlRvbXCznQRndmxMBNxRKNkMdzwpQdmsRPxNTpPjsVKvLXV",
+                href: "mailto:indraadani654@gmail.com",
                 icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
               },
               {
