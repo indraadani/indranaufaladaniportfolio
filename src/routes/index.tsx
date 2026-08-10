@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
+import cvFile from "../assets/cv.pdf.asset.json";
 import portraitCutout from "../assets/indra-cutout.png.asset.json";
 import puli1 from "../assets/proyek/puli-1.jpg.asset.json";
 import puli2 from "../assets/proyek/puli-2.png.asset.json";
@@ -400,6 +401,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
 
 
 function Index() {
+  const [activeNav, setActiveNav] = useState<string | null>(null);
 
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
