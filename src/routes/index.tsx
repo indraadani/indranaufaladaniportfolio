@@ -431,7 +431,18 @@ function Index() {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    onClick={() => setActiveNav(s.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setActiveNav(s.id);
+                      const target = document.getElementById(s.id);
+                      if (target) {
+                        target.classList.remove("section-sweep");
+                        void target.offsetWidth;
+                        target.classList.add("section-sweep");
+                        target.scrollIntoView({ behavior: "smooth", block: "start" });
+                        window.setTimeout(() => target.classList.remove("section-sweep"), 1200);
+                      }
+                    }}
                     className={`nav-link group relative inline-flex items-center gap-2 py-1 uppercase transition-colors duration-200 hover:text-[color:var(--amber-brand)] ${
                       activeNav === s.id ? "nav-link-active text-[color:var(--amber-brand)]" : ""
                     }`}
