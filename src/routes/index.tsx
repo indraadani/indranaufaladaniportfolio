@@ -502,7 +502,9 @@ function Index() {
           <div className="reveal flex flex-col items-center text-center">
             <h1 className="whitespace-nowrap font-[Barlow_Condensed] text-[8vw] font-bold uppercase leading-[1] tracking-[0.02em] sm:text-[7vw] lg:text-7xl">
               Indra Naufal Adani
+              <span className="sr-only"> — Mechanical Engineer</span>
             </h1>
+
             <div className="mt-5 h-px w-24 bg-[color:var(--amber-brand)]" />
             <p className="mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]">
               Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
