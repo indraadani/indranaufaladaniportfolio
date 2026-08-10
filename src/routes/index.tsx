@@ -68,7 +68,47 @@ import act6 from "../assets/aktivitas/act-6.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Indra Naufal Adani — Mechanical Engineering Portfolio" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Indra Naufal Adani, mechanical engineer specializing in energy conversion, FEA simulation, and industrial inspection.",
+      },
+      { property: "og:title", content: "Indra Naufal Adani — Mechanical Engineering Portfolio" },
+      {
+        property: "og:description",
+        content:
+          "Projects, experience, and certifications in energy conversion, FEA simulation, and industrial inspection.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://indranaufaladaniportfolio.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://indranaufaladaniportfolio.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Indra Naufal Adani",
+          jobTitle: "Mechanical Engineer",
+          url: "https://indranaufaladaniportfolio.lovable.app/",
+          email: "mailto:indraadani654@gmail.com",
+          alumniOf: "Surabaya State University",
+          sameAs: [
+            "https://www.linkedin.com/in/indranaufaladani/",
+            "https://instagram.com/indraadani_",
+            "https://www.tiktok.com/@indraadani_",
+          ],
+        }),
+      },
+    ],
+  }),
 });
+
 
 const CERT_DOCS = [
   { src: cert7.url, caption: "Sertifikat PT CADFEM Indonesia" },
