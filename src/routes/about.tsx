@@ -69,8 +69,9 @@ function About() {
           A / ABOUT
         </div>
         <h1 className="mt-2 font-[Barlow_Condensed] text-5xl font-bold uppercase tracking-[0.04em] sm:text-6xl md:text-7xl">
-          About
+          About Indra Naufal Adani
         </h1>
+
         <div className="mt-4 h-px w-24 bg-[color:var(--amber-brand)]" />
 
         <div className="mt-10 grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-start">
