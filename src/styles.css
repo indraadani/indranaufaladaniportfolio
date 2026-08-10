@@ -158,3 +158,10 @@
   border-color: var(--amber);
   color: var(--amber);
 }
+
+@keyframes nav-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.14); letter-spacing: 0.32em; }
+  100% { transform: scale(1); }
+}
+.nav-link-active { animation: nav-pop 0.35s ease-out; }
