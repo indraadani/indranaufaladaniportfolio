@@ -49,8 +49,9 @@ export const Route = createFileRoute("/about")({
           },
         }),
       },
-
+    ],
   }),
+
 });
 
 function About() {
