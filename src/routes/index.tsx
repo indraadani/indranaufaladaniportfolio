@@ -68,7 +68,47 @@ import act6 from "../assets/aktivitas/act-6.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Indra Naufal Adani — Mechanical Engineering Portfolio" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Indra Naufal Adani, mechanical engineer specializing in energy conversion, FEA simulation, and industrial inspection.",
+      },
+      { property: "og:title", content: "Indra Naufal Adani — Mechanical Engineering Portfolio" },
+      {
+        property: "og:description",
+        content:
+          "Projects, experience, and certifications in energy conversion, FEA simulation, and industrial inspection.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://indranaufaladaniportfolio.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://indranaufaladaniportfolio.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Indra Naufal Adani",
+          jobTitle: "Mechanical Engineer",
+          url: "https://indranaufaladaniportfolio.lovable.app/",
+          email: "mailto:indraadani654@gmail.com",
+          alumniOf: "Surabaya State University",
+          sameAs: [
+            "https://www.linkedin.com/in/indranaufaladani/",
+            "https://instagram.com/indraadani_",
+            "https://www.tiktok.com/@indraadani_",
+          ],
+        }),
+      },
+    ],
+  }),
 });
+
 
 const CERT_DOCS = [
   { src: cert7.url, caption: "Sertifikat PT CADFEM Indonesia" },
@@ -239,7 +279,7 @@ const DocScroller = ({
                     <button
                       type="button"
                       onClick={() => setZoom(i)}
-                      aria-label={`Perbesar foto: ${it.caption ?? "dokumentasi"}`}
+                      aria-label={`Enlarge photo: ${it.caption ?? "documentation"}`}
                       className="group relative block h-full w-full cursor-zoom-in overflow-hidden"
                     >
                       <img
@@ -285,7 +325,7 @@ const DocScroller = ({
           <button
             type="button"
             onClick={() => setZoom(null)}
-            aria-label="Tutup"
+            aria-label="Close"
             className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
           >
             ✕ ESC
@@ -344,7 +384,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
             <button
               type="button"
               onClick={() => setZoom(i)}
-              aria-label={`Perbesar sertifikat: ${it.caption ?? "dokumen"}`}
+              aria-label={`Enlarge certificate: ${it.caption ?? "document"}`}
               className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden border border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]"
             >
               <img
@@ -376,7 +416,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
           <button
             type="button"
             onClick={() => setZoom(null)}
-            aria-label="Tutup"
+            aria-label="Close"
             className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
           >
             ✕ ESC
@@ -462,7 +502,9 @@ function Index() {
           <div className="reveal flex flex-col items-center text-center">
             <h1 className="whitespace-nowrap font-[Barlow_Condensed] text-[8vw] font-bold uppercase leading-[1] tracking-[0.02em] sm:text-[7vw] lg:text-7xl">
               Indra Naufal Adani
+              <span className="sr-only"> — Mechanical Engineer</span>
             </h1>
+
             <div className="mt-5 h-px w-24 bg-[color:var(--amber-brand)]" />
             <p className="mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]">
               Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
@@ -898,7 +940,7 @@ function Index() {
               {
                 label: "EMAIL",
                 value: "indraadani654@gmail.com",
-                href: "https://mail.google.com/mail/u/0/?hl=en#inbox?compose=DmwnWstptZpmTLvfJXcTJPzptjvsHWlRvbXCznQRndmxMBNxRKNkMdzwpQdmsRPxNTpPjsVKvLXV",
+                href: "mailto:indraadani654@gmail.com",
                 icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
               },
               {

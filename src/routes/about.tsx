@@ -18,9 +18,40 @@ export const Route = createFileRoute("/about")({
           "Mechanical Engineering graduate with experience in NDT, refinery maintenance, and finite element analysis.",
       },
       { property: "og:type", content: "profile" },
+      { property: "og:url", content: "https://indranaufaladaniportfolio.lovable.app/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://indranaufaladaniportfolio.lovable.app/about" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          url: "https://indranaufaladaniportfolio.lovable.app/about",
+          name: "About Indra Naufal Adani",
+          mainEntity: {
+            "@type": "Person",
+            name: "Indra Naufal Adani",
+            jobTitle: "Mechanical Engineer",
+            alumniOf: "Surabaya State University",
+            knowsAbout: [
+              "Non-destructive testing",
+              "Refinery maintenance",
+              "Finite element analysis",
+              "Heat exchanger performance",
+            ],
+            sameAs: [
+              "https://www.linkedin.com/in/indranaufaladani/",
+              "https://instagram.com/indraadani_",
+              "https://www.tiktok.com/@indraadani_",
+            ],
+          },
+        }),
+      },
+    ],
   }),
+
 });
 
 function About() {
@@ -38,8 +69,9 @@ function About() {
           A / ABOUT
         </div>
         <h1 className="mt-2 font-[Barlow_Condensed] text-5xl font-bold uppercase tracking-[0.04em] sm:text-6xl md:text-7xl">
-          About
+          About Indra Naufal Adani
         </h1>
+
         <div className="mt-4 h-px w-24 bg-[color:var(--amber-brand)]" />
 
         <div className="mt-10 grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-start">
