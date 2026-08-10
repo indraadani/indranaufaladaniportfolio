@@ -431,7 +431,18 @@ function Index() {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    onClick={() => setActiveNav(s.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setActiveNav(s.id);
+                      const target = document.getElementById(s.id);
+                      if (target) {
+                        target.classList.remove("section-sweep");
+                        void target.offsetWidth;
+                        target.classList.add("section-sweep");
+                        target.scrollIntoView({ behavior: "smooth", block: "start" });
+                        window.setTimeout(() => target.classList.remove("section-sweep"), 1200);
+                      }
+                    }}
                     className={`nav-link group relative inline-flex items-center gap-2 py-1 uppercase transition-colors duration-200 hover:text-[color:var(--amber-brand)] ${
                       activeNav === s.id ? "nav-link-active text-[color:var(--amber-brand)]" : ""
                     }`}
@@ -449,10 +460,8 @@ function Index() {
           </nav>
 
           <div className="reveal flex flex-col items-center text-center">
-            <h1 className="font-[Barlow_Condensed] text-5xl font-bold uppercase leading-[0.95] tracking-[0.02em] sm:text-6xl md:text-7xl lg:text-8xl">
-              Indra Naufal
-              <br />
-              <span className="text-[color:var(--paper)]">Adani</span>
+            <h1 className="whitespace-nowrap font-[Barlow_Condensed] text-[8vw] font-bold uppercase leading-[1] tracking-[0.02em] sm:text-[7vw] lg:text-7xl">
+              Indra Naufal Adani
             </h1>
             <div className="mt-5 h-px w-24 bg-[color:var(--amber-brand)]" />
             <p className="mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]">

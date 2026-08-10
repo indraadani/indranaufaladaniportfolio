@@ -165,3 +165,31 @@
   100% { transform: scale(1); }
 }
 .nav-link-active { animation: nav-pop 0.35s ease-out; }
+
+/* Section reveal sweep on nav click */
+html { scroll-behavior: smooth; }
+@keyframes section-slide-in {
+  0% { opacity: 0.35; transform: translateX(28px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes sweep-bar {
+  0% { transform: scaleX(0); transform-origin: left; }
+  55% { transform: scaleX(1); transform-origin: left; }
+  56% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+.section-sweep {
+  position: relative;
+  animation: section-slide-in 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.section-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--amber);
+  animation: sweep-bar 0.9s ease-in-out;
+  pointer-events: none;
+}
