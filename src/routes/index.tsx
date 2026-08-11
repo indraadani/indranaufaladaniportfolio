@@ -1017,7 +1017,7 @@ function Index() {
                   )}
                 </div>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>
