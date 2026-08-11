@@ -65,6 +65,16 @@ import act3 from "../assets/aktivitas/act-3.jpg.asset.json";
 import act4 from "../assets/aktivitas/act-4.jpg.asset.json";
 import act5 from "../assets/aktivitas/act-5.jpg.asset.json";
 import act6 from "../assets/aktivitas/act-6.jpg.asset.json";
+import act7 from "../assets/aktivitas/act-7.jpg.asset.json";
+import act8 from "../assets/aktivitas/act-8.jpg.asset.json";
+import act9 from "../assets/aktivitas/act-9.jpg.asset.json";
+import act10 from "../assets/aktivitas/act-10.jpg.asset.json";
+import act11 from "../assets/aktivitas/act-11.jpg.asset.json";
+import act12 from "../assets/aktivitas/act-12.jpg.asset.json";
+import act13 from "../assets/aktivitas/act-13.jpg.asset.json";
+import act14 from "../assets/aktivitas/act-14.jpg.asset.json";
+import act15 from "../assets/aktivitas/act-15.jpg.asset.json";
+import act16 from "../assets/aktivitas/act-16.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
