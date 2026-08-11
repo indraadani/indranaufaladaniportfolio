@@ -75,6 +75,8 @@ import act13 from "../assets/aktivitas/act-13.jpg.asset.json";
 import act14 from "../assets/aktivitas/act-14.jpg.asset.json";
 import act15 from "../assets/aktivitas/act-15.jpg.asset.json";
 import act16 from "../assets/aktivitas/act-16.jpg.asset.json";
+import act17 from "../assets/aktivitas/act-17.jpg.asset.json";
+import act18 from "../assets/aktivitas/act-18.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -801,6 +803,8 @@ function Index() {
               { src: act14.url, caption: "Juara 1 Rawatungga Championship 2023" },
               { src: act15.url, caption: "Foto bersama tim proyek mesin pemotong kerupuk puli" },
               { src: act16.url, caption: "Kegiatan Pengabdian Masyarakat mahasiswa Tuban–Rongga" },
+              { src: act17.url, caption: "Foto bersama seluruh anggota Garnesa Racing Team dengan mobil hemat energi di Fakultas Teknik UNESA" },
+              { src: act18.url, caption: "Sebagai peserta kompetisi Kontes Mobil Hemat Energi (KMHE)" },
             ]}
           />
         </div>
