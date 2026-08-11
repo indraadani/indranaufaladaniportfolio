@@ -65,6 +65,16 @@ import act3 from "../assets/aktivitas/act-3.jpg.asset.json";
 import act4 from "../assets/aktivitas/act-4.jpg.asset.json";
 import act5 from "../assets/aktivitas/act-5.jpg.asset.json";
 import act6 from "../assets/aktivitas/act-6.jpg.asset.json";
+import act7 from "../assets/aktivitas/act-7.jpg.asset.json";
+import act8 from "../assets/aktivitas/act-8.jpg.asset.json";
+import act9 from "../assets/aktivitas/act-9.jpg.asset.json";
+import act10 from "../assets/aktivitas/act-10.jpg.asset.json";
+import act11 from "../assets/aktivitas/act-11.jpg.asset.json";
+import act12 from "../assets/aktivitas/act-12.jpg.asset.json";
+import act13 from "../assets/aktivitas/act-13.jpg.asset.json";
+import act14 from "../assets/aktivitas/act-14.jpg.asset.json";
+import act15 from "../assets/aktivitas/act-15.jpg.asset.json";
+import act16 from "../assets/aktivitas/act-16.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -781,6 +791,16 @@ function Index() {
               { src: act4.url, caption: "Foto bersama seluruh anggota FORMAT-R" },
               { src: act5.url, caption: "Foto bersama setelah kegiatan PKKMB" },
               { src: act6.url, caption: "2nd Exhibition Innovation Product UNESA 2024" },
+              { src: act7.url, caption: "FORMAT-R Futsal Championship" },
+              { src: act8.url, caption: "Pelantikan dan Rapat Kerja FORMAT-R UNESA 2024/2025" },
+              { src: act9.url, caption: "Industrial Festival 2024" },
+              { src: act10.url, caption: "Upgrading Fungsionaris FORMAT-R UNESA" },
+              { src: act11.url, caption: "Proses pengelasan rangka body mobil hemat energi" },
+              { src: act12.url, caption: "Prototipe alat cetak briket hasil rancangan tim" },
+              { src: act13.url, caption: "Perakitan panel kelistrikan mobil hemat energi" },
+              { src: act14.url, caption: "Juara 1 Rawatungga Championship 2023" },
+              { src: act15.url, caption: "Foto bersama tim proyek mesin pemotong kerupuk puli" },
+              { src: act16.url, caption: "Kegiatan Pengabdian Masyarakat mahasiswa Tuban–Rongga" },
             ]}
           />
         </div>
