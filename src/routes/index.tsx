@@ -623,16 +623,20 @@ function Index() {
 
           <div className="space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
             <Reveal as="p" variant="none" className="mo-plot" delay={0}>
+              <span className="mo-plot-in">
               Mechanical Engineering graduate from Surabaya State University (GPA 3.75/4.00) with
               four internships across petrochemical refining, oil &amp; gas workshop, engineering
               simulation, and technical inspection.
+              </span>
             </Reveal>
             <Reveal as="p" variant="none" className="mo-plot" delay={40}>
+              <span className="mo-plot-in">
               Focus areas: <strong className="mo-term">NDT &amp; Radiographic Testing</strong>,{" "}
               <strong className="mo-term">rotating equipment maintenance</strong>,{" "}
               <strong className="mo-term">CFD &amp; FEA</strong>, and mechanical
               design. Proficient with SolidWorks, Autodesk Inventor, and ANSYS Mechanical.
               ANSYS Associate Certified in Stress Analysis.
+              </span>
             </Reveal>
           </div>
         </div>

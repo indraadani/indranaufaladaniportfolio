@@ -291,7 +291,8 @@ html { scroll-behavior: smooth; }
   from { clip-path: inset(0 100% 0 0); opacity: 0; }
   to { clip-path: inset(0 0 0 0); opacity: 1; }
 }
-.mo-words .mo-word { display: inline-block; overflow: hidden; }
+.mo-words .mo-word { display: inline-block; overflow: hidden; white-space: pre; }
+.mo-words .mo-word + .mo-word { margin-left: 0.22em; }
 .mo-words .mo-word-in {
   display: inline-block;
   clip-path: inset(0 100% 0 0);
@@ -383,13 +384,14 @@ html { scroll-behavior: smooth; }
 .mo-dims-label-x { left: 50%; bottom: -14px; transform: translateX(-50%); }
 
 /* --- About plotter reveal --- */
-.mo-plot {
-  position: relative;
+.mo-plot { position: relative; }
+.mo-plot-in {
+  display: block;
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 220ms var(--ease-draw);
+  transition: clip-path 320ms var(--ease-draw);
   transition-delay: var(--mo-delay, 0ms);
 }
-.mo-plot.is-in { clip-path: inset(0 0 0 0); }
+.mo-plot.is-in .mo-plot-in { clip-path: inset(0 0 0 0); }
 .mo-plot::after {
   content: "";
   position: absolute;
@@ -761,7 +763,7 @@ html.has-cad-cursor, html.has-cad-cursor * { cursor: none !important; }
     scroll-behavior: auto !important;
   }
   .mo { opacity: 1; clip-path: none !important; }
-  .mo-plot { clip-path: none !important; }
+  .mo-plot-in { clip-path: none !important; }
   .mo-words .mo-word-in { opacity: 1; clip-path: none !important; }
   .mo-flip-ch, .mo-chip { opacity: 1; }
   .cad-cursor, .sheet-loader { display: none !important; }
