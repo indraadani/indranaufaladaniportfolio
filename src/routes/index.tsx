@@ -803,6 +803,8 @@ function Index() {
               { src: act14.url, caption: "Juara 1 Rawatungga Championship 2023" },
               { src: act15.url, caption: "Foto bersama tim proyek mesin pemotong kerupuk puli" },
               { src: act16.url, caption: "Kegiatan Pengabdian Masyarakat mahasiswa Tuban–Rongga" },
+              { src: act17.url, caption: "Foto bersama seluruh anggota Garnesa Racing Team dengan mobil hemat energi di Fakultas Teknik UNESA" },
+              { src: act18.url, caption: "Sebagai peserta kompetisi Kontes Mobil Hemat Energi (KMHE)" },
             ]}
           />
         </div>
