@@ -1,5 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Reveal } from "../components/motion/Reveal";
+import { DragStrip } from "../components/motion/DragStrip";
+import { StickyNav } from "../components/motion/StickyNav";
+import { TiltPortrait } from "../components/motion/TiltPortrait";
+import { TimelineTrack } from "../components/motion/TimelineTrack";
+import { CadCursor } from "../components/motion/CadCursor";
+import { SheetLoader } from "../components/motion/SheetLoader";
+import { CharFlip, WordWipe } from "../components/motion/Text";
 import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
 import cvFile from "../assets/cv.pdf.asset.json";
 import portraitCutout from "../assets/indra-cutout.png.asset.json";
@@ -244,10 +252,12 @@ const DocScroller = ({
   items,
   emptyLabel,
   emptyCount = 4,
+  scan = false,
 }: {
   items?: { src: string; caption?: string; type?: "image" | "video"; poster?: string }[];
   emptyLabel?: string;
   emptyCount?: number;
+  scan?: boolean;
 }) => {
   const hasItems = items && items.length > 0;
   const [zoom, setZoom] = useState<number | null>(null);
@@ -268,7 +278,7 @@ const DocScroller = ({
 
   return (
     <div className="relative -mx-6 mt-4 sm:mx-0">
-      <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 sm:px-0 [scrollbar-color:var(--amber-brand)_transparent]">
+      <DragStrip innerClassName="px-6 sm:px-0">
         {hasItems
           ? items!.map((it, i) => (
               <figure
@@ -276,7 +286,7 @@ const DocScroller = ({
                 className="snap-start shrink-0 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2"
                 style={{ width: "min(58vw, 216px)" }}
               >
-                <div className="aspect-[4/5] overflow-hidden">
+                <div className={`aspect-[4/5] overflow-hidden${scan ? " mo-scan" : ""}`}>
                   {it.type === "video" ? (
                     <video
                       src={it.src}
@@ -299,6 +309,7 @@ const DocScroller = ({
                         alt={it.caption ?? "Documentation"}
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
                       />
                       <span className="absolute right-2 bottom-2 border border-[color:var(--amber-brand)] bg-[color:var(--graphite)]/80 px-2 py-1 font-mono text-[9px] tracking-[0.2em] text-[color:var(--amber-brand)] opacity-0 transition-opacity group-hover:opacity-100">
                         ⤢ ZOOM
@@ -321,11 +332,7 @@ const DocScroller = ({
                 <ImagePH w={800} h={1000} label={emptyLabel ?? "UPLOAD SOON"} />
               </div>
             ))}
-      </div>
-      <div className="mt-1 flex items-center gap-2 px-6 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)] sm:px-0">
-        <span>◄ SCROLL →</span>
-        <div className="h-px flex-1 bg-[color:var(--concrete)]/40" />
-      </div>
+      </DragStrip>
 
       {zoomed && (
         <div
@@ -376,14 +383,62 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
     };
   }, [zoom]);
 
+  const stripRef = useRef<HTMLDivElement | null>(null);
+  const [metrics, setMetrics] = useState({ left: 0, width: 0, card: 244 });
+
+  const measure = useCallback(() => {
+    const el = stripRef.current?.querySelector<HTMLElement>(".mo-strip");
+    if (!el) return;
+    const first = el.querySelector<HTMLElement>(".mo-card");
+    setMetrics({ left: el.scrollLeft, width: el.clientWidth, card: (first?.offsetWidth ?? 232) + 12 });
+  }, []);
+
+  useEffect(() => {
+    const el = stripRef.current?.querySelector<HTMLElement>(".mo-strip");
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        measure();
+      });
+    };
+    measure();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [measure]);
+
+  const centerIndex = metrics.card ? (metrics.left + metrics.width / 2) / metrics.card - 0.5 : 0;
+
   return (
-    <div className="mt-4">
-      <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-4 sm:mx-0 sm:px-0 [scrollbar-color:var(--amber-brand)_transparent]">
-        {items.map((it, i) => (
+    <div className="mt-4" ref={stripRef}>
+      <DragStrip className="-mx-6 sm:mx-0 mo-coverflow" innerClassName="px-6 sm:px-0">
+        {items.map((it, i) => {
+          const d = i - centerIndex;
+          const ad = Math.abs(d);
+          const near = ad < 3.2;
+          const scale = near ? Math.max(0.88, 1 - ad * 0.12) : 0.88;
+          const opacity = near ? Math.max(0.5, 1 - ad * 0.5) : 0.5;
+          const rotate = Math.max(-12, Math.min(12, -d * 12));
+          if (ad > 4)
+            return (
+              <div key={i} className="mo-card shrink-0 snap-start" style={{ width: "min(70vw, 232px)" }} aria-hidden="true" />
+            );
+          return (
           <figure
             key={i}
-            className="brackets shrink-0 snap-start border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-2.5"
-            style={{ width: "min(70vw, 232px)" }}
+            className="mo-card brackets shrink-0 snap-start border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-2.5"
+            style={{
+              width: "min(70vw, 232px)",
+              transform: `scale(${scale.toFixed(3)}) rotateY(${rotate.toFixed(2)}deg)`,
+              opacity,
+            }}
           >
             <figcaption className="mb-2 flex items-start justify-between gap-2">
               <span className="font-[Barlow_Condensed] text-[13px] font-semibold uppercase leading-tight tracking-[0.05em] text-[color:var(--paper)]">
@@ -404,18 +459,16 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
                 alt={it.caption ?? "Sertifikat"}
                 className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
+                decoding="async"
               />
               <span className="absolute right-2 bottom-2 border border-[color:var(--amber-brand)] bg-[color:var(--graphite)]/80 px-2 py-1 font-mono text-[9px] tracking-[0.2em] text-[color:var(--amber-brand)] opacity-0 transition-opacity group-hover:opacity-100">
                 ⤢ ZOOM
               </span>
             </button>
           </figure>
-        ))}
-      </div>
-      <div className="mt-1 flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-        <span>◄ GESER →</span>
-        <div className="h-px flex-1 bg-[color:var(--concrete)]/40" />
-      </div>
+          );
+        })}
+      </DragStrip>
 
 
       {zoomed && (
@@ -453,89 +506,76 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
 
 
 function Index() {
-  const [activeNav, setActiveNav] = useState<string | null>(null);
+  /** bump a section's key on nav click so its entrance animation replays */
+  const [replay, setReplay] = useState<Record<string, number>>({});
+  const lastNav = useRef(0);
 
-  useEffect(() => {
-    const els = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12 },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+  const goToSection = useCallback((id: string) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    const now = Date.now();
+    if (now - lastNav.current < 400) return; // debounce rapid clicks
+    lastNav.current = now;
+    window.setTimeout(() => {
+      setReplay((r) => ({ ...r, [id]: (r[id] ?? 0) + 1 }));
+    }, 260);
   }, []);
+
+  const rk = (id: string) => `${id}-${replay[id] ?? 0}`;
 
   return (
     <main className="bp-grid relative min-h-screen bg-[color:var(--graphite)] text-[color:var(--paper)]">
-      {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-16 pb-10 sm:pt-24 sm:pb-16">
-          <nav aria-label="Section shortcuts" className="mb-10 border-y border-[color:var(--concrete)]/30 py-3">
-            <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-              {SECTIONS.map((s) => (
-                <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setActiveNav(s.id);
-                      const target = document.getElementById(s.id);
-                      if (target) {
-                        target.classList.remove("section-sweep");
-                        void target.offsetWidth;
-                        target.classList.add("section-sweep");
-                        target.scrollIntoView({ behavior: "smooth", block: "start" });
-                        window.setTimeout(() => target.classList.remove("section-sweep"), 1200);
-                      }
-                    }}
-                    className={`nav-link group relative inline-flex items-center gap-2 py-1 uppercase transition-colors duration-200 hover:text-[color:var(--amber-brand)] ${
-                      activeNav === s.id ? "nav-link-active text-[color:var(--amber-brand)]" : ""
-                    }`}
-                  >
-                    <span>{s.label}</span>
-                    <span
-                      className={`pointer-events-none absolute inset-x-0 -bottom-0.5 h-px origin-center scale-x-0 bg-[color:var(--amber-brand)] transition-transform duration-300 group-hover:scale-x-100 ${
-                        activeNav === s.id ? "scale-x-100" : ""
-                      }`}
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+      <SheetLoader />
+      <CadCursor />
 
-          <div className="reveal flex flex-col items-center text-center">
+      <StickyNav items={SECTIONS} onNavigate={goToSection} />
+
+      {/* ================= HERO ================= */}
+      <section className="hero-boot relative overflow-hidden">
+        <span className="hero-scan" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-12 pt-10 pb-10 sm:pt-16 sm:pb-16">
+          <svg className="hero-brackets pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M2 12 L2 2 L14 2" vectorEffect="non-scaling-stroke" />
+            <path d="M98 88 L98 98 L86 98" vectorEffect="non-scaling-stroke" />
+          </svg>
+          <div className="relative flex flex-col items-center text-center">
             <h1 className="whitespace-nowrap font-[Barlow_Condensed] text-[8vw] font-bold uppercase leading-[1] tracking-[0.02em] sm:text-[7vw] lg:text-7xl">
-              Indra Naufal Adani
+              <WordWipe text="Indra Naufal Adani" auto />
               <span className="sr-only"> — Mechanical Engineer</span>
             </h1>
 
-            <div className="mt-5 h-px w-24 bg-[color:var(--amber-brand)]" />
-            <p className="mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]">
+            <div className="boot-item mt-5 h-px w-24 bg-[color:var(--amber-brand)]" style={{ ["--boot-delay" as string]: "560ms" }} />
+            <p className="boot-item mt-5 font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--concrete)]" style={{ ["--boot-delay" as string]: "620ms" }}>
               Mechanical Engineering — Energy Conversion &amp; Industrial Inspection
             </p>
-            <p className="mt-6 max-w-xl text-base text-[color:var(--paper)]/90 sm:text-lg">
+            <p className="boot-item mt-6 max-w-xl text-base text-[color:var(--paper)]/90 sm:text-lg">
               Graduate with a Bachelor&rsquo;s degree in Mechanical Engineering from Surabaya
               State University | Enthusiast of renewable energy, energy conversion, materials
               and engineering analysis
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
+            <div className="boot-item mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 border-y border-[color:var(--concrete)]/30 py-3 font-mono text-[11px] tracking-[0.12em] text-[color:var(--concrete)]">
               <span><span className="text-[color:var(--amber-brand)]">GPA</span> 3.75/4.00</span>
               <span>UNIVERSITAS NEGERI SURABAYA</span>
               <span>EXP. GRADUATION 2026</span>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="#kontak" className="btn-tech primary">Contact →</a>
-              <a href="#proyek" className="btn-tech">View Projects</a>
+            <div className="boot-item mt-8 flex flex-wrap justify-center gap-3" style={{ ["--boot-delay" as string]: "760ms" }}>
+              <a
+                href="#kontak"
+                className="btn-tech primary"
+                onClick={(e) => { e.preventDefault(); goToSection("kontak"); }}
+              >
+                Contact <span className="btn-arrow">→</span>
+              </a>
+              <a
+                href="#proyek"
+                className="btn-tech"
+                onClick={(e) => { e.preventDefault(); goToSection("proyek"); }}
+              >
+                View Projects <span className="btn-arrow">→</span>
+              </a>
             </div>
           </div>
         </div>
@@ -543,13 +583,14 @@ function Index() {
       </section>
 
       {/* ================= 01 ABOUT ================= */}
-      <section id="about" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <section key={rk("about")} id="about" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="ABOUT"
           title="About Me"
         />
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.6fr] md:items-center">
-          <div className="reveal relative mx-auto w-full max-w-[300px] md:mx-0">
+          <Reveal variant="left" className="relative mx-auto w-full max-w-[300px] md:mx-0">
+           <TiltPortrait>
             {/* ambient mechanical stage — no hard frame */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 top-6 -z-10">
               <div className="absolute left-1/2 top-1/2 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--amber-brand)]/12 blur-3xl" />
@@ -577,32 +618,39 @@ function Index() {
             </div>
 
             <div className="hazard mt-3 opacity-80" />
-          </div>
+           </TiltPortrait>
+          </Reveal>
 
-          <div className="reveal space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
-            <p>
+          <div className="space-y-4 text-[15px] leading-relaxed text-[color:var(--paper)]/90">
+            <Reveal as="p" variant="none" className="mo-plot" delay={0}>
+              <span className="mo-plot-in">
               Mechanical Engineering graduate from Surabaya State University (GPA 3.75/4.00) with
               four internships across petrochemical refining, oil &amp; gas workshop, engineering
               simulation, and technical inspection.
-            </p>
-            <p>
-              Focus areas: <strong>NDT &amp; Radiographic Testing</strong>, <strong>rotating
-              equipment maintenance</strong>, <strong>CFD &amp; FEA</strong>, and mechanical
+              </span>
+            </Reveal>
+            <Reveal as="p" variant="none" className="mo-plot" delay={40}>
+              <span className="mo-plot-in">
+              Focus areas: <strong className="mo-term">NDT &amp; Radiographic Testing</strong>,{" "}
+              <strong className="mo-term">rotating equipment maintenance</strong>,{" "}
+              <strong className="mo-term">CFD &amp; FEA</strong>, and mechanical
               design. Proficient with SolidWorks, Autodesk Inventor, and ANSYS Mechanical.
               ANSYS Associate Certified in Stress Analysis.
-            </p>
+              </span>
+            </Reveal>
           </div>
         </div>
       </section>
 
 
       {/* ================= 03 EXPERIENCE ================= */}
-      <section id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <section key={rk("pengalaman")} id="pengalaman" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="PENGALAMAN"
           title="Experience"
         />
-        <ol className="relative ml-3 border-l border-[color:var(--concrete)]/40">
+        <TimelineTrack>
+        <ol className="relative ml-3">
           {[
             {
               active: true,
@@ -641,9 +689,9 @@ function Index() {
               gallery: KEDAIREKA_VIDEOS,
             },
           ].map((e, i) => (
-            <li key={i} className="reveal relative mb-10 pl-8">
+            <Reveal as="li" key={i} variant="right" delay={Math.min(i, 5) * 60} className="relative mb-10 pl-8">
               <span
-                className={`absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 ${
+                className={`mo-marker absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 ${
                   e.active
                     ? "border-[color:var(--amber-brand)] bg-[color:var(--amber-brand)]"
                     : "border-[color:var(--concrete)] bg-[color:var(--graphite)]"
@@ -651,9 +699,9 @@ function Index() {
               />
               <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                 <span className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--amber-brand)]">
-                  {e.date}
+                  <CharFlip text={e.date} />
                 </span>
-                <span className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+                <span className="mo-track-in font-mono text-[10px] text-[color:var(--concrete)]">
                   {e.org.toUpperCase()}
                 </span>
               </div>
@@ -661,18 +709,19 @@ function Index() {
                 {e.role}
               </h3>
               <p className="mt-2 max-w-2xl text-sm text-[color:var(--paper)]/85">{e.body}</p>
-              {e.gallery && <DocScroller items={e.gallery} />}
-            </li>
+              {e.gallery && <DocScroller items={e.gallery} scan={e.org === "PT Robutech"} />}
+            </Reveal>
           ))}
         </ol>
+        </TimelineTrack>
       </section>
 
 
       {/* ================= 03 SKILLS ================= */}
-      <section id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-6">
+      <section key={rk("skills")} id="skills" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-6">
         <SectionHead code="KEAHLIAN TEKNIS" title="Technical Skills" />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div className="reveal overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
+          <Reveal className="overflow-x-auto border border-[color:var(--concrete)]/30 bg-[color:var(--steel)]">
             <table className="w-full min-w-[520px] border-collapse font-mono text-xs">
               <thead>
                 <tr className="border-b border-[color:var(--concrete)]/40 bg-[color:var(--graphite)] text-left tracking-[0.2em] text-[color:var(--amber-brand)]">
@@ -691,8 +740,12 @@ function Index() {
                   ["Photoshop", "Graphics", "Intermediate"],
                   ["Canva", "Technical Visualization", "Professional"],
                   ["CapCut", "Video", "Familiar"],
-                ].map(([tool, cat, lvl]) => (
-                  <tr key={tool} className="border-b border-[color:var(--concrete)]/20">
+                ].map(([tool, cat, lvl], ri) => (
+                  <tr
+                    key={tool}
+                    className="mo mo-up is-in border-b border-[color:var(--concrete)]/20"
+                    style={{ ["--mo-delay" as string]: `${Math.min(ri, 5) * 50}ms` }}
+                  >
                     <td className="p-3">{tool}</td>
                     <td className="p-3 text-[color:var(--concrete)]">{cat}</td>
                     <td className="p-3">
@@ -707,14 +760,25 @@ function Index() {
                       >
                         {lvl}
                       </span>
+                      <span
+                        className="mo-level"
+                        aria-hidden="true"
+                        style={{
+                          ["--lvl" as string]:
+                            lvl === "Advanced" ? 0.9 : lvl === "Professional" ? 0.8 : lvl === "Intermediate" ? 0.6 : 0.35,
+                          ["--mo-delay" as string]: `${Math.min(ri, 5) * 50}ms`,
+                        }}
+                      >
+                        <span />
+                      </span>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </Reveal>
 
-          <div className="reveal border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-6">
+          <Reveal variant="right" className="border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-6">
             <h3 className="font-[Barlow_Condensed] text-lg font-semibold uppercase tracking-[0.08em]">
               Methods & Techniques
             </h3>
@@ -726,19 +790,23 @@ function Index() {
                 "Thermography",
                 "Finite Element Analysis",
                 "Machining — Turning, Milling, Shaping",
-              ].map((m) => (
-                <li key={m} className="flex items-center gap-3">
+              ].map((m, ci) => (
+                <li
+                  key={m}
+                  className="mo-chip flex items-center gap-3"
+                  style={{ ["--mo-delay" as string]: `${Math.min(ci, 5) * 60}ms` }}
+                >
                   <span className="h-px w-4 bg-[color:var(--amber-brand)]" />
                   {m}
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ================= 04 ORGANISASI ================= */}
-      <section id="organisasi" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
+      <section key={rk("organisasi")} id="organisasi" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead
           code="ORGANISASI"
           title="Organizations"
@@ -762,8 +830,8 @@ function Index() {
               role: "Kominfo · 2023—2025",
               body: "Publikasi dan dokumentasi kegiatan forum mahasiswa.",
             },
-          ].map((o) => (
-            <div key={o.org} className="reveal brackets border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-6">
+          ].map((o, oi) => (
+            <Reveal key={o.org} delay={Math.min(oi, 5) * 60} className="brackets border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-6">
               <div className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--amber-brand)]">
                 {o.role}
               </div>
@@ -771,20 +839,20 @@ function Index() {
                 {o.org}
               </h3>
               <p className="mt-3 text-sm text-[color:var(--concrete)]">{o.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
 
       {/* ================= 05 AKTIVITAS ================= */}
-      <section id="aktivitas" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <section key={rk("aktivitas")} id="aktivitas" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="DOKUMENTASI AKTIVITAS"
           title="Activity Documentation"
           sub="Dokumentasi kegiatan yang saya ikuti."
         />
-        <div className="reveal">
+        <Reveal>
           <DocScroller
             items={[
               { src: act1.url, caption: "Proses pembuatan body mobil hemat energi" },
@@ -807,13 +875,13 @@ function Index() {
               { src: act18.url, caption: "Sebagai peserta kompetisi Kontes Mobil Hemat Energi (KMHE)" },
             ]}
           />
-        </div>
+        </Reveal>
 
       </section>
 
 
       {/* ================= 06 PROYEK ================= */}
-      <section id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
+      <section key={rk("proyek")} id="proyek" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-10">
         <SectionHead
           code="PROYEK PILIHAN"
           title="Selected Projects"
@@ -871,12 +939,24 @@ function Index() {
             poster?: string;
             images?: string[];
           }) => (
-            <article
+            <Reveal
+              as="article"
               key={p.code}
-              className={`reveal brackets relative border ${
-                p.featured ? "border-[color:var(--amber-brand)]/60" : "border-[color:var(--concrete)]/30"
+              className={`mo-project brackets relative overflow-hidden border ${
+                p.featured ? "mo-featured border-[color:var(--amber-brand)]/60" : "border-[color:var(--concrete)]/30"
               } bg-[color:var(--steel)]`}
             >
+              {p.featured && (
+                <svg className="mo-helix pointer-events-none absolute -right-24 top-1/2 h-[420px] w-[420px] -translate-y-1/2" aria-hidden="true" viewBox="0 0 200 200">
+                  <g fill="none" stroke="currentColor" strokeWidth="0.8">
+                    <ellipse cx="100" cy="100" rx="90" ry="34" />
+                    <ellipse cx="100" cy="100" rx="90" ry="34" transform="rotate(30 100 100)" />
+                    <ellipse cx="100" cy="100" rx="90" ry="34" transform="rotate(60 100 100)" />
+                    <ellipse cx="100" cy="100" rx="90" ry="34" transform="rotate(120 100 100)" />
+                    <ellipse cx="100" cy="100" rx="90" ry="34" transform="rotate(150 100 100)" />
+                  </g>
+                </svg>
+              )}
               {p.featured && (
                 <div className="absolute -top-3 left-6 bg-[color:var(--amber-brand)] px-2 py-0.5 font-mono text-[10px] tracking-[0.25em] text-[color:var(--graphite)]">
                   FEATURED
@@ -885,8 +965,8 @@ function Index() {
               <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
                 <div className="p-6 sm:p-8">
                   <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
-                    <span className="text-[color:var(--rust)]">[{p.tag}]</span>
-                    <span>{p.code}</span>
+                    <span className="mo-tag text-[color:var(--rust)]">[{p.tag}]</span>
+                    <span className="mo-code">{p.code}</span>
                     <span className="opacity-40">·</span>
                     <span>{p.year}</span>
                   </div>
@@ -899,10 +979,15 @@ function Index() {
                       ["MASALAH", p.problem],
                       ["METODE", p.method],
                       ["HASIL", p.result],
-                    ].map(([k, v]) => (
-                      <div key={k} className="grid grid-cols-[92px_1fr] gap-4 border-t border-[color:var(--concrete)]/20 pt-3">
+                    ].map(([k, v], si) => (
+                      <div
+                        key={k}
+                        className="mo-step grid grid-cols-[92px_1fr] gap-4 border-t border-[color:var(--concrete)]/20 pt-3"
+                        style={{ ["--mo-delay" as string]: `${si * 280}ms` }}
+                      >
                         <dt className="font-mono text-[10px] tracking-[0.25em] text-[color:var(--amber-brand)]">{k}</dt>
                         <dd className="text-[color:var(--paper)]/90">{v}</dd>
+                        <span className="mo-step-arrow" aria-hidden="true" />
                       </div>
                     ))}
                   </dl>
@@ -920,13 +1005,15 @@ function Index() {
                   ) : p.images?.length ? (
                     <div className={`grid gap-3 ${p.images.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
                       {p.images.map((src) => (
-                        <img
-                          key={src}
-                          src={src}
-                          alt={p.title}
-                          loading="lazy"
-                          className="aspect-[4/3] w-full border border-[color:var(--concrete)]/40 bg-black object-cover"
-                        />
+                        <span key={src} className="block overflow-hidden border border-[color:var(--concrete)]/40 bg-black">
+                          <img
+                            src={src}
+                            alt={p.title}
+                            loading="lazy"
+                            decoding="async"
+                            className={`mo-proj-img aspect-[4/3] w-full object-cover${p.featured ? " mo-thermal" : ""}`}
+                          />
+                        </span>
                       ))}
                     </div>
                   ) : (
@@ -934,32 +1021,37 @@ function Index() {
                   )}
                 </div>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* ================= 07 CERTS ================= */}
-      <section id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
+      <section key={rk("sertifikat")} id="sertifikat" className="relative mx-auto max-w-[1440px] px-6 lg:px-12 py-20">
         <SectionHead code="SERTIFIKAT" title="Certificates" />
-        <div className="reveal mt-2">
+        <Reveal className="mt-2">
           <CertGrid items={CERT_DOCS} />
-        </div>
+        </Reveal>
       </section>
 
       {/* ================= 08 CONTACT ================= */}
-      <section id="kontak" className="relative bg-[color:var(--graphite)]">
+      <section key={rk("kontak")} id="kontak" className="relative bg-[color:var(--graphite)]">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12 pt-20 pb-8">
           <SectionHead
             code="KONTAK"
             title="Get in Touch"
             sub="Saya selalu terbuka untuk berdiskusi, berkolaborasi, atau menjajaki peluang baru di bidang Mechanical Engineering. Jika Anda memiliki proyek, pertanyaan, atau kesempatan kerja, jangan ragu untuk menghubungi saya."
           />
-          <div className="reveal block break-words font-[Barlow_Condensed] text-4xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] sm:text-6xl md:text-7xl">
-            Let&rsquo;s Work Together!
+          <div className="block break-words font-[Barlow_Condensed] text-4xl font-bold uppercase tracking-[0.02em] text-[color:var(--amber-brand)] sm:text-6xl md:text-7xl">
+            <WordWipe text="Let's Work Together!" />
           </div>
 
-          <div className="reveal mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
+            <span className="mo-status-dot" aria-hidden="true" />
+            <span>STATUS: OPEN TO WORK</span>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 label: "EMAIL",
@@ -991,30 +1083,35 @@ function Index() {
                 href: "https://www.tiktok.com/@indraadani_",
                 icon: <Music2 className="h-5 w-5" strokeWidth={1.6} />,
               },
-            ].map((c) => (
+            ].map((c, ci) => (
+              <Reveal key={c.label} as="span" delay={Math.min(ci, 5) * 60} className="block">
               <a
-                key={c.label}
                 href={c.href}
                 target={c.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 className="group flex min-w-0 items-center gap-3 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-3 transition-colors hover:border-[color:var(--amber-brand)]"
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center border border-[color:var(--concrete)]/40 text-[color:var(--concrete)] transition-colors group-hover:border-[color:var(--amber-brand)] group-hover:text-[color:var(--amber-brand)]">
+                <span className="mo-icon grid h-10 w-10 shrink-0 place-items-center border border-[color:var(--concrete)]/40 text-[color:var(--concrete)] transition-colors group-hover:border-[color:var(--amber-brand)] group-hover:text-[color:var(--amber-brand)]">
                   {c.icon}
                 </span>
                 <span className="min-w-0">
                   <span className="block font-mono text-[10px] tracking-[0.25em] text-[color:var(--concrete)]">
                     {c.label}
                   </span>
-                  <span className="block truncate text-sm text-[color:var(--paper)]">{c.value}</span>
+                  <span className="mo-underline block truncate text-sm text-[color:var(--paper)]">{c.value}</span>
                 </span>
               </a>
+              </Reveal>
             ))}
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={cvFile.url} target="_blank" rel="noopener noreferrer" className="btn-tech primary">
-              Cek CV ku! ↗
+            <a href={cvFile.url} target="_blank" rel="noopener noreferrer" className="btn-tech btn-cv primary">
+              Cek CV ku!{" "}
+              <span className="btn-arrow-swap" aria-hidden="true">
+                <span className="arrow-a">↗</span>
+                <span className="arrow-b">↗</span>
+              </span>
             </a>
           </div>
         </div>
