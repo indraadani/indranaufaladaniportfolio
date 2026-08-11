@@ -84,6 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Portofolio Indra Naufal Adani — Mechanical Engineering.",
       },
       { name: "author", content: "Indra Naufal Adani" },
+      { name: "google-site-verification", content: "kuJNcJGZQN2MmDxc8unZPXsTSY2-2N3Utj-wEiAcGZ4" },
+
       { property: "og:title", content: "Indra Naufal Adani — Mechanical Engineering Portfolio" },
       {
         property: "og:description",
