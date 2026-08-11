@@ -716,6 +716,39 @@ html.has-cad-cursor, html.has-cad-cursor * { cursor: none !important; }
 }
 .mo-replay { animation: section-replay var(--dur-base) var(--ease-out) both; }
 
+
+/* --- Project sequential process reveal --- */
+.mo-step {
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  transition-delay: var(--mo-delay, 0ms);
+}
+.mo-project.is-in .mo-step { opacity: 1; transform: none; }
+.mo-step-arrow {
+  position: absolute;
+  left: 44px;
+  top: -13px;
+  width: 1px;
+  height: 11px;
+  background: color-mix(in oklab, var(--amber) 70%, transparent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-base) var(--ease-draw);
+  transition-delay: var(--mo-delay, 0ms);
+}
+.mo-project.is-in .mo-step-arrow { transform: scaleY(1); }
+.mo-step:first-child .mo-step-arrow { display: none; }
+
+.mo-proj-img { transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out); }
+.mo-project:hover .mo-proj-img { transform: scale(1.05); }
+.mo-project:hover .mo-thermal { filter: hue-rotate(45deg) contrast(1.15); }
+.mo-featured .mo-helix { color: var(--amber); }
+
+/* certificate coverflow cards keep their computed transform on hover */
+.mo-coverflow .mo-strip:hover .mo-card { opacity: inherit; }
+
 /* ============================================================
    GUARDRAILS
    ============================================================ */
