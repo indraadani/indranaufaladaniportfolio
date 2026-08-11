@@ -75,6 +75,8 @@ import act13 from "../assets/aktivitas/act-13.jpg.asset.json";
 import act14 from "../assets/aktivitas/act-14.jpg.asset.json";
 import act15 from "../assets/aktivitas/act-15.jpg.asset.json";
 import act16 from "../assets/aktivitas/act-16.jpg.asset.json";
+import act17 from "../assets/aktivitas/act-17.jpg.asset.json";
+import act18 from "../assets/aktivitas/act-18.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
