@@ -193,3 +193,545 @@ html { scroll-behavior: smooth; }
   animation: sweep-bar 0.9s ease-in-out;
   pointer-events: none;
 }
+
+/* ============================================================
+   MOTION SYSTEM
+   ============================================================ */
+:root {
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 720ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+  --travel: 24px;
+  --stagger: 60ms;
+}
+@media (max-width: 767px) {
+  :root { --travel: 16px; --stagger: 30ms; }
+}
+
+/* --- Reveal primitive --- */
+.mo {
+  opacity: 0;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    clip-path var(--dur-base) var(--ease-draw);
+  transition-delay: var(--mo-delay, 0ms);
+}
+.mo-up { transform: translateY(var(--travel)); }
+.mo-left { transform: translateX(calc(var(--travel) * -1)); }
+.mo-right { transform: translateX(var(--travel)); }
+.mo-scale { transform: scale(0.96); }
+.mo-draw { clip-path: inset(0 100% 0 0); }
+.mo.is-in {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* --- Sticky nav --- */
+.mo-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  transition: height var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out);
+}
+.mo-nav.is-scrolled {
+  height: 56px;
+  background: color-mix(in oklab, var(--graphite) 78%, transparent);
+  backdrop-filter: blur(10px);
+}
+.mo-nav-rule {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: color-mix(in oklab, var(--concrete) 40%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-draw);
+}
+.mo-nav.is-scrolled .mo-nav-rule { transform: scaleX(1); }
+.mo-nav-underline {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 1px;
+  background: var(--amber);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.mo-nav-link:focus-visible { outline: 1px solid var(--amber); outline-offset: 3px; }
+
+/* --- Hero boot --- */
+@keyframes hero-scan {
+  0% { transform: translateY(-10%); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+.hero-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--amber), transparent);
+  animation: hero-scan 600ms var(--ease-draw) both;
+  pointer-events: none;
+  z-index: 5;
+}
+@keyframes word-wipe {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.mo-words .mo-word { display: inline-block; overflow: hidden; }
+.mo-words .mo-word-in {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+}
+.mo-words.is-in .mo-word-in {
+  animation: word-wipe 480ms var(--ease-draw) both;
+  animation-delay: var(--mo-delay, 0ms);
+}
+@keyframes fade-up-soft {
+  from { opacity: 0; transform: translateY(var(--travel)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-boot .boot-item {
+  animation: fade-up-soft var(--dur-base) var(--ease-out) both;
+  animation-delay: var(--boot-delay, 0ms);
+}
+@keyframes draw-bracket { to { stroke-dashoffset: 0; } }
+.hero-brackets path {
+  stroke: var(--amber);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: draw-bracket var(--dur-slow) var(--ease-draw) 900ms both;
+}
+
+/* --- Buttons --- */
+.btn-tech { position: relative; overflow: hidden; isolation: isolate; }
+.btn-tech::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+  z-index: -1;
+}
+.btn-tech:hover::before { transform: scaleX(1); }
+.btn-arrow {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.btn-tech:hover .btn-arrow { transform: translateX(4px); }
+.btn-cv .btn-arrow-swap { position: relative; display: inline-block; overflow: hidden; width: 1em; }
+@keyframes arrow-out { to { transform: translate(1.2em, -1.2em); opacity: 0; } }
+@keyframes arrow-in { from { transform: translate(-1.2em, 1.2em); opacity: 0; } to { transform: translate(0,0); opacity: 1; } }
+.btn-cv:hover .arrow-a { animation: arrow-out 420ms var(--ease-out) infinite; }
+.btn-cv:hover .arrow-b { animation: arrow-in 420ms var(--ease-out) infinite; }
+.btn-cv .arrow-b { position: absolute; left: 0; top: 0; opacity: 0; }
+
+/* --- Tilt portrait --- */
+.mo-tilt { position: relative; }
+.mo-tilt-inner { position: relative; transform-style: preserve-3d; }
+@keyframes slow-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.mo-float .mo-tilt-inner { animation: slow-float 6s ease-in-out infinite; }
+.mo-dims {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  stroke: var(--amber);
+  stroke-width: 0.5;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.mo-dims path { stroke-dasharray: 240; stroke-dashoffset: 240; transition: stroke-dashoffset var(--dur-slow) var(--ease-draw); }
+.mo-tilt.is-hover .mo-dims { opacity: 0.85; }
+.mo-tilt.is-hover .mo-dims path { stroke-dashoffset: 0; }
+.mo-dims-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--amber);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out) 200ms;
+  pointer-events: none;
+}
+.mo-tilt.is-hover .mo-dims-label { opacity: 0.9; }
+.mo-dims-label-y { left: 8px; top: 50%; transform: rotate(-90deg) translateX(-50%); transform-origin: left center; }
+.mo-dims-label-x { left: 50%; bottom: -14px; transform: translateX(-50%); }
+
+/* --- About plotter reveal --- */
+.mo-plot {
+  position: relative;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 220ms var(--ease-draw);
+  transition-delay: var(--mo-delay, 0ms);
+}
+.mo-plot.is-in { clip-path: inset(0 0 0 0); }
+.mo-plot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--amber);
+  opacity: 0;
+  transform: translateX(0);
+}
+@keyframes plot-edge {
+  0% { opacity: 0.9; transform: translateX(0); }
+  85% { opacity: 0.9; transform: translateX(var(--plot-w, 100%)); }
+  100% { opacity: 0; transform: translateX(var(--plot-w, 100%)); }
+}
+.mo-plot.is-in::after {
+  animation: plot-edge 320ms var(--ease-draw) both;
+  animation-delay: var(--mo-delay, 0ms);
+  --plot-w: 100cqw;
+}
+.mo-term {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.mo-term::before {
+  content: "";
+  position: absolute;
+  inset: -2px -3px;
+  background: color-mix(in oklab, var(--amber) 22%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+  z-index: -1;
+}
+.mo-plot.is-in .mo-term::before { transform: scaleX(1); transition-delay: 420ms; }
+
+/* --- Timeline --- */
+.mo-timeline-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  overflow: visible;
+}
+.mo-timeline-svg line {
+  stroke: color-mix(in oklab, var(--concrete) 55%, transparent);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+@keyframes marker-pop {
+  0% { transform: scale(0); }
+  65% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.mo.is-in .mo-marker { animation: marker-pop 520ms var(--ease-out) both; animation-delay: 120ms; }
+.mo-marker { transform: scale(0); }
+@keyframes flip-char {
+  from { transform: rotateX(-90deg); opacity: 0; }
+  to { transform: rotateX(0); opacity: 1; }
+}
+.mo-flip { display: inline-block; perspective: 400px; }
+.mo-flip-ch { display: inline-block; opacity: 0; }
+.mo-flip.is-in .mo-flip-ch {
+  animation: flip-char 260ms var(--ease-out) both;
+  animation-delay: var(--mo-delay, 0ms);
+}
+.mo-track-in { letter-spacing: 0.15em; transition: letter-spacing var(--dur-slow) var(--ease-out); }
+.mo.is-in .mo-track-in { letter-spacing: 0.05em; }
+
+/* --- Horizontal strips --- */
+.mo-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  cursor: grab;
+  scrollbar-color: var(--amber) transparent;
+}
+.mo-strip.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.mo-strip figure, .mo-strip .mo-card {
+  transition: transform 200ms var(--ease-out), opacity 200ms var(--ease-out);
+}
+.mo-strip:hover figure, .mo-strip:hover .mo-card { opacity: 0.55; }
+.mo-strip figure:hover, .mo-strip .mo-card:hover { opacity: 1; transform: scale(1.03); z-index: 2; }
+.mo-dimline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+.mo-dimline-tick { width: 1px; height: 8px; background: var(--concrete); opacity: 0.7; }
+.mo-dimline-track { position: relative; flex: 1; height: 1px; background: color-mix(in oklab, var(--concrete) 35%, transparent); }
+.mo-dimline-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  transform-origin: left;
+  transition: transform 120ms linear;
+}
+/* NDT scan sweep */
+.mo-scan { position: relative; }
+.mo-scan::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: #4fd1e6;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes scan-sweep {
+  0% { transform: translateY(0); opacity: 0.9; }
+  100% { transform: translateY(var(--scan-h, 260px)); opacity: 0; }
+}
+.mo-scan:hover::after { animation: scan-sweep 800ms var(--ease-draw) 1; }
+.mo-scan::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+  background-image:
+    linear-gradient(to right, #4fd1e6 1px, transparent 1px),
+    linear-gradient(to bottom, #4fd1e6 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+.mo-scan:hover::before { opacity: 0.08; }
+
+/* --- Skills --- */
+.mo-level {
+  position: relative;
+  display: block;
+  height: 3px;
+  width: 76px;
+  margin-top: 5px;
+  background: color-mix(in oklab, var(--concrete) 30%, transparent);
+}
+.mo-level span {
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--mo-delay, 0ms);
+}
+.is-in .mo-level span { transform: scaleX(var(--lvl, 0.5)); }
+@keyframes chip-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.mo-chip { opacity: 0; position: relative; }
+.is-in .mo-chip { animation: chip-in var(--dur-base) var(--ease-out) both; animation-delay: var(--mo-delay, 0ms); }
+.mo-chip::before,
+.mo-chip::after {
+  content: "";
+  position: absolute;
+  inset: -4px -6px;
+  border: 1px solid var(--amber);
+  clip-path: inset(0 100% 100% 0);
+  transition: clip-path var(--dur-base) var(--ease-draw);
+  pointer-events: none;
+}
+.mo-chip::after { transition-delay: var(--dur-fast); clip-path: inset(0 0 100% 0); }
+.mo-chip:hover::before { clip-path: inset(0 0 0 0); }
+.mo-chip:hover::after { clip-path: inset(0 0 0 0); }
+
+/* --- Projects --- */
+.mo-proc-arrow {
+  display: block;
+  height: 14px;
+  width: 100%;
+  overflow: visible;
+}
+.mo-proc-arrow path {
+  stroke: color-mix(in oklab, var(--amber) 70%, transparent);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transition: stroke-dashoffset var(--dur-base) var(--ease-draw);
+  transition-delay: var(--mo-delay, 0ms);
+}
+.mo.is-in .mo-proc-arrow path { stroke-dashoffset: 0; }
+.mo-projimg { overflow: hidden; }
+.mo-projimg img {
+  transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
+}
+.mo-project:hover .mo-projimg img { transform: scale(1.05); }
+.mo-project.is-featured:hover .mo-projimg img { filter: hue-rotate(45deg) contrast(1.15); }
+.mo-tag {
+  display: inline-block;
+  transform: translateX(calc(var(--travel) * -1));
+  opacity: 0;
+  transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+}
+.mo-project:hover .mo-tag { transform: translateX(0); opacity: 1; }
+.mo-code { opacity: 0.5; transition: opacity var(--dur-base) var(--ease-out); }
+.mo-project:hover .mo-code { opacity: 1; }
+@keyframes helix-spin { to { transform: rotate(360deg); } }
+.mo-helix {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 70%;
+  pointer-events: none;
+  opacity: 0.06;
+  animation: helix-spin 40s linear infinite;
+  z-index: 0;
+}
+
+/* --- Certificates coverflow --- */
+.mo-coverflow { perspective: 1200px; }
+.mo-coverflow .mo-card {
+  transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+  transform-style: preserve-3d;
+}
+
+/* --- Contact --- */
+.mo-underline { position: relative; }
+.mo-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.group:hover .mo-underline::after { transform: scaleX(1); }
+.mo-icon { transition: transform var(--dur-fast) var(--ease-out); }
+.group:hover .mo-icon { transform: translateY(-3px); }
+@keyframes status-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.mo-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--amber);
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* --- CAD cursor --- */
+html.has-cad-cursor, html.has-cad-cursor * { cursor: none !important; }
+.cad-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) linear;
+}
+.cad-cursor.is-on { opacity: 1; }
+.cad-cursor-follow { position: absolute; top: 0; left: 0; }
+.cad-rule-h, .cad-rule-v { position: absolute; background: var(--paper); opacity: 0.12; }
+.cad-rule-h { left: -100vw; top: 0; width: 200vw; height: 1px; }
+.cad-rule-v { top: -100vh; left: 0; height: 200vh; width: 1px; }
+.cad-reticle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 1px solid var(--amber);
+  transition: width var(--dur-fast) var(--ease-out), height var(--dur-fast) var(--ease-out), margin var(--dur-fast) var(--ease-out);
+}
+.cad-reticle.is-big { width: 36px; height: 36px; margin: -18px 0 0 -18px; }
+.cad-readout {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+/* --- Page loader --- */
+.sheet-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  background: var(--graphite);
+  transform: translateY(0);
+  transition: transform 260ms var(--ease-draw);
+}
+.sheet-loader.is-wipe { transform: translateY(-100%); }
+.sheet-loader-inner { width: min(420px, 80vw); text-align: center; }
+.sheet-loader-bar {
+  position: relative;
+  margin-top: 12px;
+  height: 4px;
+  background: color-mix(in oklab, var(--concrete) 30%, transparent);
+}
+@keyframes loader-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.sheet-loader-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  transform-origin: left;
+  animation: loader-fill 950ms var(--ease-draw) both;
+}
+.sheet-loader-tick { position: absolute; top: -5px; width: 1px; height: 5px; background: var(--concrete); }
+
+/* --- Section replay sweep --- */
+@keyframes section-replay {
+  from { opacity: 0.4; transform: translateY(var(--travel)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mo-replay { animation: section-replay var(--dur-base) var(--ease-out) both; }
+
+/* ============================================================
+   GUARDRAILS
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 150ms !important;
+    transition-property: opacity !important;
+    transform: none !important;
+    scroll-behavior: auto !important;
+  }
+  .mo { opacity: 1; clip-path: none !important; }
+  .mo-plot { clip-path: none !important; }
+  .mo-words .mo-word-in { opacity: 1; clip-path: none !important; }
+  .mo-flip-ch, .mo-chip { opacity: 1; }
+  .cad-cursor, .sheet-loader { display: none !important; }
+  html.has-cad-cursor, html.has-cad-cursor * { cursor: auto !important; }
+}
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
