@@ -252,12 +252,10 @@ const DocScroller = ({
   items,
   emptyLabel,
   emptyCount = 4,
-  scan = false,
 }: {
   items?: { src: string; caption?: string; type?: "image" | "video"; poster?: string }[];
   emptyLabel?: string;
   emptyCount?: number;
-  scan?: boolean;
 }) => {
   const hasItems = items && items.length > 0;
   const [zoom, setZoom] = useState<number | null>(null);
@@ -286,7 +284,7 @@ const DocScroller = ({
                 className="snap-start shrink-0 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-2"
                 style={{ width: "min(58vw, 216px)" }}
               >
-                <div className={`aspect-[4/5] overflow-hidden${scan ? " mo-scan" : ""}`}>
+                <div className="mo-scan aspect-[4/5] overflow-hidden">
                   {it.type === "video" ? (
                     <video
                       src={it.src}
@@ -452,7 +450,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
               type="button"
               onClick={() => setZoom(i)}
               aria-label={`Enlarge certificate: ${it.caption ?? "document"}`}
-              className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden border border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]"
+              className="mo-scan group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden border border-[color:var(--concrete)]/30 bg-[color:var(--graphite)]"
             >
               <img
                 src={it.src}
@@ -709,7 +707,7 @@ function Index() {
                 {e.role}
               </h3>
               <p className="mt-2 max-w-2xl text-sm text-[color:var(--paper)]/85">{e.body}</p>
-              {e.gallery && <DocScroller items={e.gallery} scan={e.org === "PT Robutech"} />}
+              {e.gallery && <DocScroller items={e.gallery} />}
             </Reveal>
           ))}
         </ol>
@@ -732,15 +730,15 @@ function Index() {
               </thead>
               <tbody className="text-[color:var(--paper)]/90">
                 {[
-                  ["SolidWorks", "CAD / 3D Modeling", "Advanced"],
-                  ["Autodesk Inventor", "CAD / 3D Modeling", "Advanced"],
-                  ["Ansys", "FEA / Simulation", "Intermediate"],
-                  ["Microsoft Excel", "Engineering Data & Calculation", "Advanced"],
-                  ["Microsoft Office", "Technical Reporting & Documentation", "Advanced"],
-                  ["Photoshop", "Graphics", "Intermediate"],
-                  ["Canva", "Technical Visualization", "Professional"],
-                  ["CapCut", "Video", "Familiar"],
-                ].map(([tool, cat, lvl], ri) => (
+                  ["SolidWorks", "CAD / 3D Modeling", "Advanced", 0.9],
+                  ["Autodesk Inventor", "CAD / 3D Modeling", "Advanced", 0.85],
+                  ["Microsoft Excel", "Engineering Data & Calculation", "Advanced", 0.85],
+                  ["Microsoft Office", "Technical Reporting & Documentation", "Advanced", 0.8],
+                  ["Ansys", "FEA / Simulation", "Intermediate", 0.6],
+                  ["Photoshop", "Graphics", "Intermediate", 0.5],
+                  ["Canva", "Technical Visualization", "Intermediate", 0.5],
+                  ["CapCut", "Video", "Basic", 0.3],
+                ].map(([tool, cat, lvl, pct], ri) => (
                   <tr
                     key={tool}
                     className="mo mo-up is-in border-b border-[color:var(--concrete)]/20"
@@ -751,7 +749,7 @@ function Index() {
                     <td className="p-3">
                       <span
                         className={
-                          lvl === "Advanced" || lvl === "Professional"
+                          lvl === "Advanced"
                             ? "text-[color:var(--amber-brand)]"
                             : lvl === "Intermediate"
                               ? "text-[color:var(--paper)]"
@@ -764,8 +762,7 @@ function Index() {
                         className="mo-level"
                         aria-hidden="true"
                         style={{
-                          ["--lvl" as string]:
-                            lvl === "Advanced" ? 0.9 : lvl === "Professional" ? 0.8 : lvl === "Intermediate" ? 0.6 : 0.35,
+                          ["--lvl" as string]: pct,
                           ["--mo-delay" as string]: `${Math.min(ri, 5) * 50}ms`,
                         }}
                       >
@@ -776,6 +773,9 @@ function Index() {
                 ))}
               </tbody>
             </table>
+            <p className="border-t border-[color:var(--concrete)]/20 p-3 font-mono text-[10px] tracking-[0.2em] text-[color:var(--paper)] opacity-55">
+              SCALE: BASIC — INTERMEDIATE — ADVANCED
+            </p>
           </Reveal>
 
           <Reveal variant="right" className="border border-[color:var(--concrete)]/30 bg-[color:var(--steel)] p-6">
