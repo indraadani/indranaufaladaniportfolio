@@ -756,7 +756,7 @@ function Index() {
                               : "text-[color:var(--concrete)]"
                         }
                       >
-                        {lvl} <span className="opacity-60">·</span> {Math.round(pct * 100)}%
+                        {lvl} <span className="opacity-60">·</span> {Math.round((pct as number) * 100)}%
                       </span>
                       <span
                         className="mo-level"
