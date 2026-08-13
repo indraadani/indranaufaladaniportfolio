@@ -730,14 +730,14 @@ function Index() {
               </thead>
               <tbody className="text-[color:var(--paper)]/90">
                 {[
-                  ["SolidWorks", "CAD / 3D Modeling", "Advanced", 0.9],
-                  ["Autodesk Inventor", "CAD / 3D Modeling", "Advanced", 0.85],
-                  ["Microsoft Excel", "Engineering Data & Calculation", "Advanced", 0.85],
-                  ["Microsoft Office", "Technical Reporting & Documentation", "Advanced", 0.8],
-                  ["Ansys", "FEA / Simulation", "Intermediate", 0.6],
-                  ["Photoshop", "Graphics", "Intermediate", 0.5],
-                  ["Canva", "Technical Visualization", "Intermediate", 0.5],
-                  ["CapCut", "Video", "Basic", 0.3],
+                  ["CapCut", "Video", "Familiar", 0.95],
+                  ["Ansys", "FEA / Simulation", "Professional", 0.8],
+                  ["Canva", "Technical Visualization", "Professional", 0.78],
+                  ["Microsoft Word", "Technical Reporting", "Advanced", 0.74],
+                  ["Microsoft Excel", "Engineering Data", "Advanced", 0.72],
+                  ["SolidWorks", "CAD / 3D Modeling", "Advanced", 0.7],
+                  ["Autodesk Inventor", "CAD / 3D Modeling", "Advanced", 0.7],
+                  ["Photoshop", "Graphics", "Intermediate", 0.48],
                 ].map(([tool, cat, lvl, pct], ri) => (
                   <tr
                     key={tool}
@@ -749,14 +749,14 @@ function Index() {
                     <td className="p-3">
                       <span
                         className={
-                          lvl === "Advanced"
+                          lvl === "Advanced" || lvl === "Professional" || lvl === "Familiar"
                             ? "text-[color:var(--amber-brand)]"
                             : lvl === "Intermediate"
                               ? "text-[color:var(--paper)]"
                               : "text-[color:var(--concrete)]"
                         }
                       >
-                        {lvl}
+                        {lvl} <span className="opacity-60">·</span> {Math.round(pct * 100)}%
                       </span>
                       <span
                         className="mo-level"
@@ -774,7 +774,7 @@ function Index() {
               </tbody>
             </table>
             <p className="border-t border-[color:var(--concrete)]/20 p-3 font-mono text-[10px] tracking-[0.2em] text-[color:var(--paper)] opacity-55">
-              SCALE: BASIC — INTERMEDIATE — ADVANCED
+              SCALE: FAMILIAR — PROFESSIONAL — ADVANCED — INTERMEDIATE
             </p>
           </Reveal>
 
