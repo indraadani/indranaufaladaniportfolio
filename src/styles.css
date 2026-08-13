@@ -649,38 +649,38 @@ html { scroll-behavior: smooth; }
 html.has-cad-cursor, html.has-cad-cursor * { cursor: none !important; }
 .cad-cursor {
   position: fixed;
-  inset: 0;
-  z-index: 200;
+  top: 0;
+  left: 0;
   pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  contain: layout style paint;
   opacity: 0;
-  transition: opacity var(--dur-fast) linear;
+  color: var(--amber);
 }
-.cad-cursor.is-on { opacity: 1; }
-.cad-cursor-follow { position: absolute; top: 0; left: 0; }
-.cad-rule-h, .cad-rule-v { position: absolute; background: var(--paper); opacity: 0.12; }
-.cad-rule-h { left: -100vw; top: 0; width: 200vw; height: 1px; }
-.cad-rule-v { top: -100vh; left: 0; height: 200vh; width: 1px; }
-.cad-reticle {
+.cad-cursor.is-on { opacity: 0.6; }
+.cad-box {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
-  border: 1px solid var(--amber);
-  transition: width var(--dur-fast) var(--ease-out), height var(--dur-fast) var(--ease-out), margin var(--dur-fast) var(--ease-out);
+  left: -8px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid currentColor;
 }
-.cad-reticle.is-big { width: 36px; height: 36px; margin: -18px 0 0 -18px; }
+.cad-plus-h, .cad-plus-v { position: absolute; background: currentColor; }
+.cad-plus-h { left: -8px; top: 0; width: 16px; height: 1px; }
+.cad-plus-v { top: -8px; left: 0; width: 1px; height: 16px; }
 .cad-readout {
   position: absolute;
-  left: 16px;
-  top: 16px;
+  left: 14px;
+  top: 14px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
-  color: var(--amber);
+  opacity: 0.55;
   white-space: nowrap;
 }
+.cad-cursor.is-flip .cad-readout { left: auto; right: 14px; }
 
 /* --- Page loader --- */
 .sheet-loader {

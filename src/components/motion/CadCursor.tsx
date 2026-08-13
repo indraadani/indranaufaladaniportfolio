@@ -1,76 +1,101 @@
 import { useEffect, useRef, useState } from "react";
-import { useFinePointer, useReducedMotion } from "./Reveal";
 
 /**
- * CAD-style crosshair cursor: full-width/height thin rules + reticle + XY readout.
- * Disabled on touch devices and when prefers-reduced-motion is set.
+ * Minimal CAD reticle cursor.
+ * - No React state for position, no smoothing, no full-viewport rules.
+ * - Single passive mousemove -> ref, one rAF loop writing transform only.
+ * - Coordinate origin is bottom-left (CAD convention).
  */
 export function CadCursor() {
-  const fine = useFinePointer();
-  const reduced = useReducedMotion();
-  const enabled = fine && !reduced;
+  const [enabled, setEnabled] = useState(false);
 
-  const wrap = useRef<HTMLDivElement | null>(null);
-  const [label, setLabel] = useState<string | null>(null);
-  const [big, setBig] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const pos = useRef({ x: 0, y: 0, tx: 0, ty: 0 });
+  useEffect(() => {
+    const check = () =>
+      setEnabled(
+        window.matchMedia("(pointer: fine)").matches &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+          window.innerWidth >= 1280,
+      );
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const el = useRef<HTMLDivElement | null>(null);
   const readout = useRef<HTMLSpanElement | null>(null);
+  const pos = useRef({ x: -100, y: -100 });
+  const last = useRef({ x: NaN, y: NaN });
+  const vh = useRef(0);
+  const vw = useRef(0);
 
   useEffect(() => {
     if (!enabled) return;
     document.documentElement.classList.add("has-cad-cursor");
-
-    const onMove = (e: globalThis.MouseEvent) => {
-      pos.current.tx = e.clientX;
-      pos.current.ty = e.clientY;
-      setVisible(true);
-      const t = (e.target as HTMLElement)?.closest("a,button,[role='button']") as HTMLElement | null;
-      if (t) {
-        setBig(true);
-        setLabel((t.getAttribute("aria-label") || t.innerText || "").trim().slice(0, 28).toUpperCase() || null);
-      } else {
-        setBig(false);
-        setLabel(null);
-      }
-    };
-    const onLeave = () => setVisible(false);
-
-    window.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseleave", onLeave);
+    vh.current = window.innerHeight;
+    vw.current = window.innerWidth;
 
     let raf = 0;
-    const tick = () => {
-      const p = pos.current;
-      p.x += (p.tx - p.x) * 0.12;
-      p.y += (p.ty - p.y) * 0.12;
-      const el = wrap.current;
-      if (el) el.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
-      if (readout.current) {
-        readout.current.textContent = label ?? `X ${Math.round(p.tx)}  Y ${Math.round(p.ty)}`;
-      }
+    let lastText = 0;
+
+    const tick = (t: number) => {
       raf = requestAnimationFrame(tick);
+      const { x, y } = pos.current;
+      if (x === last.current.x && y === last.current.y) return;
+      last.current.x = x;
+      last.current.y = y;
+      const node = el.current;
+      if (node) {
+        node.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        node.classList.toggle("is-flip", x > vw.current - 120);
+      }
+      if (readout.current && t - lastText >= 100) {
+        lastText = t;
+        readout.current.textContent = `X ${Math.round(x)}  Y ${Math.round(vh.current - y)}`;
+      }
     };
-    raf = requestAnimationFrame(tick);
+
+    const start = () => {
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      el.current?.classList.remove("is-on");
+    };
+
+    const onMove = (e: MouseEvent) => {
+      pos.current.x = e.clientX;
+      pos.current.y = e.clientY;
+      el.current?.classList.add("is-on");
+      start();
+    };
+    const onResize = () => {
+      vh.current = window.innerHeight;
+      vw.current = window.innerWidth;
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("mouseleave", stop);
+    window.addEventListener("resize", onResize);
+    start();
 
     return () => {
       document.documentElement.classList.remove("has-cad-cursor");
       window.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
-      cancelAnimationFrame(raf);
+      document.removeEventListener("mouseleave", stop);
+      window.removeEventListener("resize", onResize);
+      if (raf) cancelAnimationFrame(raf);
     };
-  }, [enabled, label]);
+  }, [enabled]);
 
   if (!enabled) return null;
 
   return (
-    <div className={`cad-cursor${visible ? " is-on" : ""}`} aria-hidden="true">
-      <div ref={wrap} className="cad-cursor-follow">
-        <span className="cad-rule-h" />
-        <span className="cad-rule-v" />
-        <span className={`cad-reticle${big ? " is-big" : ""}`} />
-        <span ref={readout} className="cad-readout" />
-      </div>
+    <div ref={el} className="cad-cursor" aria-hidden="true">
+      <span className="cad-box" />
+      <span className="cad-plus-h" />
+      <span className="cad-plus-v" />
+      <span ref={readout} className="cad-readout" />
     </div>
   );
 }
