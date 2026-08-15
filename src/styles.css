@@ -589,7 +589,6 @@ html { scroll-behavior: smooth; }
   transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
 }
 .mo-project:hover .mo-projimg img { transform: scale(1.05); }
-.mo-project.is-featured:hover .mo-projimg img { filter: hue-rotate(45deg) contrast(1.15); }
 .mo-tag {
   display: inline-block;
   transform: translateX(calc(var(--travel) * -1));
@@ -646,7 +645,6 @@ html { scroll-behavior: smooth; }
 }
 
 /* --- CAD cursor --- */
-html.has-cad-cursor, html.has-cad-cursor * { cursor: none !important; }
 .cad-cursor {
   position: fixed;
   top: 0;
@@ -745,7 +743,6 @@ html.has-cad-cursor, html.has-cad-cursor * { cursor: none !important; }
 
 .mo-proj-img { transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out); }
 .mo-project:hover .mo-proj-img { transform: scale(1.05); }
-.mo-project:hover .mo-thermal { filter: hue-rotate(45deg) contrast(1.15); }
 .mo-featured .mo-helix { color: var(--amber); }
 
 /* certificate coverflow cards keep their computed transform on hover */
