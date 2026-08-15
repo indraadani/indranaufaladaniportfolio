@@ -353,7 +353,7 @@ const DocScroller = ({
             type="button"
             onClick={() => setZoom(null)}
             aria-label="Close"
-            className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
+            className="absolute top-4 right-4 border border-[color:var(--amber-brand)] bg-[color:var(--graphite)]/80 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--amber-brand)] transition-colors hover:bg-[color:var(--amber-brand)] hover:text-[color:var(--graphite)]"
           >
             ✕ ESC
           </button>
@@ -490,7 +490,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
             type="button"
             onClick={() => setZoom(null)}
             aria-label="Close"
-            className="absolute top-4 right-4 border border-[color:var(--concrete)]/60 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--paper)] hover:border-[color:var(--amber-brand)] hover:text-[color:var(--amber-brand)]"
+            className="absolute top-4 right-4 border border-[color:var(--amber-brand)] bg-[color:var(--graphite)]/80 px-3 py-1 font-mono text-[11px] tracking-[0.2em] text-[color:var(--amber-brand)] transition-colors hover:bg-[color:var(--amber-brand)] hover:text-[color:var(--graphite)]"
           >
             ✕ ESC
           </button>
@@ -1066,7 +1066,7 @@ function Index() {
               {
                 label: "EMAIL",
                 value: "indraadani654@gmail.com",
-                href: "mailto:indraadani654@gmail.com",
+                href: "https://mail.google.com/mail/?view=cm&fs=1&to=indraadani654@gmail.com",
                 icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
               },
               {
@@ -1097,7 +1097,7 @@ function Index() {
               <Reveal key={c.label} as="span" delay={Math.min(ci, 5) * 60} className="block">
               <a
                 href={c.href}
-                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group flex min-w-0 items-center gap-3 border border-[color:var(--concrete)]/40 bg-[color:var(--steel)] p-3 transition-colors hover:border-[color:var(--amber-brand)]"
               >
