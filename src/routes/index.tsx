@@ -42,6 +42,11 @@ import kedairekaPoster2 from "../assets/kedaireka/kedaireka-2-poster.jpg.asset.j
 import kedairekaPoster3 from "../assets/kedaireka/kedaireka-3-poster.jpg.asset.json";
 import kedaireka2 from "../assets/kedaireka/kedaireka-2.mp4.asset.json";
 import kedaireka3 from "../assets/kedaireka/kedaireka-3.mp4.asset.json";
+import kedaireka4 from "../assets/kedaireka/kedaireka-4.jpg.asset.json";
+import kedaireka5 from "../assets/kedaireka/kedaireka-5.jpg.asset.json";
+import kedaireka6 from "../assets/kedaireka/kedaireka-6.jpg.asset.json";
+import kedaireka7 from "../assets/kedaireka/kedaireka-7.png.asset.json";
+import kedaireka8 from "../assets/kedaireka/kedaireka-8.jpg.asset.json";
 import cadfem1 from "../assets/cadfem/cadfem-1.png.asset.json";
 import cadfem2 from "../assets/cadfem/cadfem-2.png.asset.json";
 import cadfem3 from "../assets/cadfem/cadfem-3.png.asset.json";
@@ -184,6 +189,11 @@ const KEDAIREKA_VIDEOS = [
   { src: kedaireka1.url, poster: kedairekaPoster1.url, type: "video" as const, caption: "Kedaireka — Proses Pembuatan Alat Produksi" },
   { src: kedaireka2.url, poster: kedairekaPoster2.url, type: "video" as const, caption: "Kedaireka — Uji Coba Kendaraan Listrik" },
   { src: kedaireka3.url, poster: kedairekaPoster3.url, type: "video" as const, caption: "Kedaireka — Riset Perancangan Kendaraan Listrik" },
+  { src: kedaireka4.url, caption: "Kedaireka — Perakitan Wiring & Controller Kendaraan Listrik" },
+  { src: kedaireka5.url, caption: "Kedaireka — Prototipe Mesin Produksi dengan Panel Kontrol" },
+  { src: kedaireka6.url, caption: "Kedaireka — Desain Assembly Rangka Mesin Pencuci Empon-Empon (SolidWorks)" },
+  { src: kedaireka7.url, caption: "Kedaireka — Pemodelan 3D Komponen Pipa Flanged (SolidWorks)" },
+  { src: kedaireka8.url, caption: "Kedaireka — Pameran Multifunctional Electric Vehicle (MEV)" },
 ];
 
 const CADFEM_IMAGES = [

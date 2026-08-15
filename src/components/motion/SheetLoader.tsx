@@ -29,7 +29,7 @@ export function SheetLoader() {
     <div className={`sheet-loader${wipe ? " is-wipe" : ""}`} aria-hidden="true">
       <div className="sheet-loader-inner">
         <div className="font-mono text-[10px] tracking-[0.3em] text-[color:var(--concrete)]">
-          LOADING SHEET 01 / INDRA NAUFAL ADANI
+          Loading Portofolio Indra Naufal Adani
         </div>
         <div className="sheet-loader-bar">
           <span className="sheet-loader-fill" />
