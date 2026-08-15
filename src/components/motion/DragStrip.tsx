@@ -15,7 +15,7 @@ export function DragStrip({
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
-  const drag = useRef({ active: false, startX: 0, startScroll: 0, lastX: 0, lastT: 0, v: 0 });
+  const drag = useRef({ active: false, moved: false, startX: 0, startScroll: 0, lastX: 0, lastT: 0, v: 0 });
   const raf = useRef<number | null>(null);
 
   const update = useCallback(() => {
@@ -58,20 +58,30 @@ export function DragStrip({
     if (raf.current) cancelAnimationFrame(raf.current);
     drag.current = {
       active: true,
+      moved: false,
       startX: e.clientX,
       startScroll: el.scrollLeft,
       lastX: e.clientX,
       lastT: performance.now(),
       v: 0,
     };
-    el.setPointerCapture(e.pointerId);
-    el.classList.add("is-dragging");
+
   };
 
   const onPointerMove = (e: ReactPointerEvent) => {
     const el = ref.current;
     if (!el || !drag.current.active) return;
     const dx = e.clientX - drag.current.startX;
+    if (!drag.current.moved) {
+      if (Math.abs(dx) < 5) return; // let clicks through for small movements
+      drag.current.moved = true;
+      try {
+        el.setPointerCapture(e.pointerId);
+      } catch {
+        /* noop */
+      }
+      el.classList.add("is-dragging");
+    }
     el.scrollLeft = drag.current.startScroll - dx;
     const now = performance.now();
     const dt = now - drag.current.lastT || 16;
@@ -85,12 +95,15 @@ export function DragStrip({
     if (!el || !drag.current.active) return;
     drag.current.active = false;
     el.classList.remove("is-dragging");
+    if (!drag.current.moved) {
+      drag.current.v = 0;
+    }
     try {
       el.releasePointerCapture(e.pointerId);
     } catch {
       /* noop */
     }
-    if (Math.abs(drag.current.v) > 1) glide();
+    if (drag.current.moved && Math.abs(drag.current.v) > 1) glide();
   };
 
   return (
