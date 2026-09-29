@@ -346,7 +346,7 @@ const DocScroller = ({
 
       {zoomed && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[color:var(--graphite)]/95 p-4"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-3 overflow-y-auto bg-[color:var(--graphite)]/95 p-4"
           onClick={() => setZoom(null)}
           role="dialog"
           aria-modal="true"
@@ -363,10 +363,10 @@ const DocScroller = ({
             src={zoomed.src}
             alt={zoomed.caption ?? "Documentation"}
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[85vh] max-w-full border border-[color:var(--concrete)]/40 object-contain"
+            className="my-auto max-h-[calc(100vh-8rem)] max-w-[calc(100vw-2rem)] shrink border border-[color:var(--concrete)]/40 object-contain"
           />
           {zoomed.caption && (
-            <p className="mt-3 font-mono text-[11px] tracking-[0.2em] text-[color:var(--concrete)]">
+            <p className="shrink-0 pb-2 font-mono text-[11px] tracking-[0.2em] text-[color:var(--concrete)]">
               {zoomed.caption}
             </p>
           )}
@@ -483,7 +483,7 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
 
       {zoomed && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[color:var(--graphite)]/95 p-4"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-3 overflow-y-auto bg-[color:var(--graphite)]/95 p-4"
           onClick={() => setZoom(null)}
           role="dialog"
           aria-modal="true"
@@ -500,10 +500,10 @@ const CertGrid = ({ items }: { items: { src: string; caption?: string }[] }) => 
             src={zoomed.src}
             alt={zoomed.caption ?? "Sertifikat"}
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[85vh] max-w-full border border-[color:var(--concrete)]/40 object-contain"
+            className="my-auto max-h-[calc(100vh-8rem)] max-w-[calc(100vw-2rem)] shrink border border-[color:var(--concrete)]/40 object-contain"
           />
           {zoomed.caption && (
-            <p className="mt-3 font-mono text-[11px] tracking-[0.2em] text-[color:var(--concrete)]">
+            <p className="shrink-0 pb-2 font-mono text-[11px] tracking-[0.2em] text-[color:var(--concrete)]">
               {zoomed.caption}
             </p>
           )}
