@@ -9,7 +9,7 @@ import { CadCursor } from "../components/motion/CadCursor";
 import { SheetLoader } from "../components/motion/SheetLoader";
 import { CharFlip, WordWipe } from "../components/motion/Text";
 import { Mail, MessageCircle, Linkedin, Instagram, Music2 } from "lucide-react";
-import cvFile from "../assets/cv.pdf.asset.json";
+import cvFile from "../assets/cv-new.pdf.asset.json";
 import portraitCutout from "../assets/indra-cutout.png.asset.json";
 import puli1 from "../assets/proyek/puli-1.jpg.asset.json";
 import puli2 from "../assets/proyek/puli-2.png.asset.json";
@@ -57,6 +57,7 @@ import cadfem7 from "../assets/cadfem/cadfem-7.png.asset.json";
 import cadfem8 from "../assets/cadfem/cadfem-8.png.asset.json";
 import briketVideo from "../assets/briket/briket.mp4.asset.json";
 import briketPoster from "../assets/briket/briket-poster.jpg.asset.json";
+import certToeflItp from "../assets/sertifikat/cert-toefl-itp.png.asset.json";
 import cert1 from "../assets/sertifikat/cert-1.jpg.asset.json";
 import cert2 from "../assets/sertifikat/cert-2.jpg.asset.json";
 import cert4 from "../assets/sertifikat/cert-4.jpg.asset.json";
@@ -144,6 +145,7 @@ const CERT_DOCS = [
   { src: cert2.url, caption: "Sertifikat Indra Naufal Adani" },
   { src: cert4.url, caption: "SK HMRTM 2023" },
   { src: cert6.url, caption: "Sertifikat PKKMB 2022" },
+  { src: certToeflItp.url, caption: "TOEFL ITP — Level 1 Score 553" },
   { src: certTep.url, caption: "Test of English Proficiency (TEP) — Pusat Bahasa UNESA" },
   { src: certMekanik.url, caption: "Seleksi MSIB dr. Mekanik Academy 2024" },
   { src: certPengmas.url, caption: "Panitia Pengabdian Masyarakat FORMAT R 2024" },
